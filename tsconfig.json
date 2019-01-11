@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "jsx": "react",
+    "target": "es5",
+    "outDir": "build/tsc_output",
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "scripthost"
+    ],
+    "sourceMap": true,
+    "alwaysStrict": false,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false
+  },
+  "include": [
+    "src",
+    "webpack.config.ts",
+    "node_modules/web3-typescript-typings/index.d.ts"
+  ]
+}
