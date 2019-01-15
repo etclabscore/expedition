@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <EmeraldProvider ethUrl="http://localhost:8545">
+        <EmeraldProvider ethUrl="http://localhost:8545" theme={{}}>
           <div>
             <div>
               <AppBar title="Emerald" subtitle="Explorer">
