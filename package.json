@@ -58,7 +58,6 @@
     "emerald-js": "git+https://github.com/ETCDEVTeam/emerald-js.git",
     "emerald-js-ui": "git+https://github.com/ETCDEVTeam/emerald-js-ui.git#material-ui-one",
     "ethereumjs-util": "^5.2.0",
-    "json-rpc-engine": "^3.7.3",
     "qs": "^6.5.2",
     "raf": "^3.4.0",
     "react": "^16.4.2",

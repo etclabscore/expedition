@@ -14,7 +14,10 @@ import { history } from './store';
 import Page from 'emerald-js-ui/lib/components/Page';
 import { Provider } from 'react-redux'
 
-import { AppBar, NetworkSelector, EmeraldProvider } from 'emerald-js-ui';
+import { AppBar, NetworkSelector } from 'emerald-js-ui';
+import { VaultJsonRpcProvider } from 'emerald-js-ui/lib/providers/VaultJsonRpcProvider';
+import { EthJsonRpcProvider } from 'emerald-js-ui/lib/providers/EthJsonRpcProvider';
+
 
 const routes = [
   { path: '/', component: Dashboard, title: 'Dashboard', exact: true },
@@ -26,34 +29,38 @@ const routes = [
 
 class App extends React.Component {
   render() {
+    const ethUrl = "http://localhost:8545";
+    const vaultUrl = "http://localhost:9120";
     return (
       <Provider store={store}>
-        <EmeraldProvider ethUrl="http://localhost:8545" theme={{}}>
-          <div>
+        <EthJsonRpcProvider url={ethUrl}>
+          <VaultJsonRpcProvider url={vaultUrl}>
             <div>
-              <AppBar title="Emerald" subtitle="Explorer">
-                <NetworkSelector />
-              </AppBar>
-            </div>
-            <div style={{ margin: '20px' }}>
-              <ConnectedRouter history={history}>
-                <Switch>
-                  {
-                    routes.map((routeProps, i) => {
-                      let wrapped = (props) => (
-                        <Page title={routeProps.title}>
-                          {routeProps.component({ ...props, history })}
-                        </Page>
-                      );
+              <div>
+                <AppBar title="Jade" subtitle="Explorer">
+                  <NetworkSelector />
+                </AppBar>
+              </div>
+              <div style={{ margin: '20px' }}>
+                <ConnectedRouter history={history}>
+                  <Switch>
+                    {
+                      routes.map((routeProps, i) => {
+                        let wrapped = (props) => (
+                          <Page title={routeProps.title}>
+                            {routeProps.component({ ...props, history })}
+                          </Page>
+                        );
 
-                      return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
-                    })
-                  }
-                </Switch>
-              </ConnectedRouter>
+                        return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
+                      })
+                    }
+                  </Switch>
+                </ConnectedRouter>
+              </div>
             </div>
-          </div>
-        </EmeraldProvider>
+          </VaultJsonRpcProvider>
+        </EthJsonRpcProvider>
       </Provider>
     );
   }

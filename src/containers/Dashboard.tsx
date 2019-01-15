@@ -48,7 +48,7 @@ const blockMapTransactionCount = (block) => {
 
 export default (props: any) => {
   return (
-    <EthRpc method="eth.getBlock" params={['latest', true]}>
+    <EthRpc method="eth.getBlock" params={['latest', true]} refresh={5000}>
       {block => (
         <div>
           <Grid container spacing={24}>
@@ -103,25 +103,26 @@ export default (props: any) => {
 
             <EthRpc method="ext.getBlocks" params={[Math.max(block.number - config.blockHistoryLength + 1, 0), block.number]}>
               {blocks => {
+                 console.log('blocks', blocks);
                  return [
-                   <Grid item xs={6}>
-                     <HashChart height={config.chartHeight} title={`Hash Rate Last ${config.blockHistoryLength} blocks`} data={blocks.map(blockMapHashRate)} />,
+                   <Grid item xs={12} sm={6} lg={3}>
+                     <HashChart height={config.chartHeight} title={`Hash Rate Last ${blocks.length} blocks`} data={blocks.map(blockMapHashRate)} />,
                    </Grid>,
-                   <Grid item xs={6}>
+                   <Grid item xs={12} sm={6} lg={3}>
                     <VictoryChart height={config.chartHeight} width={config.chartWidth}>
-                      <VictoryLabel x={25} y={24} text={`Transaction count last ${config.blockHistoryLength} blocks`}/>
+                      <VictoryLabel x={25} y={24} text={`Transaction count last ${blocks.length} blocks`}/>
                       <VictoryBar data={blocks.map(blockMapTransactionCount)} />
                     </VictoryChart>
                    </Grid>,
-                   <Grid item xs={6}>
+                   <Grid item xs={12} sm={6} lg={3}>
                      <VictoryChart height={config.chartHeight} width={config.chartWidth}>
-                       <VictoryLabel x={25} y={24} text={`Gas Used Last ${config.blockHistoryLength} blocks`}/>
+                       <VictoryLabel x={25} y={24} text={`Gas Used Last ${blocks.length} blocks`}/>
                        <VictoryBar data={blocks.map(blockMapGasUsed)} />
                      </VictoryChart>
                    </Grid>,
-                   <Grid item xs={6}>
+                   <Grid item xs={12} sm={6} lg={3}>
                      <VictoryChart height={config.chartHeight} width={config.chartWidth}>
-                       <VictoryLabel x={25} y={24} text={`Uncles Last ${config.blockHistoryLength} blocks`}/>
+                       <VictoryLabel x={25} y={24} text={`Uncles Last ${blocks.length} blocks`}/>
                        <VictoryBar data={blocks.map(blockMapUncles)} />
                      </VictoryChart>
                    </Grid>,
