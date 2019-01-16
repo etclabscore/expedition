@@ -7,9 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { hashesToGH } from '../components/formatters';
 import { VictoryChart, VictoryBar, VictoryLabel } from 'victory';
 import { weiToGwei } from '../components/formatters';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
-
 
 
 const config = {
@@ -129,8 +128,9 @@ export default (props: any) => {
               </EthRpc>
               <Grid item>
                 <Typography variant="headline">
-                  Last 10 blocks (View All)
+                  Last 10 blocks
                 </Typography>
+                <Button href={"#/blocks"}>View All</Button>
                 <BlockList from={Math.max(block.number - 11, 0)} to={block.number} />
               </Grid>
             </Grid>

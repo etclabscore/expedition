@@ -20,7 +20,7 @@ const rightPaddingFix = {
 
 function BlockList({ blocks }: BlockListProps) {
   const sortedBlocks = blocks.sort((_a, _b) => {
-    return _a.number - _b.number;
+    return _b.number - _a.number;
   })
   return (
     <Table>
