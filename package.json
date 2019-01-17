@@ -17,7 +17,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "test": "jest --verbose --coverage",
     "lint": "tslint -p tsconfig.json",
-    "clean": "./node_modules/.bin/rimraf ./build",
+    "clean": "./node_modules/.bin/rimraf ./build"
   },
   "jest": {
     "collectCoverageFrom": [
