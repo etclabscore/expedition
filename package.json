@@ -1,18 +1,15 @@
 {
-  "name": "emerald-starter-kit",
-  "version": "1.0.1",
-  "description": "Emerald starter kit",
+  "name": "jade-explorer",
+  "version": "1.0.0",
+  "description": "Jade Explorer",
   "keywords": [
     "typescript",
     "react",
     "dapp"
   ],
-  "bugs": {
-    "url": "https://github.com/ETCDevTeam/emerald-starter-kit/issues"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ETCDevTeam/emerald-starter-kit.git"
+    "url": "https://github.com/etclabscore/jade-explorer.git"
   },
   "scripts": {
     "start": "npm run-script dev",
