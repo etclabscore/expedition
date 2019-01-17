@@ -14,10 +14,10 @@ class BlockListContainer extends React.Component<Props, State> {
     const { from, to } = this.props;
     return (
       <div>
-      Blocks from {from} to {to}
-      <EthRpc method="ext.getBlocks" params={[this.props.from, this.props.to]}>
-        {blocks => (<BlockList blocks={blocks} />)}
-      </EthRpc>
+        Blocks from {from} to {to}
+        <EthRpc method="ext.getBlocks" params={[this.props.from, this.props.to]}>
+          {blocks => (<BlockList blocks={blocks} />)}
+        </EthRpc>
       </div>
     );
   }

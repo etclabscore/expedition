@@ -13,9 +13,14 @@ export interface BlockListProps {
   blocks: Array<BlockWithoutTxData>;
 }
 
+
+const rightPaddingFix = {
+  paddingRight: '24px'
+}
+
 function BlockList({ blocks }: BlockListProps) {
   const sortedBlocks = blocks.sort((_a, _b) => {
-    return _a.number - _b.number;
+    return _b.number - _a.number;
   })
   return (
     <Table>
@@ -32,11 +37,11 @@ function BlockList({ blocks }: BlockListProps) {
            return (
              <TableRow key={b.number!}>
                <TableCell component="th" scope="row"><Typography>{b.number}</Typography></TableCell>
-                 <TableCell><Link to={`/block/${b.hash}`}>{b.hash}</Link></TableCell>
-                 <TableCell>
+                 <TableCell style={rightPaddingFix}><Link to={`/block/${b.hash}`}>{b.hash}</Link></TableCell>
+                 <TableCell style={rightPaddingFix}>
                    <Typography>{b.timestamp}</Typography>
                  </TableCell>
-                 <TableCell>
+                 <TableCell style={rightPaddingFix}>
                    <Typography>{b.transactions.length}</Typography>
                  </TableCell>
              </TableRow>
