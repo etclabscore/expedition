@@ -4,3 +4,4 @@ build
 docs
 .DS_Store
 dist
+/**/build
