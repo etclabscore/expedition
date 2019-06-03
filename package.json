@@ -2,7 +2,7 @@
   "name": "@etclabscore/pristine-typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "build/src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --fix -p .",
