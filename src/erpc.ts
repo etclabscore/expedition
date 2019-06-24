@@ -4,6 +4,6 @@ export default new ERPC({
     transport: {
         type: "http",
         host: "localhost",
-        port: 8545,
+        port: 58578,
     },
 });

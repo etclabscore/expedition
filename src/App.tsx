@@ -4,14 +4,14 @@ import { AppBar, Card, CardContent, CardHeader, Toolbar, Typography } from "@mat
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Address from "./containers/Address";
 import Block from "./containers/Block";
-// import Dashboard from "./containers/Dashboard";
+import Dashboard from "./containers/Dashboard";
 import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
 
 import "./App.css";
 
 const routes = [
-  { path: "/", component: NodeView, title: "Dashboard", exact: true },
+  { path: "/", component: Dashboard, title: "Dashboard", exact: true },
   { path: "/block/:hash", component: Block, title: "Block" },
   { path: "/blocks", component: NodeView, title: "Latest Blocks" },
   { path: "/tx/:hash", component: Transaction, title: "Transaction Details" },
