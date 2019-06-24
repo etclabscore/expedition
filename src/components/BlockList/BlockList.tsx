@@ -21,13 +21,13 @@ function BlockList({ blocks }: any) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {sortedBlocks.map(b => {
+        {sortedBlocks.map((b: any) => {
            return (
              <TableRow key={b.number!}>
-               <TableCell component="th" scope="row"><Typography>{b.number}</Typography></TableCell>
+               <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
                  <TableCell style={rightPaddingFix}><Link to={`/block/${b.hash}`}>{b.hash}</Link></TableCell>
                  <TableCell style={rightPaddingFix}>
-                   <Typography>{b.timestamp}</Typography>
+                   <Typography>{new Date(parseInt(b.timestamp, 16) * 1000).toISOString()}</Typography>
                  </TableCell>
                  <TableCell style={rightPaddingFix}>
                    <Typography>{b.transactions.length}</Typography>

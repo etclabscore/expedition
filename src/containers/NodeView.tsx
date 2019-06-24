@@ -1,4 +1,3 @@
-import { Button } from "@material-ui/core";
 import * as React from "react";
 import BlockList from "./BlockList";
 
@@ -7,8 +6,7 @@ import erpc from "../erpc";
 
 export default function NodeView(props: any) {
   const [blockNumber, error, state] = usePromise(() => erpc.eth_blockNumber(), []);
-  return [
-    <BlockList key={1} from={Math.max(parseInt(blockNumber, 16) - 15, 0)} to={parseInt(blockNumber, 16)} />,
-    <Button key={2}>Load More</Button>,
-  ];
+  return (
+    <BlockList key={1} from={Math.max(parseInt(blockNumber, 16) - 15, 0)} to={parseInt(blockNumber, 16)} />
+  );
 }

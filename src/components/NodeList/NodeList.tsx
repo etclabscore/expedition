@@ -1,14 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Node } from "../../store/nodes/model";
 
 interface Props {
-  nodes: Node[];
+  nodes: any[];
 }
 
 function NodeList(props: Props) {
 
-  const pendingTxs = (n: Node) => {
+  const pendingTxs = (n: any) => {
     if (n.pendingBlock) {
       return <span>{n.pendingBlock.transactions.length}</span>;
     }
@@ -17,7 +16,7 @@ function NodeList(props: Props) {
 
   return (
     <div>
-      {props.nodes.map(n => (
+      {props.nodes.map((n: any) => (
         <div key={n.id}>
           <div>
             {n.url} : {n.blockNumber}, pending Txs: {pendingTxs(n) || "..."}

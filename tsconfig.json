@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "jsx": "react",
+    "module": "esnext",
+    "jsx": "preserve",
     "target": "es5",
     "outDir": "build/tsc_output",
     "lib": [
@@ -15,6 +15,16 @@
     "noEmitOnError": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src",

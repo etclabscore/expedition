@@ -27,7 +27,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>Timestamp</TableCell>
-            <TableCell>{new Date(timestamp).toString()}</TableCell>
+            <TableCell>{new Date(parseInt(timestamp, 16) * 1000).toString()}</TableCell>
           </TableRow>
 
           <TableRow>
