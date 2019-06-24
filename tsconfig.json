@@ -13,12 +13,11 @@
     "sourceMap": true,
     "alwaysStrict": false,
     "noEmitOnError": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
   },
   "include": [
     "src",
-    "webpack.config.ts",
-    "node_modules/web3-typescript-typings/index.d.ts"
+    "webpack.config.ts"
   ]
 }

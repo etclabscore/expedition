@@ -9,6 +9,7 @@
       "spaces",
       2
     ],
+    "no-unused-variable": false,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "no-object-literal-type-assertion": false,

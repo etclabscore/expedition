@@ -1,26 +1,19 @@
-import * as React from 'react';
-import BlockList from '../components/BlockList';
-import { EthRpc } from 'emerald-js-ui';
+import * as React from "react";
+import BlockList from "../components/BlockList";
 
-interface Props {
+
+interface IProps {
   from: number;
   to: number;
 }
 
-interface State {}
-
-class BlockListContainer extends React.Component<Props, State> {
-  render() {
-    const { from, to } = this.props;
-    return (
-      <div>
-        Blocks from {from} to {to}
-        <EthRpc method="ext.getBlocks" params={[this.props.from, this.props.to]}>
-          {blocks => (<BlockList blocks={blocks} />)}
-        </EthRpc>
-      </div>
-    );
-  }
+export default function BlockListContainer(props: IProps) {
+  const { from, to } = props;
+  const blocks = [];
+  return (
+    <div>
+      Blocks from {from} to {to}
+      <BlockList blocks={blocks} />
+    </div>
+  );
 }
-
-export default BlockListContainer;

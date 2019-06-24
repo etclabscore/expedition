@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { VictoryChart, VictoryLine, VictoryLabel } from 'victory';
+import * as React from "react";
+import { VictoryChart, VictoryLine, VictoryLabel } from "victory";
 
 export default function HashChart(props: any) {
   const { title, data, width, height } = props;

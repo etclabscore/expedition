@@ -1,27 +1,15 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { BlockWithoutTxData } from 'emerald-js';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { Typography } from '@material-ui/core';
-
-export interface BlockListProps {
-  blocks: Array<BlockWithoutTxData>;
-}
-
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
+import * as React from "react";
+import { Link } from "react-router-dom";
 
 const rightPaddingFix = {
-  paddingRight: '24px'
-}
+  paddingRight: "24px",
+};
 
-function BlockList({ blocks }: BlockListProps) {
-  const sortedBlocks = blocks.sort((_a, _b) => {
-    return _b.number - _a.number;
-  })
+function BlockList({ blocks }: any) {
+  const sortedBlocks = blocks.sort((a: {number: number}, b: {number: number}) => {
+    return b.number - a.number;
+  });
   return (
     <Table>
       <TableHead>

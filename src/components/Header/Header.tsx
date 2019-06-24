@@ -1,18 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './Header.css';
+import "./Header.css";
 
-interface Props {}
+interface IProps {
+  //
+}
 
 const styles: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
 };
 
-function Header(prop: Props) {
+function Header(prop: IProps) {
   return (
     <div style={styles}>
-      <div>Emerald Tool</div>
+      <div>Explorer</div>
     </div>
   );
 }

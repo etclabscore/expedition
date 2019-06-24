@@ -1,4 +1,3 @@
-import { EthRpc, JsonRpc, HttpTransport } from 'emerald-js';
 import { Node } from './model';
 import { NodesAction, UpdateNodeStatus, UpdateNodeStatusError } from './actions';
 import { UPDATE_NODE_STATUS, UPDATE_NODE_STATUS_ERROR } from './constants';
@@ -12,19 +11,16 @@ const initialState: State = {
     {
       id: '1',
       url: 'https://web3.gastracker.io',
-      rpc: new EthRpc(new JsonRpc(new HttpTransport('https://web3.gastracker.io'))),
       chainId: 61,
     },
     {
       id: '2',
       url: 'https://web3.gastracker.io/morden',
-      rpc: new EthRpc(new JsonRpc(new HttpTransport('https://web3.gastracker.io/morden'))),
       chainId: 62,
     },
     {
       id: '3',
       url: 'http://localhost:8545',
-      rpc: new EthRpc(new JsonRpc(new HttpTransport('http://localhost:8545'))),
       chainId: 1,
     }
   ]

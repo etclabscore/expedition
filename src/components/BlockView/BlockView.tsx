@@ -1,19 +1,10 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { BlockWithTxData } from 'emerald-js';
-import { Account } from 'emerald-js-ui';
-import TxList from '../TxList';
+import * as React from "react";
+import { Link } from "react-router-dom";
+import TxList from "../TxList";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
-export interface Props {
-  block: BlockWithTxData;
-}
-
-function BlockView(props: Props) {
+function BlockView(props: any) {
   const { block } = props;
 
   if (!block) {
@@ -23,7 +14,7 @@ function BlockView(props: Props) {
   const {
     number, timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
-  } = block
+  } = block;
 
   return (
     <div>
@@ -54,7 +45,7 @@ function BlockView(props: Props) {
           <TableRow>
             <TableCell>Miner</TableCell>
             <TableCell>
-              <Account address={miner} identity />
+                {miner}
             </TableCell>
           </TableRow>
 
