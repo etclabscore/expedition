@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-interface Props {
+interface IProps {
   nodes: any[];
 }
 
-function NodeList(props: Props) {
+function NodeList(props: IProps) {
 
   const pendingTxs = (n: any) => {
     if (n.pendingBlock) {

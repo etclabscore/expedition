@@ -12,7 +12,7 @@ function BlockView(props: any) {
   }
 
   const {
-    number, timestamp, hash, parentHash, miner, nonce, difficulty,
+    timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
   } = block;
 
@@ -22,7 +22,7 @@ function BlockView(props: any) {
         <TableBody>
           <TableRow>
             <TableCell>Number</TableCell>
-            <TableCell>{number}</TableCell>
+            <TableCell>{parseInt(block.number, 16)}</TableCell>
           </TableRow>
 
           <TableRow>
