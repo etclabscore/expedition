@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
 import BigNumber from "bignumber.js";
 import * as React from "react";
 import usePromise from "react-use-promise";
@@ -7,12 +7,12 @@ import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
 import erpc from "../erpc";
-import getBlocks from "../helpers";
+import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
 
 const config = {
   blockTime: 15, // seconds
-  blockHistoryLength: 100,
+  blockHistoryLength: 16,
   chartHeight: 200,
   chartWidth: 400,
 };
@@ -55,31 +55,44 @@ const getStyles = () => {
   };
 };
 
-export default (props: any) => {
-  const styles = getStyles();
-  const [results, error, state] = usePromise(async () => {
-    const bn = await erpc.eth_blockNumber();
-    const blockNum: number = parseInt(bn, 16);
+const useDashboardInfo = (blockNumber: number): any => {
+  const [dashboardResults, setDashboardResults] = React.useState();
+
+  const [, error, state] = usePromise(async () => {
+    if (blockNumber === undefined) {
+      return null;
+    }
     const rangeOfBlocks: any[] = await getBlocks(
-      Math.max(blockNum - config.blockHistoryLength + 1, 0),
-      blockNum,
+      Math.max(blockNumber - config.blockHistoryLength + 1, 0),
+      blockNumber,
     );
     const gp: number = parseInt(await erpc.eth_gasPrice(), 16);
-    return {
-      blockNumber: blockNum,
+    const r = {
       chainId: parseInt(await erpc.eth_chainId(), 16),
-      block: await erpc.eth_getBlockByNumber(bn, true),
+      block: await erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true),
       blocks: rangeOfBlocks,
       gasPrice: gp,
       syncing: await erpc.eth_syncing(),
       peerCount: parseInt(await erpc.net_peerCount(), 16),
     };
-  }, []);
-  if (!results) {
-    return null;
-  }
-  const { block, blocks, gasPrice, peerCount, blockNumber, chainId, syncing } = results;
+    setDashboardResults(r);
+    return r;
+  }, [blockNumber]);
+  return [dashboardResults, error, state];
+};
 
+export default (props: any) => {
+  const styles = getStyles();
+  const [blockNumber] = useBlockNumber();
+  const [results, error, state] = useDashboardInfo(blockNumber);
+  if (error && !results) {
+    return (<div>Oops. Something went wrong. Please try again. <br /><br /><code>{error.message}</code></div>);
+  }
+  if (state && !results) {
+    return (<CircularProgress />);
+  }
+
+  const { block, blocks, gasPrice, peerCount, chainId, syncing } = results;
   return (
     <div>
       <Grid container={true} spacing={24}>

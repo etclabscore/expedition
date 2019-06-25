@@ -2,18 +2,18 @@ import * as React from "react";
 import usePromise from "react-use-promise";
 import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
+import { CircularProgress } from "@material-ui/core";
 
 interface IProps {
   from: number;
   to: number;
 }
 
-
 export default function BlockListContainer(props: IProps) {
   const { from, to } = props;
   const [blocks, error, state] = usePromise(() => getBlocks(from, to), [from, to]);
-  if (!blocks) {
-    return null;
+  if (!blocks && state === "pending") {
+    return <CircularProgress />;
   }
   return (
     <div>

@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { AppBar, Card, CardContent, CardHeader, Toolbar, Typography } from "@material-ui/core";
+import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Address from "./containers/Address";
 import Block from "./containers/Block";
@@ -18,35 +17,33 @@ const routes = [
   { path: "/address/:address", component: Address, title: "Address Details" },
 ];
 
-class App extends React.Component {
-  public render() {
-    return (
-      <>
-        <AppBar position="static" color="default" elevation={0}>
-          <Toolbar>
-            <Typography>Jade Block Explorer</Typography>
-          </Toolbar>
-        </AppBar>
-        <Router>
-          <Switch>
-            {
-              routes.map((routeProps, i) => {
-                const wrapped = (props: any) => (
-                  <Card>
-                    <CardHeader title={routeProps.title} />
-                    <CardContent>
-                      {routeProps.component({ ...props })}
-                    </CardContent>
-                  </Card>
-                );
-                return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
-              })
-            }
-          </Switch>
-        </Router>
-      </>
-    );
-  }
+function App(props: any) {
+  return (
+    <>
+      <AppBar position="static" color="default" elevation={0}>
+        <Toolbar>
+          <Typography>Jade Block Explorer</Typography>
+        </Toolbar>
+      </AppBar>
+      <Router>
+        <Switch>
+          {
+            routes.map((routeProps, i) => {
+              const wrapped = (p: any) => (
+                <Card>
+                  <CardHeader title={routeProps.title} />
+                  <CardContent>
+                    {routeProps.component({ ...p })}
+                  </CardContent>
+                </Card>
+              );
+              return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
+            })
+          }
+        </Switch>
+      </Router>
+    </>
+  );
 }
 
 export default App;
