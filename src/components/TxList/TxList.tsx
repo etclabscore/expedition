@@ -30,7 +30,7 @@ function TxListItem({ tx }: { tx: any }) {
         : null}
       </TableCell>
 
-      <TableCell>{tx.transactionIndex}</TableCell>
+      <TableCell>{parseInt(tx.transactionIndex, 16)}</TableCell>
     </TableRow>
   );
 }
