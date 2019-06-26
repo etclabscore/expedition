@@ -8,6 +8,7 @@ import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
 
 import "./App.css";
+import useMultiGeth from "./erpc";
 
 const routes = [
   { path: "/", component: Dashboard, title: "Dashboard", exact: true },
@@ -18,6 +19,7 @@ const routes = [
 ];
 
 function App(props: any) {
+  const [erpc] = useMultiGeth("1.9.1", "mainnet");
   return (
     <>
       <AppBar position="static" color="default" elevation={0}>
@@ -33,7 +35,7 @@ function App(props: any) {
                 <Card>
                   <CardHeader title={routeProps.title} />
                   <CardContent>
-                    {routeProps.component({ ...p })}
+                    {routeProps.component({ ...p, erpc })}
                   </CardContent>
                 </Card>
               );

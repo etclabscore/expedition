@@ -15,10 +15,12 @@
     "build": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
+    "service-runner": "jade-service-runner",
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
     "@etclabscore/ethereum-json-rpc": "^1.0.10",
+    "@etclabscore/jade-service-runner-client": "^1.0.12",
     "@material-ui/core": "^1.4.3",
     "bignumber.js": "^4.1.0",
     "ethereumjs-util": "^5.2.0",
@@ -35,6 +37,7 @@
     "victory": "^31.3.0"
   },
   "devDependencies": {
+    "@etclabscore/jade-service-runner": "^1.1.0",
     "@types/bignumber.js": "^4.0.3",
     "@types/jest": "^21.1.6",
     "@types/node": "^8.0.51",

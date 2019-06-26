@@ -1,3 +1,4 @@
+import ERPC from "@etclabscore/ethereum-json-rpc";
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
 import BigNumber from "bignumber.js";
 import * as React from "react";
@@ -6,7 +7,6 @@ import { VictoryBar, VictoryChart, VictoryLabel } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
-import erpc from "../erpc";
 import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
 
@@ -55,7 +55,7 @@ const getStyles = () => {
   };
 };
 
-const useDashboardInfo = (blockNumber: number): any => {
+const useDashboardInfo = (blockNumber: number, erpc: any): any => {
   const [dashboardResults, setDashboardResults] = React.useState();
 
   const [, error, state] = usePromise(async () => {
@@ -65,6 +65,7 @@ const useDashboardInfo = (blockNumber: number): any => {
     const rangeOfBlocks: any[] = await getBlocks(
       Math.max(blockNumber - config.blockHistoryLength + 1, 0),
       blockNumber,
+      erpc,
     );
     const gp: number = parseInt(await erpc.eth_gasPrice(), 16);
     const r = {
@@ -81,10 +82,10 @@ const useDashboardInfo = (blockNumber: number): any => {
   return [dashboardResults, error, state];
 };
 
-export default (props: any) => {
+export default ({erpc}: {erpc: ERPC}) => {
   const styles = getStyles();
-  const [blockNumber] = useBlockNumber();
-  const [results, error, state] = useDashboardInfo(blockNumber);
+  const [blockNumber] = useBlockNumber(erpc);
+  const [results, error, state] = useDashboardInfo(blockNumber, erpc);
   if (error && !results) {
     return (<div>Oops. Something went wrong. Please try again. <br /><br /><code>{error.message}</code></div>);
   }
@@ -170,7 +171,7 @@ export default (props: any) => {
             Last 10 blocks
           </Typography>
           <Button href={"/blocks"}>View All</Button>
-          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} />
+          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc}/>
         </Grid>
       </Grid>
     </div>
