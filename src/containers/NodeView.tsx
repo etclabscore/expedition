@@ -1,13 +1,15 @@
-import * as React from 'react';
-import BlockList from './BlockList';
-import { EthRpc } from 'emerald-js-ui';
-import Button from '@material-ui/core/Button';
+import ERPC from "@etclabscore/ethereum-json-rpc";
+import { CircularProgress } from "@material-ui/core";
+import * as React from "react";
+import { useBlockNumber } from "../helpers";
+import BlockList from "./BlockList";
 
-export default function NodeView(props: any) {
-  return [
-    <EthRpc method="eth.getBlockNumber">
-      {blockNumber => (<BlockList from={Math.max(blockNumber - 15, 0)} to={blockNumber} />)}
-    </EthRpc>,
-    <Button>Load More</Button>
-  ];
+export default function NodeView({erpc}: {erpc: ERPC}) {
+  const [blockNumber] = useBlockNumber(erpc);
+  if (!blockNumber) {
+    return (<CircularProgress />);
+  }
+  return (
+    <BlockList from={Math.max(blockNumber - 15, 0)} to={blockNumber} erpc={erpc}/>
+  );
 }

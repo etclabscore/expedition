@@ -1,0 +1,182 @@
+{
+    "$schema": "./lib/service-runner-schema.json",
+    "services": [
+      {
+        "name": "multi-geth",
+        "rpcPort": "${DYNAMIC_TCP_PORT_1}",
+        "version": "1.9.2",
+        "environments": [{
+            "name": "mainnet",
+            "args": {
+              "start": [
+                "--classic",
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/classic",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpccorsdomain", 
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          },
+          {
+            "name": "kotti",
+            "args": {
+              "start": [
+                "--kotti",
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/kotti",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpcaddr",
+                "localhost",
+                "--rpccorsdomain",
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          },
+          {
+            "name": "dev",
+            "args": {
+              "start": [
+                "--dev",
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/dev",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpccorsdomain", 
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          },
+          {
+            "name": "ethereum",
+            "args": {
+              "start": [
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/ethereum",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpccorsdomain",
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          },
+          {
+            "name": "goerli",
+            "args": {
+              "start": [
+                "--goerli",
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/goerli",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpccorsdomain",
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          },
+          {
+            "name": "rinkeby",
+            "args": {
+              "start": [
+                "--rinkeby",
+                "--datadir",
+                "${SERVICE_DIR}/multi-geth/1.9.0/rinkeby",
+                "--rpc",
+                "--rpcport",
+                "${DYNAMIC_TCP_PORT_1}",
+                "--rpccorsdomain",
+                "*"
+              ],
+              "stop": [],
+              "teardown": []
+            },
+            "health": {
+             "interval": 20000, 
+             "retries": 5,
+             "port": "${DYNAMIC_TCP_PORT_1}",
+             "protocol": "tcp"
+             }
+          }
+        ],
+        "os": {
+          "osx": {
+            "commands": {
+              "setup": [
+                {
+                  "cmd": "chmod",
+                  "args": [
+                    "+x",
+                    "${SERVICE_DIR}/geth"
+                  ]
+                }
+              ],
+              "start": "${SERVICE_DIR}/geth",
+              "stop": "",
+              "teardown": ""
+            },
+            "assets": [
+              "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-osx.zip"
+            ]
+          },
+          "linux": {
+            "commands": {
+              "setup": [],
+              "start": "geth",
+              "stop": "",
+              "teardown": ""
+            },
+            "assets": [
+              "https://github.com/multi-geth/multi-geth/releases/download/v1.9.2/multi-geth-linux.zip"
+            ]
+          }
+        }
+      }
+    ]
+  }

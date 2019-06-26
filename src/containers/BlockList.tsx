@@ -1,26 +1,29 @@
-import * as React from 'react';
-import BlockList from '../components/BlockList';
-import { EthRpc } from 'emerald-js-ui';
+import ERPC from "@etclabscore/ethereum-json-rpc";
+import { CircularProgress } from "@material-ui/core";
+import * as React from "react";
+import usePromise from "react-use-promise";
+import BlockList from "../components/BlockList";
+import getBlocks from "../helpers";
 
-interface Props {
+interface IProps {
   from: number;
   to: number;
+  erpc: ERPC;
 }
 
-interface State {}
-
-class BlockListContainer extends React.Component<Props, State> {
-  render() {
-    const { from, to } = this.props;
-    return (
-      <div>
-        Blocks from {from} to {to}
-        <EthRpc method="ext.getBlocks" params={[this.props.from, this.props.to]}>
-          {blocks => (<BlockList blocks={blocks} />)}
-        </EthRpc>
-      </div>
-    );
+export default function BlockListContainer(props: IProps) {
+  const { from, to, erpc } = props;
+  const [blocks, error, state] = usePromise(async () => {
+    if (!erpc) { return; }
+    return getBlocks(from, to, erpc);
+  }, [from, to]);
+  if (!blocks && state === "pending") {
+    return <CircularProgress />;
   }
+  return (
+    <div>
+      Blocks from {from} to {to}
+      <BlockList blocks={blocks} />
+    </div>
+  );
 }
-
-export default BlockListContainer;

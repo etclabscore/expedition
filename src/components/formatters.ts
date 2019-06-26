@@ -1,7 +1,8 @@
-export function hashesToGH(hashes: number) {
-  return parseInt((hashes / 1000000000).toFixed(2), 10);
-}
+import BigNumber from "bignumber.js";
 
+export function hashesToGH(hashes: BigNumber) {
+  return parseInt((hashes.dividedBy(1000000000).toNumber()).toFixed(2), 10);
+}
 
 export function weiToGwei(wei: any) {
   if (wei === 0) {

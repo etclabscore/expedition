@@ -1,37 +1,31 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Transaction } from 'emerald-js';
-import { Account, Address } from 'emerald-js-ui';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
-export interface TxListProps {
-  transactions: Transaction[];
+export interface ITxListProps {
+  transactions: any[];
 }
 
-function TxListItem({ tx }: { tx: Transaction }) {
+function TxListItem({ tx }: { tx: any }) {
   return (
     <TableRow>
       <TableCell>
         <Link to={`/tx/${tx.hash}`}>
-          <Address shortened={true} id={tx.hash} />
+          {tx.hash}
         </Link>
       </TableCell>
 
       <TableCell>
         <Link to={`/address/${tx.from}`}>
-          <Account address={tx.from} identity />
+          {tx.from}
         </Link>
       </TableCell>
 
       <TableCell>
         {tx.to !== null ?
           <Link to={`/address/${tx.to}`}>
-            <Account address={tx.to} identity />
+            {tx.to}
           </Link>
         : null}
       </TableCell>
@@ -41,7 +35,7 @@ function TxListItem({ tx }: { tx: Transaction }) {
   );
 }
 
-function TxList(props: TxListProps) {
+function TxList(props: ITxListProps) {
   return (
     <Table>
       <TableHead>
@@ -54,7 +48,7 @@ function TxList(props: TxListProps) {
       </TableHead>
 
       <TableBody>
-        {props.transactions.map(tx => <TxListItem key={tx.hash} tx={tx} />)}
+        {props.transactions.map((tx: any) => <TxListItem key={tx.hash} tx={tx} />)}
       </TableBody>
     </Table>
   );

@@ -1,18 +1,14 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Transaction, TransactionReceipt } from 'emerald-js';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import {Table, TableBody, TableCell, TableRow} from "@material-ui/core";
 
-export interface TxViewProps {
-  tx: Transaction;
-  receipt: TransactionReceipt | null;
+export interface ITxViewProps {
+  tx: any;
+  receipt: any | null;
 }
 
-function renderTxTable(tx: Transaction, receipt: TransactionReceipt | null) {
+function renderTxTable(tx: any, receipt: any | null) {
   return (
     <div>
       <div>General</div>
@@ -182,7 +178,7 @@ function renderTxTable(tx: Transaction, receipt: TransactionReceipt | null) {
   );
 }
 
-function TxView(props: TxViewProps) {
+function TxView(props: ITxViewProps) {
   const { tx, receipt } = props;
   if (!tx) {
     return null;

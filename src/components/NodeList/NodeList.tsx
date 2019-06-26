@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Node } from '../../store/nodes/model';
+import * as React from "react";
+import { Link } from "react-router-dom";
 
-interface Props {
-  nodes: Node[];
+interface IProps {
+  nodes: any[];
 }
 
-function NodeList(props: Props) {
+function NodeList(props: IProps) {
 
-  const pendingTxs = (n: Node) => {
+  const pendingTxs = (n: any) => {
     if (n.pendingBlock) {
       return <span>{n.pendingBlock.transactions.length}</span>;
     }
@@ -17,17 +16,17 @@ function NodeList(props: Props) {
 
   return (
     <div>
-      {props.nodes.map(n => (
+      {props.nodes.map((n: any) => (
         <div key={n.id}>
           <div>
-            {n.url} : {n.blockNumber}, pending Txs: {pendingTxs(n) || '...'}
+            {n.url} : {n.blockNumber}, pending Txs: {pendingTxs(n) || "..."}
           </div>
           <div>{n.clientVersion}</div>
-          <div>network id: {n.networkId} gasPrice: {n.gasPrice ? n.gasPrice.toString() + ' Wei' : ''}</div>
+          <div>network id: {n.networkId} gasPrice: {n.gasPrice ? n.gasPrice.toString() + " Wei" : ""}</div>
           <div>chain id: {n.chainId}</div>
           <div>{n.error && <span color="red">{n.error}</span>}</div>
           <div>
-            <Link to={'/blocks'} >View</Link>
+            <Link to={"/blocks"} >View</Link>
           </div>
         </div>
 

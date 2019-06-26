@@ -1,71 +1,51 @@
-import * as React from 'react';
-import { ConnectedRouter } from 'connected-react-router';
-import { Switch, Route } from 'react-router';
+import { AppBar, Card, CardContent, CardHeader, Toolbar, Typography } from "@material-ui/core";
+import * as React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Address from "./containers/Address";
+import Block from "./containers/Block";
+import Dashboard from "./containers/Dashboard";
+import NodeView from "./containers/NodeView";
+import Transaction from "./containers/Transaction";
 
-import NodeView from './containers/NodeView';
-import Block from './containers/Block';
-import Address from './containers/Address';
-import Transaction from './containers/Transaction';
-import Dashboard from './containers/Dashboard';
-
-import store from './store';
-import { history } from './store';
-
-import Page from 'emerald-js-ui/lib/components/Page';
-import { Provider } from 'react-redux'
-
-import { AppBar, NetworkSelector } from 'emerald-js-ui';
-import { VaultJsonRpcProvider } from 'emerald-js-ui/lib/providers/VaultJsonRpcProvider';
-import { EthJsonRpcProvider } from 'emerald-js-ui/lib/providers/EthJsonRpcProvider';
-
+import "./App.css";
+import useMultiGeth from "./erpc";
 
 const routes = [
-  { path: '/', component: Dashboard, title: 'Dashboard', exact: true },
-  { path: '/block/:hash', component: Block, title: 'Block' },
-  { path: '/blocks', component: NodeView, title: 'Latest Blocks' },
-  { path: '/tx/:hash', component: Transaction, title: 'Transaction Details' },
-  { path: '/address/:address', component: Address, title: 'Address Details' },
+  { path: "/", component: Dashboard, title: "Dashboard", exact: true },
+  { path: "/block/:hash", component: Block, title: "Block" },
+  { path: "/blocks", component: NodeView, title: "Latest Blocks" },
+  { path: "/tx/:hash", component: Transaction, title: "Transaction Details" },
+  { path: "/address/:address", component: Address, title: "Address Details" },
 ];
 
-class App extends React.Component {
-  render() {
-    const ethUrl = "http://localhost:8545";
-    const vaultUrl = "http://localhost:9120";
-    return (
-      <Provider store={store}>
-        <EthJsonRpcProvider url={ethUrl}>
-          <VaultJsonRpcProvider url={vaultUrl}>
-            <div>
-              <div>
-                <AppBar title="Jade" subtitle="Explorer">
-                  <NetworkSelector />
-                </AppBar>
-              </div>
-              <div style={{ margin: '20px' }}>
-                <ConnectedRouter history={history}>
-                  <Switch>
-                    {
-                      routes.map((routeProps, i) => {
-                        let wrapped = (props) => (
-                          <Page title={routeProps.title}>
-                            {routeProps.component({ ...props, history })}
-                          </Page>
-                        );
-
-                        return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
-                      })
-                    }
-                  </Switch>
-                </ConnectedRouter>
-              </div>
-            </div>
-          </VaultJsonRpcProvider>
-        </EthJsonRpcProvider>
-      </Provider>
-    );
-  }
+function App(props: any) {
+  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  return (
+    <>
+      <AppBar position="static" color="default" elevation={0}>
+        <Toolbar>
+          <Typography>Jade Block Explorer</Typography>
+        </Toolbar>
+      </AppBar>
+      <Router>
+        <Switch>
+          {
+            routes.map((routeProps, i) => {
+              const wrapped = (p: any) => (
+                <Card>
+                  <CardHeader title={routeProps.title} />
+                  <CardContent>
+                    {routeProps.component({ ...p, erpc })}
+                  </CardContent>
+                </Card>
+              );
+              return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
+            })
+          }
+        </Switch>
+      </Router>
+    </>
+  );
 }
 
 export default App;
-
-

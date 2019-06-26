@@ -1,12 +1,15 @@
-import * as React from 'react';
-import BlockView from '../components/BlockView';
-import { EthRpc } from 'emerald-js-ui';
+import { CircularProgress } from "@material-ui/core";
+import * as React from "react";
+import usePromise from "react-use-promise";
+import BlockView from "../components/BlockView";
 
 export default function Block(props: any) {
-  const { match: { params: { hash } } } = props;
-  return (
-    <EthRpc method="eth.getBlock" params={[hash, true]}>
-      {block => (<BlockView block={block} />)}
-    </EthRpc>
-  );
+  const { erpc, match: { params: { hash } } } = props;
+  const [block, error, state] = usePromise(() => {
+    if (!erpc) { return; }
+    return erpc.eth_getBlockByHash(hash, true);
+  }, [hash]);
+  if (error) { return (<div> Error: {error} </div>); }
+  if (!block) { return (<CircularProgress />); }
+  return (<BlockView block={block} />);
 }

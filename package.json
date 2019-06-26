@@ -12,88 +12,56 @@
     "url": "https://github.com/etclabscore/jade-explorer.git"
   },
   "scripts": {
-    "start": "npm run-script dev",
-    "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "test": "jest --verbose --coverage",
-    "lint": "tslint -p tsconfig.json",
-    "clean": "./node_modules/.bin/rimraf ./build"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx,js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/jest/polyfills.ts"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/*.(ts|tsx|js|jsx)",
-      "<rootDir>/src/**/?(*.)(spec|test).(ts|tsx|js|jsx)"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/file-transform.ts",
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
+    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "service-runner": "jade-service-runner",
+    "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
+    "@etclabscore/ethereum-json-rpc": "^1.0.10",
+    "@etclabscore/jade-service-runner-client": "^1.0.12",
     "@material-ui/core": "^1.4.3",
-    "@types/webpack": "^4.4.22",
     "bignumber.js": "^4.1.0",
-    "bluebird": "^3.5.1",
-    "connected-react-router": "^6.1.0",
-    "emerald-js": "git+https://github.com/ETCDEVTeam/emerald-js.git",
-    "emerald-js-ui": "git+https://github.com/ETCDEVTeam/emerald-js-ui.git#material-ui-one",
     "ethereumjs-util": "^5.2.0",
+    "ethjs-unit": "^0.1.6",
     "qs": "^6.5.2",
     "raf": "^3.4.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-router-redux": "^4.0.8",
-    "redux": "^4.0.1",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "victory": "^31.1.0",
-    "webpack-dev-server": "^3.1.14"
+    "react-use-promise": "^0.2.0",
+    "use-interval": "^1.1.0",
+    "victory": "^31.3.0"
   },
   "devDependencies": {
+    "@etclabscore/jade-service-runner": "^1.1.0",
     "@types/bignumber.js": "^4.0.3",
     "@types/jest": "^21.1.6",
     "@types/node": "^8.0.51",
     "@types/react": "^16.0.22",
     "@types/react-dom": "^16.0.3",
-    "clean-webpack-plugin": "^0.1.17",
-    "copy-webpack-plugin": "^4.2.0",
-    "cross-env": "^5.1.1",
-    "css-loader": "^0.28.7",
-    "file-loader": "^1.1.5",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^21.2.1",
-    "postcss-loader": "^2.0.8",
-    "rimraf": "^2.6.2",
-    "source-map-loader": "^0.2.3",
-    "style-loader": "^0.19.0",
-    "ts-jest": "^21.2.2",
-    "ts-loader": "^5.3.3",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/victory": "^31.0.19",
+    "react-scripts": "^3.0.1",
+    "ts-jest": "^24.0.2",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
-    "tslint-loader": "^3.5.3",
-    "tslint-react": "^3.2.0",
-    "typescript": "^3.0.1",
-    "web3-typescript-typings": "^0.7.2",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
