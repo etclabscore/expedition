@@ -1,33 +1,25 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "jsx": "preserve",
     "target": "es5",
-    "outDir": "build/tsc_output",
+    "module": "esnext",
     "lib": [
-      "dom",
-      "es5",
       "es2015",
-      "scripthost"
+      "dom"
     ],
-    "sourceMap": true,
-    "alwaysStrict": false,
-    "noEmitOnError": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "outDir": "./build",
     "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "allowJs": true,
     "isolatedModules": true,
     "noEmit": true
   },
   "include": [
-    "src",
-    "webpack.config.ts"
+    "src"
   ]
 }
