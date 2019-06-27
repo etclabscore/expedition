@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 
@@ -11,23 +12,38 @@ function TxListItem({ tx }: { tx: any }) {
   return (
     <TableRow>
       <TableCell>
-        <Link to={`/tx/${tx.hash}`}>
+        <Link
+          component={({ className, children }: { children: any, className: string }) => (
+            <RouterLink className={className} to={`/tx/${tx.hash}`} >
+              {children}
+            </RouterLink>
+          )}>
           {tx.hash}
         </Link>
       </TableCell>
 
       <TableCell>
-        <Link to={`/address/${tx.from}`}>
+        <Link
+          component={({ className, children }: { children: any, className: string }) => (
+            <RouterLink className={className} to={`/address/${tx.from}`} >
+              {children}
+            </RouterLink>
+          )}>
           {tx.from}
         </Link>
       </TableCell>
 
       <TableCell>
         {tx.to !== null ?
-          <Link to={`/address/${tx.to}`}>
+          <Link
+            component={({ className, children }: { children: any, className: string }) => (
+              <RouterLink className={className} to={`/address/${tx.to}`} >
+                {children}
+              </RouterLink>
+            )}>
             {tx.to}
           </Link>
-        : null}
+          : null}
       </TableCell>
 
       <TableCell>{parseInt(tx.transactionIndex, 16)}</TableCell>

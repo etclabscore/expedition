@@ -12,7 +12,7 @@ import BlockList from "./BlockList";
 
 const config = {
   blockTime: 15, // seconds
-  blockHistoryLength: 16,
+  blockHistoryLength: 100,
   chartHeight: 200,
   chartWidth: 400,
 };
@@ -82,7 +82,7 @@ const useDashboardInfo = (blockNumber: number, erpc: any): any => {
   return [dashboardResults, error, state];
 };
 
-export default ({erpc}: {erpc: ERPC}) => {
+export default ({ erpc }: { erpc: ERPC }) => {
   const styles = getStyles();
   const [blockNumber] = useBlockNumber(erpc);
   const [results, error, state] = useDashboardInfo(blockNumber, erpc);
@@ -96,39 +96,39 @@ export default ({erpc}: {erpc: ERPC}) => {
   const { block, blocks, gasPrice, peerCount, chainId, syncing } = results;
   return (
     <div>
-      <Grid container={true} spacing={24}>
+      <Grid container={true} spacing={3}>
         <Grid style={styles.topItems} item={true} xs={12}>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Block Height
             </Typography>
             <Typography>{blockNumber}</Typography>
           </div>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Chain ID
             </Typography>
             <Typography>{chainId}</Typography>
           </div>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Syncing
             </Typography>
             {typeof syncing === "object" && syncing.currentBlock &&
-              <Typography variant="caption">
+              <Typography variant="h6">
                 {parseInt(syncing.currentBlock, 16)} / {parseInt(syncing.highestBlock || "0x0", 16)}
               </Typography>
             }
             {!syncing && <Typography>No</Typography>}
           </div>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Gas Price
             </Typography>
             <Typography>{weiToGwei(gasPrice)} Gwei</Typography>
           </div>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Network Hash Rate
             </Typography>
             <HashRate block={block} blockTime={config.blockTime}>
@@ -136,7 +136,7 @@ export default ({erpc}: {erpc: ERPC}) => {
             </HashRate>
           </div>
           <div>
-            <Typography variant="headline">
+            <Typography variant="h6">
               Peers
             </Typography>
             <Typography>{peerCount}</Typography>
@@ -167,11 +167,11 @@ export default ({erpc}: {erpc: ERPC}) => {
           </VictoryChart>
         </Grid>
         <Grid item={true}>
-          <Typography variant="headline">
+          <Typography variant="h6">
             Last 10 blocks
           </Typography>
           <Button href={"/blocks"}>View All</Button>
-          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc}/>
+          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
         </Grid>
       </Grid>
     </div>

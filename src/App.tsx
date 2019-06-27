@@ -1,14 +1,19 @@
-import { AppBar, Card, CardContent, CardHeader, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Card, CardContent, CardHeader, CssBaseline, Theme, Toolbar, Typography, IconButton } from "@material-ui/core";
+import { makeStyles, ThemeProvider } from "@material-ui/styles";
 import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import useDarkMode from "use-dark-mode";
+import "./App.css";
 import Address from "./containers/Address";
 import Block from "./containers/Block";
 import Dashboard from "./containers/Dashboard";
 import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
-
-import "./App.css";
 import useMultiGeth from "./erpc";
+import { darkTheme, lightTheme } from "./themes/jadeTheme";
+
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import Brightness3Icon from "@material-ui/icons/Brightness3";
 
 const routes = [
   { path: "/", component: Dashboard, title: "Dashboard", exact: true },
@@ -18,13 +23,26 @@ const routes = [
   { path: "/address/:address", component: Address, title: "Address Details" },
 ];
 
+const useStyles = makeStyles((theme: Theme) => ({
+  title: {
+    flexGrow: 1,
+  },
+}));
+
 function App(props: any) {
   const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const darkMode = useDarkMode();
+  const theme = darkMode.value ? darkTheme : lightTheme;
+  const classes = useStyles(theme);
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <AppBar position="static" color="default" elevation={0}>
         <Toolbar>
-          <Typography>Jade Block Explorer</Typography>
+          <Typography className={classes.title}>Jade Block Explorer</Typography>
+          <IconButton onClick={darkMode.toggle}>
+            {darkMode ? <Brightness3Icon /> : <WbSunnyIcon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Router>
@@ -44,7 +62,7 @@ function App(props: any) {
           }
         </Switch>
       </Router>
-    </>
+    </ThemeProvider>
   );
 }
 

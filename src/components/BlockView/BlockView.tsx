@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
@@ -38,14 +39,21 @@ function BlockView(props: any) {
           <TableRow>
             <TableCell>ParentHash</TableCell>
             <TableCell>
-              <Link to={`/block/${parentHash}`}>{parentHash}</Link>
+              <Link
+                component={({ className, children }: { children: any, className: string }) => (
+                  <RouterLink className={className} to={`/block/${parentHash}`} >
+                    {children}
+                  </RouterLink>
+                )}>
+                {parentHash}
+              </Link>
             </TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Miner</TableCell>
             <TableCell>
-                {miner}
+              {miner}
             </TableCell>
           </TableRow>
 
@@ -81,7 +89,7 @@ function BlockView(props: any) {
         </TableBody>
       </Table>
 
-      <TxList transactions={transactions}/>
+      <TxList transactions={transactions} />
     </div>
   );
 }
