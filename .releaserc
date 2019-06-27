@@ -21,7 +21,7 @@
     {
       "path": "@qiwi/semantic-release-gh-pages-plugin",
       "msg": "github pages release",
-      "src": "docs/",
+      "src": "build/",
       "branch": "gh-pages"
     },
     "@semantic-release/npm"
