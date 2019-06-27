@@ -9,11 +9,10 @@ import Block from "./containers/Block";
 import Dashboard from "./containers/Dashboard";
 import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
-import useMultiGeth from "./erpc";
 import { darkTheme, lightTheme } from "./themes/jadeTheme";
 
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
 
 const routes = [
   { path: "/", component: Dashboard, title: "Dashboard", exact: true },
@@ -30,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function App(props: any) {
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
   const darkMode = useDarkMode();
   const theme = darkMode.value ? darkTheme : lightTheme;
   const classes = useStyles(theme);
@@ -41,7 +39,7 @@ function App(props: any) {
         <Toolbar>
           <Typography className={classes.title}>Jade Block Explorer</Typography>
           <IconButton onClick={darkMode.toggle}>
-            {darkMode ? <Brightness3Icon /> : <WbSunnyIcon />}
+            {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -53,11 +51,13 @@ function App(props: any) {
                 <Card>
                   <CardHeader title={routeProps.title} />
                   <CardContent>
-                    {routeProps.component({ ...p, erpc })}
+                    {routeProps.component({ ...p })}
                   </CardContent>
                 </Card>
               );
-              return (<Route key={i} path={routeProps.path} component={wrapped} exact={routeProps.exact} />);
+              return (
+              <Route key={routeProps.path} path={routeProps.path} component={wrapped} exact={routeProps.exact} />
+              );
             })
           }
         </Switch>

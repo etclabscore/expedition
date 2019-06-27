@@ -1,28 +1,30 @@
 import ERPC from "@etclabscore/ethereum-json-rpc";
 import { CircularProgress } from "@material-ui/core";
 import * as React from "react";
-import usePromise from "react-use-promise";
 import TxView from "../components/TxView";
+import useMultiGeth from "../erpc";
+import { useBlockNumber } from "../helpers";
 
 export default function TransactionContainer(props: any) {
-  const { erpc }: { erpc: ERPC } = props;
-  const [results, error, state] = usePromise(async () => {
-    if (!erpc) { return; }
-    return {
-      transaction: await erpc.eth_getTransactionByHash(props.match.params.hash),
-      receipt: await erpc.eth_getTransactionReceipt(props.match.params.hash),
-    };
-  }, [props.match.params.hash]);
+  const hash = props.match.params.hash;
+  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [blockNumber] = useBlockNumber(erpc);
+  const [transaction, setTransaction] = React.useState();
+  const [receipt, setReceipt] = React.useState();
 
-  if (error && !results) {
-    return (<div>Oops. Something went wrong. Please try again. <br /><br /><code>{error.message}</code></div>);
-  }
-  if (state && !results || !results) {
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_getTransactionByHash(hash).then(setTransaction);
+  }, [hash, erpc]);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_getTransactionReceipt(hash).then(setReceipt);
+  }, [hash, erpc]);
+
+  if (!transaction || !receipt) {
     return (<CircularProgress />);
   }
-
-  const receipt = results.receipt;
-  const transaction = results.transaction;
 
   return (<TxView tx={transaction} receipt={receipt} />);
 }
