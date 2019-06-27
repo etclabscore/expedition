@@ -1,22 +1,12 @@
 {
   "extends": [
-    "tslint:latest",
-    "tslint-react"
+    "tslint:recommended"
   ],
   "rules": {
-    "indent": [
-      true,
-      "spaces",
-      2
-    ],
-    "no-unused-variable": false,
-    "jsx-no-lambda": false,
-    "jsx-no-multiline-js": false,
-    "no-object-literal-type-assertion": false,
-    "no-console": [
-      false
-    ],
-    "no-var-requires": false,
-    "object-literal-sort-keys": false
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-console": [true, "log"],
+    "indent": [true, "spaces", 2],
+    "max-classes-per-file" : false
   }
 }
