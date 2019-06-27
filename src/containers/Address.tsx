@@ -25,7 +25,7 @@ export default function Address({erpc, match}: {erpc: ERPC, match: {params: {add
     [address, blockNumber],
   );
   if (error) {
-    return (<div>Oops. there was an error. try again later: {error.message}</div>)
+    return (<div>Oops. there was an error. try again later: {error.message}</div>);
   }
   if (!result) {
     return <CircularProgress />;
