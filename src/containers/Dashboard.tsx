@@ -74,7 +74,7 @@ export default (props: any) => {
   }, [chainId, erpc]);
 
   React.useEffect(() => {
-    if (!erpc || blockNumber === null) { return; }
+    if (!erpc || blockNumber === undefined) { return; }
     erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
   }, [blockNumber, erpc]);
 
@@ -182,10 +182,12 @@ export default (props: any) => {
             <VictoryBar data={blocks.map(blockMapUncles)} />
           </VictoryChart>
         </Grid>
-        <Grid item={true} key={"blocks"}>
-          <Button href={"/blocks"}>View All Blocks</Button>
-          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
-        </Grid>
+        {blockNumber &&
+          <Grid item={true} key={"blocks"}>
+            <Button href={"/blocks"}>View All Blocks</Button>
+            <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
+          </Grid>
+        }
       </Grid>
     </div>
   );
