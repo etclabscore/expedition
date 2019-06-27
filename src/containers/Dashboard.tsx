@@ -1,4 +1,3 @@
-import ERPC from "@etclabscore/ethereum-json-rpc";
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
 import BigNumber from "bignumber.js";
 import * as React from "react";
@@ -87,7 +86,7 @@ export default (props: any) => {
     ).then((bl) => {
       setBlocks(bl);
     });
-  }, [blockNumber, config.blockHistoryLength, erpc]);
+  }, [blockNumber, erpc]);
 
   React.useEffect(() => {
     if (!erpc) { return; }
