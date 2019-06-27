@@ -11,7 +11,7 @@ export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> =>
 };
 
 export const useBlockNumber = (erpc: ERPC) => {
-    const [blockNumber, setBlockNumber] = React.useState(0);
+    const [blockNumber, setBlockNumber] = React.useState();
     useInterval(() => {
         if (!erpc) {
             return;
