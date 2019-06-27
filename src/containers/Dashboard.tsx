@@ -2,13 +2,15 @@ import ERPC from "@etclabscore/ethereum-json-rpc";
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
 import BigNumber from "bignumber.js";
 import * as React from "react";
-import usePromise from "react-use-promise";
 import { VictoryBar, VictoryChart, VictoryLabel } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
+import useMultiGeth from "../erpc";
 import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
+
+const useState = React.useState;
 
 const config = {
   blockTime: 15, // seconds
@@ -55,62 +57,74 @@ const getStyles = () => {
   };
 };
 
-const useDashboardInfo = (blockNumber: number, erpc: any): any => {
-  const [dashboardResults, setDashboardResults] = React.useState();
+export default (props: any) => {
+  const styles = getStyles();
+  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [blockNumber] = useBlockNumber(erpc);
+  const [chainId, setChainId] = useState();
+  const [block, setBlock] = useState();
+  const [blocks, setBlocks] = useState();
+  const [gasPrice, setGasPrice] = useState();
+  const [syncing, setSyncing] = useState();
+  const [peerCount, setPeerCount] = useState();
 
-  const [, error, state] = usePromise(async () => {
-    if (blockNumber === undefined) {
-      return null;
-    }
-    const rangeOfBlocks: any[] = await getBlocks(
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_chainId().then(setChainId);
+  }, [chainId, erpc]);
+
+  React.useEffect(() => {
+    if (!erpc || blockNumber === null) { return; }
+    erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
+  }, [blockNumber, erpc]);
+
+  React.useEffect(() => {
+    if (!erpc || blockNumber === null) { return; }
+    getBlocks(
       Math.max(blockNumber - config.blockHistoryLength + 1, 0),
       blockNumber,
       erpc,
-    );
-    const gp: number = parseInt(await erpc.eth_gasPrice(), 16);
-    const r = {
-      chainId: parseInt(await erpc.eth_chainId(), 16),
-      block: await erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true),
-      blocks: rangeOfBlocks,
-      gasPrice: gp,
-      syncing: await erpc.eth_syncing(),
-      peerCount: parseInt(await erpc.net_peerCount(), 16),
-    };
-    setDashboardResults(r);
-    return r;
-  }, [blockNumber]);
-  return [dashboardResults, error, state];
-};
+    ).then((bl) => {
+      setBlocks(bl);
+    });
+  }, [blockNumber, config.blockHistoryLength, erpc]);
 
-export default ({ erpc }: { erpc: ERPC }) => {
-  const styles = getStyles();
-  const [blockNumber] = useBlockNumber(erpc);
-  const [results, error, state] = useDashboardInfo(blockNumber, erpc);
-  if (error && !results) {
-    return (<div>Oops. Something went wrong. Please try again. <br /><br /><code>{error.message}</code></div>);
-  }
-  if (state && !results) {
-    return (<CircularProgress />);
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_syncing().then(setSyncing);
+  }, [erpc]);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.net_peerCount().then(setPeerCount);
+  }, [erpc]);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_gasPrice().then(setGasPrice);
+  }, [erpc]);
+
+  if (!blocks) {
+    return <CircularProgress />;
   }
 
-  const { block, blocks, gasPrice, peerCount, chainId, syncing } = results;
   return (
     <div>
       <Grid container={true} spacing={3}>
         <Grid style={styles.topItems} item={true} xs={12}>
-          <div>
+          <div key="blockHeight">
             <Typography variant="h6">
               Block Height
             </Typography>
             <Typography>{blockNumber}</Typography>
           </div>
-          <div>
+          <div key="chainId">
             <Typography variant="h6">
               Chain ID
             </Typography>
-            <Typography>{chainId}</Typography>
+            <Typography>{parseInt(chainId, 16)}</Typography>
           </div>
-          <div>
+          <div key="syncing">
             <Typography variant="h6">
               Syncing
             </Typography>
@@ -121,56 +135,55 @@ export default ({ erpc }: { erpc: ERPC }) => {
             }
             {!syncing && <Typography>No</Typography>}
           </div>
-          <div>
+          <div key="gasPrice">
             <Typography variant="h6">
               Gas Price
             </Typography>
-            <Typography>{weiToGwei(gasPrice)} Gwei</Typography>
+            <Typography>{weiToGwei(parseInt(gasPrice, 16))} Gwei</Typography>
           </div>
-          <div>
+          <div key="hRate">
             <Typography variant="h6">
               Network Hash Rate
             </Typography>
-            <HashRate block={block} blockTime={config.blockTime}>
-              {(hashRate: any) => <Typography>{hashRate} GH/s</Typography>}
-            </HashRate>
+            {block &&
+              <HashRate block={block} blockTime={config.blockTime}>
+                {(hashRate: any) => <Typography>{hashRate} GH/s</Typography>}
+              </HashRate>
+            }
           </div>
           <div>
             <Typography variant="h6">
               Peers
             </Typography>
-            <Typography>{peerCount}</Typography>
+            <Typography>{parseInt(peerCount, 16)}</Typography>
           </div>
         </Grid>
-        <Grid item={true} xs={12} sm={6} lg={3}>
+        <Grid key="hashChart" item={true} xs={12} sm={6} lg={3}>
           <HashChart
             height={config.chartHeight}
             title={`Hash Rate Last ${blocks.length} blocks`}
             data={blocks.map(blockMapHashRate)} />
         </Grid>
-        <Grid item={true} xs={12} sm={6} lg={3}>
+        <Grid key="txChart" item={true} xs={12} sm={6} lg={3}>
           <VictoryChart height={config.chartHeight} width={config.chartWidth}>
             <VictoryLabel x={25} y={24} text={`Transaction count last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapTransactionCount)} />
           </VictoryChart>
         </Grid>
-        <Grid item={true} xs={12} sm={6} lg={3}>
+        <Grid key="gasUsed" item={true} xs={12} sm={6} lg={3}>
           <VictoryChart height={config.chartHeight} width={config.chartWidth}>
             <VictoryLabel x={25} y={24} text={`Gas Used Last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapGasUsed)} />
           </VictoryChart>
         </Grid>
-        <Grid item={true} xs={12} sm={6} lg={3}>
+        <Grid key="uncles" item={true} xs={12} sm={6} lg={3}>
           <VictoryChart height={config.chartHeight} width={config.chartWidth}>
             <VictoryLabel x={25} y={24} text={`Uncles Last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapUncles)} />
           </VictoryChart>
         </Grid>
-        <Grid item={true}>
-          <Typography variant="h6">
-            Last 10 blocks
-          </Typography>
-          <Button href={"/blocks"}>View All</Button>
+        <Grid item={true} key={"blocks"}>
+          <Button href={"/blocks"}>View All Blocks</Button>
           <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
         </Grid>
       </Grid>

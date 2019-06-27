@@ -8,6 +8,9 @@ const rightPaddingFix = {
 };
 
 function BlockList({ blocks }: any) {
+  if (!blocks) {
+    return null;
+  }
   const sortedBlocks = blocks.sort((a: { number: number }, b: { number: number }) => {
     return b.number - a.number;
   });

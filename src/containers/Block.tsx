@@ -1,15 +1,16 @@
 import { CircularProgress } from "@material-ui/core";
 import * as React from "react";
-import usePromise from "react-use-promise";
 import BlockView from "../components/BlockView";
+import useMultiGeth from "../erpc";
 
 export default function Block(props: any) {
-  const { erpc, match: { params: { hash } } } = props;
-  const [block, error, state] = usePromise(() => {
+  const { match: { params: { hash } } } = props;
+  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [block, setBlock] = React.useState();
+  React.useEffect(() => {
     if (!erpc) { return; }
-    return erpc.eth_getBlockByHash(hash, true);
-  }, [hash]);
-  if (error) { return (<div> Error: {error} </div>); }
+    erpc.eth_getBlockByHash(hash, true).then(setBlock);
+  }, [hash, erpc]);
   if (!block) { return (<CircularProgress />); }
   return (<BlockView block={block} />);
 }
