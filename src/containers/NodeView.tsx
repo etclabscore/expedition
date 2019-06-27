@@ -1,4 +1,3 @@
-import ERPC from "@etclabscore/ethereum-json-rpc";
 import { CircularProgress } from "@material-ui/core";
 import * as React from "react";
 import useMultiGeth from "../erpc";
