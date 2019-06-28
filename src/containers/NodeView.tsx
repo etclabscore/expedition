@@ -5,7 +5,7 @@ import { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
 
 export default function NodeView(props: any) {
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [blockNumber] = useBlockNumber(erpc);
   if (!blockNumber) {
     return (<CircularProgress />);

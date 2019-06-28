@@ -8,7 +8,7 @@ const unit = require("ethjs-unit");
 
 export default function Address({ match }: { match: { params: { address: string } } }) {
   const { address } = match.params;
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [blockNumber] = useBlockNumber(erpc);
   const [transactionCount, setTransactionCount] = React.useState();
   const [balance, setBalance] = React.useState();

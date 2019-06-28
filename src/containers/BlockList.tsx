@@ -13,7 +13,7 @@ interface IProps {
 
 export default function BlockListContainer(props: IProps) {
   const { from, to } = props;
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }

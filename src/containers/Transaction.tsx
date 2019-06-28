@@ -5,7 +5,7 @@ import useMultiGeth from "../erpc";
 
 export default function TransactionContainer(props: any) {
   const hash = props.match.params.hash;
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [transaction, setTransaction] = React.useState();
   const [receipt, setReceipt] = React.useState();
 
