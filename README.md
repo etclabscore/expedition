@@ -7,9 +7,10 @@ A Block Explorer user interface built on Jade Service Runner, Pristine, and Open
 
 #### Resources
 
-- [Pristine](https://github.com/etclabscore/pristine)
-- [OpenRPC](https://open-rpc.org)
+- [Ethereum JSON RPC Specification](https://github.com/etclabscore/ethereum-json-rpc-specification)
 - [Jade Service Runner](https://github.com/etclabscore/jade-service-runner)
+- [OpenRPC](https://open-rpc.org)
+- [Pristine](https://github.com/etclabscore/pristine)
 
 ### Contributing
 
