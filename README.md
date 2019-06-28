@@ -2,6 +2,9 @@
 
 A Block Explorer user interface built on Jade Service Runner, Pristine, and OpenRPC.
 
+![jade-block-explorer](https://user-images.githubusercontent.com/364566/60309177-5a450300-9901-11e9-8d97-473babe63aed.gif)
+
+
 #### Resources
 
 - [Pristine](https://github.com/etclabscore/pristine)
