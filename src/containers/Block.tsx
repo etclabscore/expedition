@@ -5,7 +5,7 @@ import useMultiGeth from "../erpc";
 
 export default function Block(props: any) {
   const { match: { params: { hash } } } = props;
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [block, setBlock] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }

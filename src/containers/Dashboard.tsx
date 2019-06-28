@@ -8,6 +8,7 @@ import HashRate from "../components/HashRate";
 import useMultiGeth from "../erpc";
 import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
+import useInterval from "use-interval";
 
 const useState = React.useState;
 
@@ -58,7 +59,7 @@ const getStyles = () => {
 
 export default (props: any) => {
   const styles = getStyles();
-  const [erpc] = useMultiGeth("1.9.1", "mainnet");
+  const [erpc] = useMultiGeth("1.9.0", "mainnet");
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
   const [block, setBlock] = useState();
@@ -88,10 +89,12 @@ export default (props: any) => {
     });
   }, [blockNumber, erpc]);
 
-  React.useEffect(() => {
+  useInterval(() => {
     if (!erpc) { return; }
+    
     erpc.eth_syncing().then(setSyncing);
-  }, [erpc]);
+  }, 10000, true);
+
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -181,12 +184,12 @@ export default (props: any) => {
             <VictoryBar data={blocks.map(blockMapUncles)} />
           </VictoryChart>
         </Grid>
-        {blockNumber &&
-          <Grid item={true} key={"blocks"}>
-            <Button href={"/blocks"}>View All Blocks</Button>
-            <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
-          </Grid>
-        }
+
+        <Grid item={true} key={"blocks"}>
+          <Button href={"/blocks"}>View All Blocks</Button>
+          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
+        </Grid>
+
       </Grid>
     </div>
   );
