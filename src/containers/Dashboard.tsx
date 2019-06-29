@@ -91,10 +91,9 @@ export default (props: any) => {
 
   useInterval(() => {
     if (!erpc) { return; }
-    
+
     erpc.eth_syncing().then(setSyncing);
   }, 10000, true);
-
 
   React.useEffect(() => {
     if (!erpc) { return; }

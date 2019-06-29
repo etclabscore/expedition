@@ -9,6 +9,7 @@ import Block from "./containers/Block";
 import Dashboard from "./containers/Dashboard";
 import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
+import ConfigurationMenu from "./containers/ConfigurationMenu";
 import { darkTheme, lightTheme } from "./themes/jadeTheme";
 
 import Brightness3Icon from "@material-ui/icons/Brightness3";
@@ -41,6 +42,7 @@ function App(props: any) {
           <IconButton onClick={darkMode.toggle}>
             {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
           </IconButton>
+          <ConfigurationMenu />
         </Toolbar>
       </AppBar>
       <Router>
@@ -48,7 +50,7 @@ function App(props: any) {
           {
             routes.map((routeProps, i) => (
               <Route key={routeProps.path} path={routeProps.path} component={(p: any) => (
-                <Card>
+                <Card elevation={0} style={{background: "none"}}>
                   <CardHeader title={routeProps.title} />
                   <CardContent>
                     {routeProps.component({ ...p })}
