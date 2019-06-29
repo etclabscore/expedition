@@ -1,6 +1,6 @@
 # Jade Explorer
 
-A block explorer for Ethereum based blockchains. The explorer uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlining functionality, and Pristine.
+A block explorer for Ethereum based blockchains. The explorer uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine.
 
 ![jade-block-explorer](https://user-images.githubusercontent.com/364566/60309177-5a450300-9901-11e9-8d97-473babe63aed.gif)
 
