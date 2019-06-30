@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/etclabscore/jade-explorer/compare/1.0.1...1.0.2) (2019-06-30)
+
+
+### Bug Fixes
+
+* **configuration menu:** let user override eth rpc url without service runner ([d0c83d2](https://github.com/etclabscore/jade-explorer/commit/d0c83d2))
+
 ## [1.0.1](https://github.com/etclabscore/jade-explorer/compare/1.0.0...1.0.1) (2019-06-30)
 
 
