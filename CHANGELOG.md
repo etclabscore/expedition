@@ -1,3 +1,18 @@
+## [1.0.1](https://github.com/etclabscore/jade-explorer/compare/1.0.0...1.0.1) (2019-06-30)
+
+
+### Bug Fixes
+
+* add configuration menu ([b22c4b1](https://github.com/etclabscore/jade-explorer/commit/b22c4b1))
+* linting ([dd461e8](https://github.com/etclabscore/jade-explorer/commit/dd461e8))
+* update readme ([9d663a3](https://github.com/etclabscore/jade-explorer/commit/9d663a3))
+* **configuration menu:** default ports ([fef2ec5](https://github.com/etclabscore/jade-explorer/commit/fef2ec5))
+* **configuration menu:** hook up menu to rpc ([529cbf1](https://github.com/etclabscore/jade-explorer/commit/529cbf1))
+* **package:** remove unused dep ([5d82734](https://github.com/etclabscore/jade-explorer/commit/5d82734))
+* **README:** service runner instructions ([5e9143a](https://github.com/etclabscore/jade-explorer/commit/5e9143a))
+* **README:** services directory ([b160bd1](https://github.com/etclabscore/jade-explorer/commit/b160bd1))
+* **resources:** add Ethereum JSON RPC Spec ([71fd23e](https://github.com/etclabscore/jade-explorer/commit/71fd23e))
+
 # 1.0.0 (2019-06-28)
 
 
