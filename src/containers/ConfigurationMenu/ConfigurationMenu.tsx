@@ -3,10 +3,11 @@ import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Inpu
 import { Settings, NavigateNext, NavigateBefore } from "@material-ui/icons";
 
 interface IConfigurationMenuProps {
-  //
+  onChange: (type: string, url: string) => any;
 }
 
 interface IPagedMenuProps {
+  onChange: (type: string, url: string) => any;
 }
 
 const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
@@ -27,8 +28,11 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
             Back
           </ListItemText>
         </MenuItem>
-        <Input placeholder={`${nameMap[selected]} Host`} fullWidth={true}/>
-        <Input placeholder={`${nameMap[selected]} Port`} fullWidth={true}/>
+        <Input
+          onChange={(e) => props.onChange(selected, e.currentTarget.value)}
+          placeholder={`${nameMap[selected]} Url`}
+          fullWidth={true}
+        />
       </>
     );
   }
@@ -100,7 +104,7 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
         }}
         onClose={handleClose}
       >
-        <PagedMenu></PagedMenu>
+        <PagedMenu onChange={props.onChange}></PagedMenu>
       </Menu>
     </>
   );

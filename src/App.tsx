@@ -14,14 +14,10 @@ import { darkTheme, lightTheme } from "./themes/jadeTheme";
 
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
-
-const routes = [
-  { path: "/", component: Dashboard, title: "Dashboard", exact: true },
-  { path: "/block/:hash", component: Block, title: "Block" },
-  { path: "/blocks", component: NodeView, title: "Latest Blocks" },
-  { path: "/tx/:hash", component: Transaction, title: "Transaction Details" },
-  { path: "/address/:address", component: Address, title: "Address Details" },
-];
+import useMultiGeth from "./hooks/useMultiGeth";
+import useServiceRunner from "./hooks/useServiceRunner";
+import ServiceRunnerContext from "./contexts/ServiceRunnerContext";
+import ERPCContext from "./contexts/ERPCContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -31,37 +27,41 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function App(props: any) {
   const darkMode = useDarkMode();
+  const [serviceRunner, setServiceRunnerUrl] = useServiceRunner();
+  const [erpc, setERPCUrl] = useMultiGeth(serviceRunner, "1.9.0", "mainnet");
   const theme = darkMode.value ? darkTheme : lightTheme;
   const classes = useStyles(theme);
+  const handleConfigurationChange = (type: string, url: string) => {
+    if (type === "service-runner") {
+      setServiceRunnerUrl(url);
+    } else if (type === "ethereum-rpc") {
+      setERPCUrl(url);
+    }
+  };
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AppBar position="static" color="default" elevation={0}>
-        <Toolbar>
-          <Typography className={classes.title}>Jade Block Explorer</Typography>
-          <IconButton onClick={darkMode.toggle}>
-            {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
-          </IconButton>
-          <ConfigurationMenu />
-        </Toolbar>
-      </AppBar>
-      <Router>
-        <Switch>
-          {
-            routes.map((routeProps, i) => (
-              <Route key={routeProps.path} path={routeProps.path} component={(p: any) => (
-                <Card elevation={0} style={{background: "none"}}>
-                  <CardHeader title={routeProps.title} />
-                  <CardContent>
-                    {routeProps.component({ ...p })}
-                  </CardContent>
-                </Card>
-              )} exact={routeProps.exact} />
-            ))
-          }
-        </Switch>
-      </Router>
-    </ThemeProvider>
+    <ERPCContext.Provider value={erpc}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppBar position="static" color="default" elevation={0}>
+          <Toolbar>
+            <Typography className={classes.title}>Jade Block Explorer</Typography>
+            <IconButton onClick={darkMode.toggle}>
+              {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
+            </IconButton>
+            <ConfigurationMenu onChange={handleConfigurationChange}/>
+          </Toolbar>
+        </AppBar>
+        <Router>
+          <Switch>
+            <Route path={"/"} component={Dashboard} exact={true} />
+            <Route path={"/block/:hash"} component={Block} />
+            <Route path={"/blocks"} component={NodeView} />
+            <Route path={"/tx/:hash"} component={Transaction} />
+            <Route path={"/address/:address"} component={Address} />
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </ERPCContext.Provider>
   );
 }
 

@@ -212,7 +212,7 @@ function renderTxTable(tx: any, receipt: any | null) {
             <TableRow>
               <TableCell>Logs</TableCell>
               <TableCell>
-                <textarea>{receipt.logs}</textarea>
+                {receipt.logs.length}
               </TableCell>
             </TableRow>
           </TableBody>
