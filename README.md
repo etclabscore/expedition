@@ -19,13 +19,12 @@ git clone https://github.com/stevanlohja/jade-explorer.git && cd jade-explorer &
 
 ## Usage
 
-Run Multi-Geth service.
 
 ```bash
 npm run service-runner
 ```
 
-Multi-Geth will run at http://localhost:8002/.
+Jade Service Runner will run at http://localhost:8002/.
 
 Start the explorer.
 
@@ -33,11 +32,11 @@ Start the explorer.
 npm start
 ```
 
-The explorer will run at http://localhost:3000/ which should display Multi-Geth's status.
+The explorer will run at http://localhost:3000/ which should display multi-geth's status, and make sure multi-geth is running.
 
-### Multi-Geth
+### Notes on Multi-Geth & Service Runner
 
-By default, Multi-Geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/jade-explorer/services/` directory of project.
+By default, multi-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/jade-explorer/services/` directory of project.
 
 ```bash
 # /jade-explorer/services/
