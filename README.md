@@ -36,10 +36,10 @@ The explorer will run at http://localhost:3000/ which should display multi-geth'
 
 ### Notes on Multi-Geth & Service Runner
 
-By default, multi-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/jade-explorer/services/` directory of project.
+By default, multi-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/.services/` directory of project.
 
 ```bash
-# /jade-explorer/services/
+# ./services/
 .
 └── multi-geth
     └── 1.9.0
