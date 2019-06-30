@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-export interface AddressViewProps {
+export interface IAddressViewProps {
   address: string;
   balance: string;
   txCount: number;
   code: string;
 }
 
-function renderGeneral(props: AddressViewProps) {
+function renderGeneral(props: IAddressViewProps) {
   const { address, balance, txCount, code } = props;
   return (
     <div>
@@ -22,7 +22,7 @@ function renderGeneral(props: AddressViewProps) {
   );
 }
 
-function AddressView(props: AddressViewProps) {
+function AddressView(props: IAddressViewProps) {
   return (
     <React.Fragment>
         {renderGeneral(props)}

@@ -1,4 +1,4 @@
-import { AppBar, Card, CardContent, CardHeader, CssBaseline, Theme, Toolbar, Typography, IconButton } from "@material-ui/core"; //tslint:disable-line
+import { AppBar, CssBaseline, Theme, Toolbar, Typography, IconButton } from "@material-ui/core"; //tslint:disable-line
 import { makeStyles, ThemeProvider } from "@material-ui/styles";
 import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -16,7 +16,6 @@ import Brightness3Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import useMultiGeth from "./hooks/useMultiGeth";
 import useServiceRunner from "./hooks/useServiceRunner";
-import ServiceRunnerContext from "./contexts/ServiceRunnerContext";
 import ERPCContext from "./contexts/ERPCContext";
 
 const useStyles = makeStyles((theme: Theme) => ({

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon, Typography } from "@material-ui/core";
+import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon } from "@material-ui/core"; //tslint:disable-line
 import { Settings, NavigateNext, NavigateBefore } from "@material-ui/icons";
 
 interface IConfigurationMenuProps {

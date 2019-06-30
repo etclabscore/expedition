@@ -1,2 +1,2 @@
-import HashChart from './HashChart';
+import HashChart from "./HashChart";
 export default HashChart;

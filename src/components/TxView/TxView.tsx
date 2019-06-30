@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
-const unit = require("ethjs-unit");
+const unit = require("ethjs-unit"); //tslint:disable-line
 
 export interface ITxViewProps {
   tx: any;

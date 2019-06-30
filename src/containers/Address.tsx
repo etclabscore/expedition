@@ -5,7 +5,7 @@ import { useBlockNumber } from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ERPCContext from "../contexts/ERPCContext";
 
-const unit = require("ethjs-unit");
+const unit = require("ethjs-unit"); //tslint:disable-line
 
 export default function Address({ match }: { match: { params: { address: string } } }) {
   const { address } = match.params;
