@@ -12,12 +12,18 @@ function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: str
       return;
     }
     const runAsync = async () => {
-      const installed = await serviceRunner.installService(serviceName, version);
-      if (!installed) { return; }
-      const service = await serviceRunner.startService(serviceName, version, env);
+      let defaultPort;
+      if (!url) {
+        const installed = await serviceRunner.installService(serviceName, version);
+        if (!installed) {
+          return;
+        }
+        const service = await serviceRunner.startService(serviceName, version, env);
+        defaultPort = service.rpcPort;
+      }
       let parsedUrl;
       try {
-        parsedUrl = new URL(url || `http://localhost:${service.rpcPort}`);
+        parsedUrl = new URL(url || `http://localhost:${defaultPort}`);
       } catch (e) {
         return;
       }
