@@ -23,11 +23,14 @@ function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: str
       }
       let rpc;
       try {
+        const protocol = parsedUrl.protocol.split(":")[0] as any;
+        const fallbackPort = protocol === "http" ? 80 : 443;
+        const port = parseInt(parsedUrl.port, 10);
         rpc = new ERPC({
           transport: {
-            type: parsedUrl.protocol.split(":")[0] as any,
             host: parsedUrl.hostname,
-            port: parseInt(parsedUrl.port, 10),
+            port: port ? port : fallbackPort,
+            type: protocol,
           },
         });
       } catch (e) {

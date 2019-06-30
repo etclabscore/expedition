@@ -16,11 +16,14 @@ function useServiceRunner(): [JadeServiceRunner | undefined, any] {
     }
     let rpc;
     try {
+      const protocol = parsedUrl.protocol.split(":")[0] as any;
+      const fallbackPort = protocol === "http" ? 80 : 443;
+      const port = parseInt(parsedUrl.port, 10);
       rpc = new JadeServiceRunner({
         transport: {
           host: parsedUrl.hostname,
-          port: parseInt(parsedUrl.port, 10) || 80,
-          type: parsedUrl.protocol.split(":")[0] as any,
+          port: port ? port : fallbackPort,
+          type: protocol,
         },
       });
     } catch (e) {
