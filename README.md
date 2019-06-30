@@ -14,7 +14,7 @@ A block explorer for Ethereum based blockchains. The explorer uses Jade Service 
 Clone the repository and install project dependencies.
 
 ```bash
-git clone https://github.com/stevanlohja/jade-explorer.git && cd jade-explorer && npm install
+git clone https://github.com/etclabscore/jade-explorer.git && cd jade-explorer && npm install
 ```
 
 ## Usage
