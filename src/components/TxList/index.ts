@@ -1,2 +1,2 @@
-import TxList from './TxList';
+import TxList from "./TxList";
 export default TxList;

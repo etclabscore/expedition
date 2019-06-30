@@ -1,2 +1,2 @@
-import HashRate from './HashRate';
+import HashRate from "./HashRate";
 export default HashRate;

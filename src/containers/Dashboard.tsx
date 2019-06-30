@@ -5,10 +5,11 @@ import { VictoryBar, VictoryChart, VictoryLabel } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
-import useMultiGeth from "../erpc";
 import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
 import useInterval from "use-interval";
+import ERPCContext from "../contexts/ERPCContext";
+import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 
@@ -59,7 +60,7 @@ const getStyles = () => {
 
 export default (props: any) => {
   const styles = getStyles();
-  const [erpc] = useMultiGeth("1.9.0", "mainnet");
+  const erpc = React.useContext<EthereumJSONRPC | undefined>(ERPCContext);
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
   const [block, setBlock] = useState();
@@ -91,10 +92,9 @@ export default (props: any) => {
 
   useInterval(() => {
     if (!erpc) { return; }
-    
+
     erpc.eth_syncing().then(setSyncing);
   }, 10000, true);
-
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -187,7 +187,7 @@ export default (props: any) => {
 
         <Grid item={true} key={"blocks"}>
           <Button href={"/blocks"}>View All Blocks</Button>
-          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} erpc={erpc} />
+          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} />
         </Grid>
 
       </Grid>
