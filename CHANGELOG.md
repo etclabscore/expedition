@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/etclabscore/jade-explorer/compare/1.0.3...1.0.4) (2019-07-31)
+
+
+### Bug Fixes
+
+* add cname ([5ab2877](https://github.com/etclabscore/jade-explorer/commit/5ab2877))
+* add path to transport config ([ba915b2](https://github.com/etclabscore/jade-explorer/commit/ba915b2))
+
 ## [1.0.3](https://github.com/etclabscore/jade-explorer/compare/1.0.2...1.0.3) (2019-07-31)
 
 
