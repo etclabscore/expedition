@@ -37,6 +37,7 @@ function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: str
             host: parsedUrl.hostname,
             port: port ? port : fallbackPort,
             type: protocol,
+            path: parsedUrl.pathname,
           },
         });
       } catch (e) {
