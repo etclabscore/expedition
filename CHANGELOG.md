@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/etclabscore/jade-explorer/compare/1.0.2...1.0.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **README:** clone link in instructions ([7bd2f78](https://github.com/etclabscore/jade-explorer/commit/7bd2f78))
+* add global batching ([2515e5d](https://github.com/etclabscore/jade-explorer/commit/2515e5d))
+
 ## [1.0.2](https://github.com/etclabscore/jade-explorer/compare/1.0.1...1.0.2) (2019-06-30)
 
 
