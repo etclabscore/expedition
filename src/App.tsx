@@ -17,6 +17,7 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import useMultiGeth from "./hooks/useMultiGeth";
 import useServiceRunner from "./hooks/useServiceRunner";
 import ERPCContext from "./contexts/ERPCContext";
+import useInterval from "use-interval";
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -37,6 +38,21 @@ function App(props: any) {
       setERPCUrl(url);
     }
   };
+
+  React.useEffect(() => {
+    if (erpc) {
+      erpc.startBatch();
+    }
+  }, [erpc]);
+
+  useInterval(() => {
+    if (erpc) {
+      erpc.stopBatch();
+      erpc.startBatch();
+    }
+    //
+  }, 3000, true);
+
   return (
     <ERPCContext.Provider value={erpc}>
       <ThemeProvider theme={theme}>
@@ -47,7 +63,7 @@ function App(props: any) {
             <IconButton onClick={darkMode.toggle}>
               {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
             </IconButton>
-            <ConfigurationMenu onChange={handleConfigurationChange}/>
+            <ConfigurationMenu onChange={handleConfigurationChange} />
           </Toolbar>
         </AppBar>
         <Router>
