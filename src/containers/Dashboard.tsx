@@ -1,7 +1,7 @@
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
 import BigNumber from "bignumber.js";
 import * as React from "react";
-import { VictoryBar, VictoryChart, VictoryLabel } from "victory";
+import { VictoryBar, VictoryChart, VictoryLabel, VictoryTheme } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
@@ -167,19 +167,19 @@ export default (props: any) => {
             data={blocks.map(blockMapHashRate)} />
         </Grid>
         <Grid key="txChart" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
             <VictoryLabel x={25} y={24} text={`Transaction count last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapTransactionCount)} />
           </VictoryChart>
         </Grid>
         <Grid key="gasUsed" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
             <VictoryLabel x={25} y={24} text={`Gas Used Last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapGasUsed)} />
           </VictoryChart>
         </Grid>
         <Grid key="uncles" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
             <VictoryLabel x={25} y={24} text={`Uncles Last ${blocks.length} blocks`} />
             <VictoryBar data={blocks.map(blockMapUncles)} />
           </VictoryChart>

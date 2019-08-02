@@ -66,15 +66,17 @@ function App(props: any) {
             <ConfigurationMenu onChange={handleConfigurationChange} />
           </Toolbar>
         </AppBar>
-        <Router>
-          <Switch>
-            <Route path={"/"} component={Dashboard} exact={true} />
-            <Route path={"/block/:hash"} component={Block} />
-            <Route path={"/blocks"} component={NodeView} />
-            <Route path={"/tx/:hash"} component={Transaction} />
-            <Route path={"/address/:address"} component={Address} />
-          </Switch>
-        </Router>
+        <div style={{ margin: "0px 25px 0px 25px" }}>
+          <Router>
+            <Switch>
+              <Route path={"/"} component={Dashboard} exact={true} />
+              <Route path={"/block/:hash"} component={Block} />
+              <Route path={"/blocks"} component={NodeView} />
+              <Route path={"/tx/:hash"} component={Transaction} />
+              <Route path={"/address/:address"} component={Address} />
+            </Switch>
+          </Router>
+        </div>
       </ThemeProvider>
     </ERPCContext.Provider>
   );
