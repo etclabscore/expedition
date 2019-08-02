@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/etclabscore/jade-explorer/compare/1.0.4...1.0.5) (2019-08-02)
+
+
+### Bug Fixes
+
+* layout style ([b639f7d](https://github.com/etclabscore/jade-explorer/commit/b639f7d))
+
 ## [1.0.4](https://github.com/etclabscore/jade-explorer/compare/1.0.3...1.0.4) (2019-07-31)
 
 
