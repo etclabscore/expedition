@@ -4,27 +4,27 @@ import * as React from "react";
 
 const serviceName = "multi-geth";
 
-function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: string, env: string): [ERPC, any] {
+function useMultiGeth(
+  serviceRunner: JadeServiceRunner | undefined,
+  serviceRunnerUrl: string,
+  version: string,
+  env: string,
+): [ERPC] {
   const [erpc, setErpc] = React.useState();
-  const [url, setUrl] = React.useState();
   React.useEffect(() => {
     if (!serviceRunner) {
       return;
     }
     const runAsync = async () => {
-      let defaultPort;
-      if (!url) {
-        const installed = await serviceRunner.installService(serviceName, version);
-        if (!installed) {
-          return;
-        }
-        const service = await serviceRunner.startService(serviceName, version, env);
-        defaultPort = service.rpcPort;
-      }
+      console.log(serviceRunnerUrl); //tslint:disable-line
+      const installed = await serviceRunner.installService(serviceName, version);
+      console.log("installed", installed); //tslint:disable-line
+      await serviceRunner.startService(serviceName, version, env);
       let parsedUrl;
       try {
-        parsedUrl = new URL(url || `http://localhost:${defaultPort}`);
+        parsedUrl = new URL(`${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
       } catch (e) {
+        console.error("error parsing url", e);
         return;
       }
       let rpc;
@@ -40,7 +40,9 @@ function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: str
             path: parsedUrl.pathname,
           },
         });
+        console.log("rpc", rpc);
       } catch (e) {
+        console.error("erroro making rpc client", e);
         return;
       }
       if (rpc) {
@@ -48,8 +50,8 @@ function useMultiGeth(serviceRunner: JadeServiceRunner | undefined, version: str
       }
     };
     runAsync();
-  }, [serviceRunner, url, version, env]);
-  return [erpc, setUrl];
+  }, [serviceRunner, serviceRunnerUrl, version, env]);
+  return [erpc];
 }
 
 export default useMultiGeth;
