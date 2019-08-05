@@ -27,15 +27,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function App(props: any) {
   const darkMode = useDarkMode();
-  const [serviceRunner, setServiceRunnerUrl] = useServiceRunner();
-  const [erpc, setERPCUrl] = useMultiGeth(serviceRunner, "1.9.0", "mainnet");
+  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl] = useServiceRunner("http://localhost:8002");
+  const [erpc] = useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.0", "mainnet");
   const theme = darkMode.value ? darkTheme : lightTheme;
   const classes = useStyles(theme);
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
       setServiceRunnerUrl(url);
-    } else if (type === "ethereum-rpc") {
-      setERPCUrl(url);
     }
   };
 
@@ -50,8 +48,7 @@ function App(props: any) {
       erpc.stopBatch();
       erpc.startBatch();
     }
-    //
-  }, 3000, true);
+  }, 100, true);
 
   return (
     <ERPCContext.Provider value={erpc}>
