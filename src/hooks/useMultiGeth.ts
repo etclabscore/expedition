@@ -16,15 +16,15 @@ function useMultiGeth(
       return;
     }
     const runAsync = async () => {
-      console.log(serviceRunnerUrl); //tslint:disable-line
       const installed = await serviceRunner.installService(serviceName, version);
-      console.log("installed", installed); //tslint:disable-line
+      if (!installed) {
+        return;
+      }
       await serviceRunner.startService(serviceName, version, env);
       let parsedUrl;
       try {
         parsedUrl = new URL(`${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
       } catch (e) {
-        console.error("error parsing url", e);
         return;
       }
       let rpc;
@@ -40,9 +40,7 @@ function useMultiGeth(
             path: parsedUrl.pathname,
           },
         });
-        console.log("rpc", rpc);
       } catch (e) {
-        console.error("erroro making rpc client", e);
         return;
       }
       if (rpc) {

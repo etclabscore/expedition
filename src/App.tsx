@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function App(props: any) {
   const darkMode = useDarkMode();
-  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl] = useServiceRunner();
+  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl] = useServiceRunner("http://localhost:8002");
   const [erpc] = useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.0", "mainnet");
   const theme = darkMode.value ? darkTheme : lightTheme;
   const classes = useStyles(theme);
@@ -48,8 +48,7 @@ function App(props: any) {
       erpc.stopBatch();
       erpc.startBatch();
     }
-    //
-  }, 3000, true);
+  }, 100, true);
 
   return (
     <ERPCContext.Provider value={erpc}>

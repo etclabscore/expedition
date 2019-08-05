@@ -1,8 +1,8 @@
 import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
 import * as React from "react";
 
-function useServiceRunner(): [JadeServiceRunner | undefined, string, any] {
-  const [url, setUrl] = React.useState("http://localhost:8002");
+function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, any] {
+  const [url, setUrl] = React.useState(defaultUrl);
   const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
   React.useEffect(() => {
     if (!url) {
