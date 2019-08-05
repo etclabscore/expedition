@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/etclabscore/jade-explorer/compare/1.0.5...1.0.6) (2019-08-05)
+
+
+### Bug Fixes
+
+* upgrade service runner ([fb7d2e6](https://github.com/etclabscore/jade-explorer/commit/fb7d2e6))
+* upgrade service runner to latest ([99d6ffc](https://github.com/etclabscore/jade-explorer/commit/99d6ffc))
+
 ## [1.0.5](https://github.com/etclabscore/jade-explorer/compare/1.0.4...1.0.5) (2019-08-02)
 
 
