@@ -11,13 +11,13 @@ import NodeView from "./containers/NodeView";
 import Transaction from "./containers/Transaction";
 import ConfigurationMenu from "./containers/ConfigurationMenu";
 import { darkTheme, lightTheme } from "./themes/jadeTheme";
-
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import useMultiGeth from "./hooks/useMultiGeth";
-import useServiceRunner from "./hooks/useServiceRunner";
-import ERPCContext from "./contexts/ERPCContext";
+
 import useInterval from "use-interval";
+import useServiceRunnerStore from "./stores/useServiceRunnerStore";
+import useMultiGethStore from "./stores/useMultiGethStore";
+import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -27,9 +27,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function App(props: any) {
   const darkMode = useDarkMode();
-  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl] = useServiceRunner("http://localhost:8002");
-  const [erpc] = useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.0", "mainnet");
   const theme = darkMode.value ? darkTheme : lightTheme;
+  const [, , setServiceRunnerUrl] = useServiceRunnerStore();
+  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+
   const classes = useStyles(theme);
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
@@ -51,31 +52,29 @@ function App(props: any) {
   }, 100, true);
 
   return (
-    <ERPCContext.Provider value={erpc}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar position="static" color="default" elevation={0}>
-          <Toolbar>
-            <Typography className={classes.title}>Jade Block Explorer</Typography>
-            <IconButton onClick={darkMode.toggle}>
-              {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
-            </IconButton>
-            <ConfigurationMenu onChange={handleConfigurationChange} />
-          </Toolbar>
-        </AppBar>
-        <div style={{ margin: "0px 25px 0px 25px" }}>
-          <Router>
-            <Switch>
-              <Route path={"/"} component={Dashboard} exact={true} />
-              <Route path={"/block/:hash"} component={Block} />
-              <Route path={"/blocks"} component={NodeView} />
-              <Route path={"/tx/:hash"} component={Transaction} />
-              <Route path={"/address/:address"} component={Address} />
-            </Switch>
-          </Router>
-        </div>
-      </ThemeProvider>
-    </ERPCContext.Provider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="static" color="default" elevation={0}>
+        <Toolbar>
+          <Typography className={classes.title}>Jade Block Explorer</Typography>
+          <IconButton onClick={darkMode.toggle}>
+            {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
+          </IconButton>
+          <ConfigurationMenu onChange={handleConfigurationChange} />
+        </Toolbar>
+      </AppBar>
+      <div style={{ margin: "0px 25px 0px 25px" }}>
+        <Router>
+          <Switch>
+            <Route path={"/"} component={Dashboard} exact={true} />
+            <Route path={"/block/:hash"} component={Block} />
+            <Route path={"/blocks"} component={NodeView} />
+            <Route path={"/tx/:hash"} component={Transaction} />
+            <Route path={"/address/:address"} component={Address} />
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

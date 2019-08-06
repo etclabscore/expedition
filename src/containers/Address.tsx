@@ -2,14 +2,14 @@ import { CircularProgress } from "@material-ui/core";
 import * as React from "react";
 import AddressView from "../components/AddressView";
 import { useBlockNumber } from "../helpers";
+import useMultiGethStore from "../stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import ERPCContext from "../contexts/ERPCContext";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
 export default function Address({ match }: { match: { params: { address: string } } }) {
   const { address } = match.params;
-  const erpc = React.useContext<EthereumJSONRPC | undefined>(ERPCContext);
+  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [transactionCount, setTransactionCount] = React.useState();
   const [balance, setBalance] = React.useState();
