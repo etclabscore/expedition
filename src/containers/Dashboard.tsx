@@ -1,4 +1,5 @@
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
+import useMultiGethStore from "../stores/useMultiGethStore";
 import BigNumber from "bignumber.js";
 import * as React from "react";
 import { VictoryBar, VictoryChart, VictoryLabel, VictoryTheme } from "victory";
@@ -8,8 +9,6 @@ import HashRate from "../components/HashRate";
 import getBlocks, { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
 import useInterval from "use-interval";
-import ERPCContext from "../contexts/ERPCContext";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 
@@ -60,7 +59,7 @@ const getStyles = () => {
 
 export default (props: any) => {
   const styles = getStyles();
-  const erpc = React.useContext<EthereumJSONRPC | undefined>(ERPCContext);
+  const [erpc] = useMultiGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
   const [block, setBlock] = useState();

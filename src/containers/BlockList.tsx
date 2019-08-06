@@ -1,9 +1,9 @@
 import { CircularProgress } from "@material-ui/core";
+import useMultiGethStore from "../stores/useMultiGethStore";
 import * as React from "react";
 import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import ERPCContext from "../contexts/ERPCContext";
 
 interface IProps {
   from: number;
@@ -12,7 +12,7 @@ interface IProps {
 
 export default function BlockListContainer(props: IProps) {
   const { from, to } = props;
-  const erpc = React.useContext<EthereumJSONRPC | undefined>(ERPCContext);
+  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }
