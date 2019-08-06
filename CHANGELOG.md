@@ -1,3 +1,12 @@
+## [1.0.7](https://github.com/etclabscore/jade-explorer/compare/1.0.6...1.0.7) (2019-08-06)
+
+
+### Bug Fixes
+
+* add initial styles ([bd54a95](https://github.com/etclabscore/jade-explorer/commit/bd54a95))
+* add reusable global state ([a7f4feb](https://github.com/etclabscore/jade-explorer/commit/a7f4feb))
+* **README:** add screenshots of initial style ([5d98440](https://github.com/etclabscore/jade-explorer/commit/5d98440))
+
 ## [1.0.6](https://github.com/etclabscore/jade-explorer/compare/1.0.5...1.0.6) (2019-08-05)
 
 
