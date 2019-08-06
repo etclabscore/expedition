@@ -8,10 +8,11 @@ import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 interface IProps {
   from: number;
   to: number;
+  style?: any;
 }
 
 export default function BlockListContainer(props: IProps) {
-  const { from, to } = props;
+  const { from, to, style } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
@@ -23,8 +24,7 @@ export default function BlockListContainer(props: IProps) {
     return <CircularProgress />;
   }
   return (
-    <div>
-      Blocks from {from} to {to}
+    <div style={style}>
       <BlockList blocks={blocks} />
     </div>
   );

@@ -34,6 +34,7 @@
     "bignumber.js": "^4.1.0",
     "ethereumjs-util": "^5.2.0",
     "ethjs-unit": "^0.1.6",
+    "moment": "^2.24.0",
     "qs": "^6.5.2",
     "raf": "^3.4.0",
     "react": "^16.8.6",

@@ -1,5 +1,7 @@
-import { AppBar, CssBaseline, Theme, Toolbar, Typography, IconButton } from "@material-ui/core"; //tslint:disable-line
+import { AppBar, CssBaseline, Theme, Toolbar, Typography, IconButton, Grid } from "@material-ui/core"; //tslint:disable-line
 import { makeStyles, ThemeProvider } from "@material-ui/styles";
+import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from "react-router-dom";
 import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 function App(props: any) {
   const darkMode = useDarkMode();
   const theme = darkMode.value ? darkTheme : lightTheme;
+
   const [, , setServiceRunnerUrl] = useServiceRunnerStore();
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
 
@@ -52,19 +55,50 @@ function App(props: any) {
   }, 100, true);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AppBar position="static" color="default" elevation={0}>
-        <Toolbar>
-          <Typography className={classes.title}>Jade Block Explorer</Typography>
-          <IconButton onClick={darkMode.toggle}>
-            {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
-          </IconButton>
-          <ConfigurationMenu onChange={handleConfigurationChange} />
-        </Toolbar>
-      </AppBar>
-      <div style={{ margin: "0px 25px 0px 25px" }}>
-        <Router>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppBar color="default" elevation={0}>
+          <Toolbar>
+            <Grid justify="space-between" container>
+              <Grid item style={{marginTop: "8px"}}>
+                <Link
+                  component={({ className, children }: { children: any, className: string }) => (
+                    <RouterLink className={className} to={"/"}>
+                      {children}
+                    </RouterLink>
+                  )}>
+                  <Grid container>
+                    {darkMode.value ?
+                      <img
+                        alt="jade-explorer"
+                        height="30"
+                        style={{ marginRight: "5px" }}
+                        src="https://github.com/etclabscore/jade-media-assets/blob/master/jade-logo-dark/jade-logo-dark%20(PNG)/32x32.png?raw=true" //tslint:disable-line
+                      />
+                      :
+                      <img
+                        alt="jade-explorer"
+                        height="30"
+                        style={{ marginRight: "5px" }}
+                        src="https://github.com/etclabscore/jade-media-assets/blob/master/jade-logo-light/jade-logo-light%20(PNG)/32x32.png?raw=true" //tslint:disable-line
+                      />
+                    }
+                    <Typography className={classes.title} color="textSecondary" variant="h6">Jade Explorer</Typography>
+                  </Grid>
+                </Link>
+              </Grid>
+              <Grid item>
+                <IconButton onClick={darkMode.toggle}>
+                  {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
+                </IconButton>
+                <ConfigurationMenu onChange={handleConfigurationChange} />
+              </Grid>
+            </Grid>
+
+          </Toolbar>
+        </AppBar>
+        <div style={{ margin: "0px 25px 0px 25px" }}>
           <Switch>
             <Route path={"/"} component={Dashboard} exact={true} />
             <Route path={"/block/:hash"} component={Block} />
@@ -72,9 +106,9 @@ function App(props: any) {
             <Route path={"/tx/:hash"} component={Transaction} />
             <Route path={"/address/:address"} component={Address} />
           </Switch>
-        </Router>
-      </div>
-    </ThemeProvider>
+        </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 

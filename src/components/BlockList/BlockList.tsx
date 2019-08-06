@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
-import Link from "@material-ui/core/Link";
 import * as React from "react";
+import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 
 const rightPaddingFix = {
