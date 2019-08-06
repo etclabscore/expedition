@@ -1,14 +1,17 @@
-import { Button, Grid, Typography, CircularProgress } from "@material-ui/core";
+import { Grid, Typography, CircularProgress, Theme } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
 import BigNumber from "bignumber.js";
 import * as React from "react";
-import { VictoryBar, VictoryChart, VictoryLabel, VictoryTheme } from "victory";
+import { VictoryBar, VictoryChart, VictoryLine } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
-import HashChart from "../components/HashChart";
 import HashRate from "../components/HashRate";
 import getBlocks, { useBlockNumber } from "../helpers";
-import BlockList from "./BlockList";
 import useInterval from "use-interval";
+import { useTheme } from "@material-ui/styles";
+import getTheme from "../themes/victoryTheme";
+import ChartCard from "../components/ChartCard";
+import BlockCardListContainer from "./BlockCardList";
+import BlockListContainer from "./BlockList";
 
 const useState = React.useState;
 
@@ -60,6 +63,8 @@ const getStyles = () => {
 export default (props: any) => {
   const styles = getStyles();
   const [erpc] = useMultiGethStore();
+  const theme = useTheme<Theme>();
+  const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
   const [block, setBlock] = useState();
@@ -114,82 +119,79 @@ export default (props: any) => {
       <Grid container={true} spacing={3}>
         <Grid style={styles.topItems} item={true} xs={12}>
           <div key="blockHeight">
-            <Typography variant="h6">
-              Block Height
-            </Typography>
-            <Typography>{blockNumber}</Typography>
+            <ChartCard title="Block Height">
+              <Typography variant="h3">{blockNumber}</Typography>
+            </ChartCard>
           </div>
           <div key="chainId">
-            <Typography variant="h6">
-              Chain ID
-            </Typography>
-            <Typography>{parseInt(chainId, 16)}</Typography>
+            <ChartCard title="Chain ID">
+              <Typography variant="h3">{parseInt(chainId, 16)}</Typography>
+            </ChartCard>
           </div>
           <div key="syncing">
-            <Typography variant="h6">
-              Syncing
-            </Typography>
-            {typeof syncing === "object" && syncing.currentBlock &&
-              <Typography variant="h6">
-                {parseInt(syncing.currentBlock, 16)} / {parseInt(syncing.highestBlock || "0x0", 16)}
-              </Typography>
-            }
-            {!syncing && <Typography>No</Typography>}
+            <ChartCard title="Syncing">
+              {typeof syncing === "object" && syncing.currentBlock &&
+                <Typography variant="h3">
+                  {parseInt(syncing.currentBlock, 16)} / {parseInt(syncing.highestBlock || "0x0", 16)}
+                </Typography>
+              }
+              {!syncing && <Typography variant="h3">No</Typography>}
+            </ChartCard>
           </div>
           <div key="gasPrice">
-            <Typography variant="h6">
-              Gas Price
-            </Typography>
-            <Typography>{weiToGwei(parseInt(gasPrice, 16))} Gwei</Typography>
+            <ChartCard title="Gas Price">
+              <Typography variant="h3">{weiToGwei(parseInt(gasPrice, 16))} Gwei</Typography>
+            </ChartCard>
           </div>
           <div key="hRate">
-            <Typography variant="h6">
-              Network Hash Rate
-            </Typography>
-            {block &&
-              <HashRate block={block} blockTime={config.blockTime}>
-                {(hashRate: any) => <Typography>{hashRate} GH/s</Typography>}
-              </HashRate>
-            }
+            <ChartCard title="Network Hash Rate">
+              {block &&
+                <HashRate block={block} blockTime={config.blockTime}>
+                  {(hashRate: any) => <Typography variant="h3">{hashRate} GH/s</Typography>}
+                </HashRate>
+              }
+            </ChartCard>
           </div>
           <div>
-            <Typography variant="h6">
-              Peers
-            </Typography>
-            <Typography>{parseInt(peerCount, 16)}</Typography>
+            <ChartCard title="Peers">
+              <Typography variant="h3">{parseInt(peerCount, 16)}</Typography>
+            </ChartCard>
           </div>
         </Grid>
         <Grid key="hashChart" item={true} xs={12} sm={6} lg={3}>
-          <HashChart
-            height={config.chartHeight}
-            title={`Hash Rate Last ${blocks.length} blocks`}
-            data={blocks.map(blockMapHashRate)} />
+          <ChartCard title={`Hash Rate last ${blocks.length} blocks`}>
+            <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
+              <VictoryLine data={blocks.map(blockMapHashRate)} />
+            </VictoryChart>
+          </ChartCard>
         </Grid>
         <Grid key="txChart" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
-            <VictoryLabel x={25} y={24} text={`Transaction count last ${blocks.length} blocks`} />
-            <VictoryBar data={blocks.map(blockMapTransactionCount)} />
-          </VictoryChart>
+          <ChartCard title={`Transaction count last ${blocks.length} blocks`}>
+            <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
+              <VictoryBar data={blocks.map(blockMapTransactionCount)} />
+            </VictoryChart>
+          </ChartCard>
         </Grid>
         <Grid key="gasUsed" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
-            <VictoryLabel x={25} y={24} text={`Gas Used Last ${blocks.length} blocks`} />
-            <VictoryBar data={blocks.map(blockMapGasUsed)} />
-          </VictoryChart>
+          <ChartCard title={`Gas Used Last ${blocks.length} blocks`}>
+            <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
+              <VictoryBar data={blocks.map(blockMapGasUsed)} />
+            </VictoryChart>
+          </ChartCard>
         </Grid>
         <Grid key="uncles" item={true} xs={12} sm={6} lg={3}>
-          <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={VictoryTheme.material}>
-            <VictoryLabel x={25} y={24} text={`Uncles Last ${blocks.length} blocks`} />
-            <VictoryBar data={blocks.map(blockMapUncles)} />
-          </VictoryChart>
-        </Grid>
-
-        <Grid item={true} key={"blocks"}>
-          <Button href={"/blocks"}>View All Blocks</Button>
-          <BlockList from={Math.max(blockNumber - 11, 0)} to={blockNumber} />
+          <ChartCard title={`Uncles Last ${blocks.length} blocks`}>
+            <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
+              <VictoryBar data={blocks.map(blockMapUncles)} />
+            </VictoryChart>
+          </ChartCard>
         </Grid>
 
       </Grid>
+
+      <BlockCardListContainer from={Math.max(blockNumber - 3, 0)} to={blockNumber} />
+      <BlockListContainer from={Math.max((blockNumber - 3) - 11, 0)} to={blockNumber - 3} style={{marginTop: "30px"}} />
+
     </div>
   );
 };

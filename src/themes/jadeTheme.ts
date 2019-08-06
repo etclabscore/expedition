@@ -1,6 +1,15 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import grey from "@material-ui/core/colors/grey";
 
 export const lightTheme = createMuiTheme({
+  props: {
+    MuiAppBar: {
+      position: "sticky",
+    },
+    MuiCard: {
+      elevation: 0,
+    },
+  },
   overrides: {
     MuiAppBar: {
       root: {
@@ -16,11 +25,19 @@ export const lightTheme = createMuiTheme({
 });
 
 export const darkTheme = createMuiTheme({
+  props: {
+    MuiAppBar: {
+      position: "sticky",
+    },
+    MuiCard: {
+      elevation: 0,
+    },
+  },
   palette: {
     type: "dark",
     background: {
-      default: "#212121",
-      paper: "black",
+      default: grey[900],
+      paper: grey[800],
     },
   },
   overrides: {
@@ -31,7 +48,7 @@ export const darkTheme = createMuiTheme({
     },
     MuiTypography: {
       root: {
-        color: "#fff",
+        color: grey[400],
       },
     },
   },
