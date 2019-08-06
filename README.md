@@ -2,7 +2,8 @@
 
 A block explorer for Ethereum based blockchains. The explorer uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine.
 
-![jade-block-explorer](https://user-images.githubusercontent.com/364566/60309177-5a450300-9901-11e9-8d97-473babe63aed.gif)
+![jade-block-explorer-light](https://user-images.githubusercontent.com/364566/62577862-aa927780-b854-11e9-9aba-a58eb7b44a47.png)
+![jade-block-explorer](https://user-images.githubusercontent.com/364566/62577861-aa927780-b854-11e9-8b5d-d8e04aaf2357.png)
 
 ## Install
 
