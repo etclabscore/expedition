@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
+import moment from "moment";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
@@ -16,6 +17,9 @@ function BlockView(props: any) {
     timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
   } = block;
+  const d = moment(
+    new Date(parseInt(timestamp, 16) * 1000).toISOString(),
+  ).format("MMMM Do YYYY, h:mm:ss a");
 
   return (
     <div>
@@ -28,7 +32,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>Timestamp</TableCell>
-            <TableCell>{new Date(parseInt(timestamp, 16) * 1000).toString()}</TableCell>
+            <TableCell>{d}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -53,23 +57,30 @@ function BlockView(props: any) {
           <TableRow>
             <TableCell>Miner</TableCell>
             <TableCell>
-              {miner}
+              <Link
+                component={({ className, children }: { children: any, className: string }) => (
+                  <RouterLink className={className} to={`/address/${miner}`} >
+                    {children}
+                  </RouterLink>
+                )}>
+                {miner}
+              </Link>
             </TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Nonce</TableCell>
-            <TableCell>{nonce}</TableCell>
+            <TableCell>{parseInt(nonce, 16)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Difficulty</TableCell>
-            <TableCell>{difficulty.toString()}</TableCell>
+            <TableCell>{parseInt(difficulty, 16)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Extra Data</TableCell>
-            <TableCell>{extraData}</TableCell>
+            <TableCell>{new Buffer(extraData.substring(2), "hex").toString()}</TableCell>
           </TableRow>
 
           <TableRow>

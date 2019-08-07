@@ -10,7 +10,7 @@ interface IProps {
 
 export default function BlockCard(props: IProps) {
   const { block } = props;
-  const d = moment(new Date(parseInt(block.timestamp, 16) * 1000).toISOString()).format('MMMM Do YYYY, h:mm:ss a')
+  const d = moment(new Date(parseInt(block.timestamp, 16) * 1000).toISOString()).format("MMMM Do YYYY, h:mm:ss a");
 
   return (
     <Link
@@ -25,6 +25,7 @@ export default function BlockCard(props: IProps) {
         <CardContent>
           <Typography variant="caption" style={{ fontSize: "11px" }}>{block.hash}</Typography>
           <Typography gutterBottom>{d}</Typography>
+          <Typography gutterBottom>{new Buffer(block.extraData.substring(2), "hex").toString()}</Typography>
           <Chip label={`${block.transactions.length} Transactions`}>
           </Chip>
         </CardContent>
