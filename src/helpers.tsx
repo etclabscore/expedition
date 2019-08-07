@@ -1,6 +1,7 @@
 import ERPC from "@etclabscore/ethereum-json-rpc";
 import * as React from "react";
 import useInterval from "use-interval";
+import hexToNumber from "./helpers/hexToNumber";
 
 export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> => {
   const promises: any[] = [];
@@ -14,7 +15,7 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
   const [blockNumber, setBlockNumber] = React.useState();
   if (erpc) {
     erpc.eth_blockNumber().then((bn: string) => {
-      setBlockNumber(parseInt(bn, 16));
+      setBlockNumber(hexToNumber(bn));
     });
   }
   useInterval(() => {
@@ -22,7 +23,7 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
       return;
     }
     erpc.eth_blockNumber().then((bn: string) => {
-      setBlockNumber(parseInt(bn, 16));
+      setBlockNumber(hexToNumber(bn));
     });
   }, 7000);
   return [blockNumber];

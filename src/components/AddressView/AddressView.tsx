@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Typography, Card, CardContent } from "@material-ui/core";
 
 export interface IAddressViewProps {
   address: string;
@@ -10,22 +11,27 @@ export interface IAddressViewProps {
 function renderGeneral(props: IAddressViewProps) {
   const { address, balance, txCount, code } = props;
   return (
-    <div>
-      <div>Balance: {balance}</div>
-      <div>Tx count: {txCount}</div>
-      <div>{address}</div>
-      <div>Code</div>
-      <div>
-        <textarea value={code} />
-      </div>
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h6">Address: {address}</Typography>
+        <Typography variant="h6">Balance: {balance}</Typography>
+        <Typography variant="h6">Transactions: {txCount}</Typography>
+        <br />
+        <div>
+          <div>Code</div>
+          <pre>
+            <code>{code}</code>
+          </pre>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
 function AddressView(props: IAddressViewProps) {
   return (
     <React.Fragment>
-        {renderGeneral(props)}
+      {renderGeneral(props)}
     </React.Fragment>
   );
 }

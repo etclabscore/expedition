@@ -12,6 +12,7 @@ import getTheme from "../themes/victoryTheme";
 import ChartCard from "../components/ChartCard";
 import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
+import hexToNumber from "../helpers/hexToNumber";
 
 const useState = React.useState;
 
@@ -24,28 +25,28 @@ const config = {
 
 const blockMapGasUsed = (block: any) => {
   return {
-    x: parseInt(block.number, 16),
+    x: hexToNumber(block.number),
     y: new BigNumber(block.gasUsed).dividedBy(1000000),
   };
 };
 
 const blockMapUncles = (block: any) => {
   return {
-    x: parseInt(block.number, 16),
+    x: hexToNumber(block.number),
     y: block.uncles.length,
   };
 };
 
 const blockMapHashRate = (block: any) => {
   return {
-    x: parseInt(block.number, 16),
+    x: hexToNumber(block.number),
     y: hashesToGH(new BigNumber(block.difficulty, 16).dividedBy(config.blockTime)),
   };
 };
 
 const blockMapTransactionCount = (block: any) => {
   return {
-    x: parseInt(block.number, 16),
+    x: hexToNumber(block.number),
     y: block.transactions.length,
   };
 };
@@ -125,14 +126,14 @@ export default (props: any) => {
           </div>
           <div key="chainId">
             <ChartCard title="Chain ID">
-              <Typography variant="h3">{parseInt(chainId, 16)}</Typography>
+              <Typography variant="h3">{hexToNumber(chainId)}</Typography>
             </ChartCard>
           </div>
           <div key="syncing">
             <ChartCard title="Syncing">
               {typeof syncing === "object" && syncing.currentBlock &&
                 <Typography variant="h3">
-                  {parseInt(syncing.currentBlock, 16)} / {parseInt(syncing.highestBlock || "0x0", 16)}
+                  {hexToNumber(syncing.currentBlock)} / {hexToNumber(syncing.highestBlock || "0x0")}
                 </Typography>
               }
               {!syncing && <Typography variant="h3">No</Typography>}
@@ -140,7 +141,7 @@ export default (props: any) => {
           </div>
           <div key="gasPrice">
             <ChartCard title="Gas Price">
-              <Typography variant="h3">{weiToGwei(parseInt(gasPrice, 16))} Gwei</Typography>
+              <Typography variant="h3">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
             </ChartCard>
           </div>
           <div key="hRate">
@@ -154,7 +155,7 @@ export default (props: any) => {
           </div>
           <div>
             <ChartCard title="Peers">
-              <Typography variant="h3">{parseInt(peerCount, 16)}</Typography>
+              <Typography variant="h3">{hexToNumber(peerCount)}</Typography>
             </ChartCard>
           </div>
         </Grid>

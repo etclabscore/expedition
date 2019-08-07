@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import hexToNumber from "../../helpers/hexToNumber";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -37,17 +38,17 @@ function renderTxTable(tx: any, receipt: any | null) {
 
           <TableRow>
             <TableCell>Block number</TableCell>
-            <TableCell>{parseInt(tx.blockNumber, 16)}</TableCell>
+            <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Gas</TableCell>
-            <TableCell>{unit.fromWei(tx.gas, "ether")}</TableCell>
+            <TableCell>{hexToNumber(tx.gas)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Gas Price</TableCell>
-            <TableCell>{parseInt(tx.gasPrice, 10)}</TableCell>
+            <TableCell>{hexToNumber(tx.gasPrice)}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -88,22 +89,17 @@ function renderTxTable(tx: any, receipt: any | null) {
 
           <TableRow>
             <TableCell>Nonce</TableCell>
-            <TableCell>{parseInt(tx.nonce, 16)}</TableCell>
+            <TableCell>{hexToNumber(tx.nonce)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Transaction Index</TableCell>
-            <TableCell>{parseInt(tx.transactionIndex, 16)}</TableCell>
+            <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Input</TableCell>
             <TableCell>{tx.input}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>ReplayProtected</TableCell>
-            <TableCell>{tx.replayProtected && tx.replayProtected.toString()}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -148,17 +144,17 @@ function renderTxTable(tx: any, receipt: any | null) {
 
             <TableRow>
               <TableCell>Block number</TableCell>
-              <TableCell>{parseInt(receipt.blockNumber, 16)}</TableCell>
+              <TableCell>{hexToNumber(receipt.blockNumber)}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell>Gas Used</TableCell>
-              <TableCell>{parseInt(receipt.gasUsed, 16)}</TableCell>
+              <TableCell>{hexToNumber(receipt.gasUsed)}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell>Cumulative Gas Used</TableCell>
-              <TableCell>{parseInt(receipt.cumulativeGasUsed, 16)}</TableCell>
+              <TableCell>{hexToNumber(receipt.cumulativeGasUsed)}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -201,7 +197,7 @@ function renderTxTable(tx: any, receipt: any | null) {
 
             <TableRow>
               <TableCell>Transaction Index</TableCell>
-              <TableCell>{parseInt(receipt.transactionIndex, 16)}</TableCell>
+              <TableCell>{hexToNumber(receipt.transactionIndex)}</TableCell>
             </TableRow>
 
             <TableRow>

@@ -4,6 +4,7 @@ import * as React from "react";
 import getBlocks from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import BlockCard from "../components/BlockCard";
+import hexToNumber from "../helpers/hexToNumber";
 
 interface IProps {
   from: number;
@@ -27,7 +28,7 @@ export default function BlockCardListContainer(props: IProps) {
     <Grid container spacing={2} style={style}>
       {
         blocks.sort((a: any, b: any) => {
-          return parseInt(b.number, 16) - parseInt(a.number, 16);
+          return hexToNumber(a) - hexToNumber(a.number);
         }).map((block: any) => {
           return (
             <Grid item xs={12} sm={4}>
