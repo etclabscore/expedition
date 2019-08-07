@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
+import hexToNumber from "../../helpers/hexToNumber";
 
 export interface ITxListProps {
   transactions: any[];
@@ -46,7 +47,7 @@ function TxListItem({ tx }: { tx: any }) {
           : null}
       </TableCell>
 
-      <TableCell>{parseInt(tx.transactionIndex, 16)}</TableCell>
+      <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
     </TableRow>
   );
 }

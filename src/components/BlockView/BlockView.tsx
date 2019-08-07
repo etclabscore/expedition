@@ -3,6 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
 import hexToDate from "../../helpers/hexToDate";
+import hexToNumber from "../../helpers/hexToNumber";
+import hexToString from "../../helpers/hexToString";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
@@ -24,7 +26,7 @@ function BlockView(props: any) {
         <TableBody>
           <TableRow>
             <TableCell>Number</TableCell>
-            <TableCell>{parseInt(block.number, 16)}</TableCell>
+            <TableCell>{hexToNumber(block.number)}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -67,17 +69,17 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>Nonce</TableCell>
-            <TableCell>{parseInt(nonce, 16)}</TableCell>
+            <TableCell>{hexToNumber(nonce)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Difficulty</TableCell>
-            <TableCell>{parseInt(difficulty, 16)}</TableCell>
+            <TableCell>{hexToNumber(difficulty)}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Extra Data</TableCell>
-            <TableCell>{new Buffer(extraData.substring(2), "hex").toString()}</TableCell>
+            <TableCell>{hexToString(extraData)}</TableCell>
           </TableRow>
 
           <TableRow>

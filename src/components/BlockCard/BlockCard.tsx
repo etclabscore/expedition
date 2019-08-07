@@ -3,6 +3,8 @@ import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 import { Card, CardHeader, CardContent, Typography, Chip } from "@material-ui/core";
 import hexToDate from "../../helpers/hexToDate";
+import hexToString from "../../helpers/hexToString";
+import hexToNumber from "../../helpers/hexToNumber";
 
 interface IProps {
   block: any;
@@ -19,12 +21,12 @@ export default function BlockCard(props: IProps) {
         </RouterLink>
       )}>
       <Card elevation={1}>
-        <CardHeader title={parseInt(block.number, 16)}>
+        <CardHeader title={hexToNumber(block.number)}>
         </CardHeader>
         <CardContent>
           <Typography variant="caption" style={{ fontSize: "11px" }}>{block.hash}</Typography>
           <Typography gutterBottom>{hexToDate(block.timestamp)}</Typography>
-          <Typography gutterBottom>{new Buffer(block.extraData.substring(2), "hex").toString()}</Typography>
+          <Typography gutterBottom>{hexToString(block.extraData)}</Typography>
           <Chip label={`${block.transactions.length} Transactions`}>
           </Chip>
         </CardContent>

@@ -9,12 +9,13 @@ export interface IAddressViewProps {
 }
 
 function renderGeneral(props: IAddressViewProps) {
-  const { address, balance, code } = props;
+  const { address, balance, txCount, code } = props;
   return (
     <Card>
       <CardContent>
         <Typography variant="h6">Address: {address}</Typography>
         <Typography variant="h6">Balance: {balance}</Typography>
+        <Typography variant="h6">Transactions: {txCount}</Typography>
         <br />
         <div>
           <div>Code</div>

@@ -4,6 +4,7 @@ import AddressView from "../components/AddressView";
 import { useBlockNumber } from "../helpers";
 import useMultiGethStore from "../stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
+import hexToNumber from "../helpers/hexToNumber";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -32,7 +33,7 @@ export default function Address({ match }: { match: { params: { address: string 
     <>
       <AddressView
         address={address}
-        txCount={transactionCount ? parseInt(transactionCount, 10) : 0}
+        txCount={transactionCount ? hexToNumber(transactionCount) : 0}
         balance={unit.fromWei(balance || 0, "ether")}
         code={code}
       />
