@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
 import * as React from "react";
 import Link from "@material-ui/core/Link";
-import moment from "moment";
+import hexToDate from "../../helpers/hexToDate";
 import { Link as RouterLink } from "react-router-dom";
 
 const rightPaddingFix = {
@@ -27,9 +27,6 @@ function BlockList({ blocks }: any) {
       </TableHead>
       <TableBody>
         {sortedBlocks.map((b: any) => {
-          const d = moment(
-            new Date(parseInt(b.timestamp, 16) * 1000).toISOString(),
-          ).format("MMMM Do YYYY, h:mm:ss a");
           return (
             <TableRow key={b.number}>
               <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
@@ -44,7 +41,7 @@ function BlockList({ blocks }: any) {
                 </Link>
               </TableCell>
               <TableCell style={rightPaddingFix}>
-                <Typography>{d}</Typography>
+                <Typography>{hexToDate(b.timestamp)}</Typography>
               </TableCell>
               <TableCell style={rightPaddingFix}>
                 <Typography>{b.transactions.length}</Typography>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
-import moment from "moment";
+import hexToDate from "../../helpers/hexToDate";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
@@ -17,9 +17,6 @@ function BlockView(props: any) {
     timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
   } = block;
-  const d = moment(
-    new Date(parseInt(timestamp, 16) * 1000).toISOString(),
-  ).format("MMMM Do YYYY, h:mm:ss a");
 
   return (
     <div>
@@ -32,7 +29,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>Timestamp</TableCell>
-            <TableCell>{d}</TableCell>
+            <TableCell>{hexToDate(timestamp)}</TableCell>
           </TableRow>
 
           <TableRow>

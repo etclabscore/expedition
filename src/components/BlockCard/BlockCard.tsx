@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 import { Card, CardHeader, CardContent, Typography, Chip } from "@material-ui/core";
-import moment from "moment";
+import hexToDate from "../../helpers/hexToDate";
 
 interface IProps {
   block: any;
@@ -10,7 +10,6 @@ interface IProps {
 
 export default function BlockCard(props: IProps) {
   const { block } = props;
-  const d = moment(new Date(parseInt(block.timestamp, 16) * 1000).toISOString()).format("MMMM Do YYYY, h:mm:ss a");
 
   return (
     <Link
@@ -24,7 +23,7 @@ export default function BlockCard(props: IProps) {
         </CardHeader>
         <CardContent>
           <Typography variant="caption" style={{ fontSize: "11px" }}>{block.hash}</Typography>
-          <Typography gutterBottom>{d}</Typography>
+          <Typography gutterBottom>{hexToDate(block.timestamp)}</Typography>
           <Typography gutterBottom>{new Buffer(block.extraData.substring(2), "hex").toString()}</Typography>
           <Chip label={`${block.transactions.length} Transactions`}>
           </Chip>
