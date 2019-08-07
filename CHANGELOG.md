@@ -1,3 +1,12 @@
+## [1.0.8](https://github.com/etclabscore/jade-explorer/compare/1.0.7...1.0.8) (2019-08-07)
+
+
+### Bug Fixes
+
+* add hexToDate helper ([a2f4f9a](https://github.com/etclabscore/jade-explorer/commit/a2f4f9a))
+* add hexToNumber helper ([fee33ff](https://github.com/etclabscore/jade-explorer/commit/fee33ff))
+* cleanup fields ([f5f3269](https://github.com/etclabscore/jade-explorer/commit/f5f3269))
+
 ## [1.0.7](https://github.com/etclabscore/jade-explorer/compare/1.0.6...1.0.7) (2019-08-06)
 
 
