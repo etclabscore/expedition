@@ -28,7 +28,7 @@ export default function BlockCardListContainer(props: IProps) {
     <Grid container spacing={2} style={style}>
       {
         blocks.sort((a: any, b: any) => {
-          return hexToNumber(a) - hexToNumber(a.number);
+          return hexToNumber(b.number) - hexToNumber(a.number);
         }).map((block: any) => {
           return (
             <Grid item xs={12} sm={4}>
