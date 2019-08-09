@@ -5,13 +5,18 @@ import { Card, CardHeader, CardContent, Typography, Chip } from "@material-ui/co
 import hexToDate from "../../helpers/hexToDate";
 import hexToString from "../../helpers/hexToString";
 import hexToNumber from "../../helpers/hexToNumber";
+import { GetBlockByNumberResult as IBlock } from "../../__GENERATED_TYPES__";
 
 interface IProps {
-  block: any;
+  block: IBlock;
 }
 
 export default function BlockCard(props: IProps) {
   const { block } = props;
+
+  if (!block) {
+    return null;
+  }
 
   return (
     <Link
@@ -21,13 +26,13 @@ export default function BlockCard(props: IProps) {
         </RouterLink>
       )}>
       <Card elevation={1}>
-        <CardHeader title={hexToNumber(block.number)}>
+        <CardHeader title={hexToNumber(block.number!)}>
         </CardHeader>
         <CardContent>
           <Typography variant="caption" style={{ fontSize: "11px" }}>{block.hash}</Typography>
-          <Typography gutterBottom>{hexToDate(block.timestamp)}</Typography>
-          <Typography gutterBottom>{hexToString(block.extraData)}</Typography>
-          <Chip label={`${block.transactions.length} Transactions`}>
+          <Typography gutterBottom>{hexToDate(block.timestamp!)}</Typography>
+          <Typography gutterBottom>{hexToString(block.extraData!)}</Typography>
+          <Chip label={`${block.transactions!.length} Transactions`}>
           </Chip>
         </CardContent>
       </Card>
