@@ -1,6 +1,17 @@
 # Jade Explorer
 
-A block explorer for Ethereum based blockchains. The explorer uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine.
+A block explorer for Ethereum based blockchains. 
+
+Jade Explorer is a minimal block explorer that uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration. 
+
+Explorer Features:
+- Display chain id
+- Syncing status
+- Runtime configuration for endpoints
+- Search by Block, Transaction, Address
+- Charts for hash, transaction count, gas used, uncles
+- Preview latest blocks
+
 
 ![jade-block-explorer-light](https://user-images.githubusercontent.com/364566/62577862-aa927780-b854-11e9-9aba-a58eb7b44a47.png)
 ![jade-block-explorer](https://user-images.githubusercontent.com/364566/62577861-aa927780-b854-11e9-8b5d-d8e04aaf2357.png)
