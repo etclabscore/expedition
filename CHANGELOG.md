@@ -1,3 +1,10 @@
+## [1.0.10](https://github.com/etclabscore/jade-explorer/compare/1.0.9...1.0.10) (2019-08-09)
+
+
+### Bug Fixes
+
+* add generated types + env ([185e7c3](https://github.com/etclabscore/jade-explorer/commit/185e7c3))
+
 ## [1.0.9](https://github.com/etclabscore/jade-explorer/compare/1.0.8...1.0.9) (2019-08-08)
 
 
