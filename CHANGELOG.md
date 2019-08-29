@@ -1,3 +1,11 @@
+## [1.0.11](https://github.com/etclabscore/jade-explorer/compare/1.0.10...1.0.11) (2019-08-29)
+
+
+### Bug Fixes
+
+* **dashboard:** add num pending transactions ([d58ae93](https://github.com/etclabscore/jade-explorer/commit/d58ae93)), closes [#48](https://github.com/etclabscore/jade-explorer/issues/48)
+* **README:** update description of explorer ([0b87773](https://github.com/etclabscore/jade-explorer/commit/0b87773))
+
 ## [1.0.10](https://github.com/etclabscore/jade-explorer/compare/1.0.9...1.0.10) (2019-08-09)
 
 
