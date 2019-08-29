@@ -13,6 +13,7 @@ import ChartCard from "../components/ChartCard";
 import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
 import hexToNumber from "../helpers/hexToNumber";
+import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 
@@ -63,7 +64,7 @@ const getStyles = () => {
 
 export default (props: any) => {
   const styles = getStyles();
-  const [erpc] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
@@ -73,6 +74,12 @@ export default (props: any) => {
   const [gasPrice, setGasPrice] = useState();
   const [syncing, setSyncing] = useState();
   const [peerCount, setPeerCount] = useState();
+  const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
+  }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -151,6 +158,11 @@ export default (props: any) => {
                   {(hashRate: any) => <Typography variant="h3">{hashRate} GH/s</Typography>}
                 </HashRate>
               }
+            </ChartCard>
+          </div>
+          <div key="pending-tx">
+            <ChartCard title="Pending Transactions">
+              {<Typography variant="h3">{pendingTransctionsLength}</Typography>}
             </ChartCard>
           </div>
           <div>
