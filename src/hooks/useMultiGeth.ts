@@ -1,6 +1,6 @@
 import ERPC from "@etclabscore/ethereum-json-rpc";
 import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
-import * as React from "react";
+import React, { useState, Dispatch } from "react";
 
 const serviceName = "multi-geth";
 
@@ -9,8 +9,9 @@ function useMultiGeth(
   serviceRunnerUrl: string,
   version: string,
   env: string,
-): [ERPC] {
+): [ERPC, Dispatch<string>] {
   const [erpc, setErpc] = React.useState();
+  const [urlOverride, setUrlOverride] = useState(process.env.REACT_APP_ETH_RPC_URL);
   React.useEffect(() => {
     if (!serviceRunner) {
       return;
@@ -23,7 +24,7 @@ function useMultiGeth(
       await serviceRunner.startService(serviceName, version, env);
       let parsedUrl;
       try {
-        parsedUrl = new URL(`${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
+        parsedUrl = new URL(urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
       } catch (e) {
         return;
       }
@@ -48,8 +49,8 @@ function useMultiGeth(
       }
     };
     runAsync();
-  }, [serviceRunner, serviceRunnerUrl, version, env]);
-  return [erpc];
+  }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride]);
+  return [erpc, setUrlOverride];
 }
 
 export default useMultiGeth;

@@ -2,7 +2,7 @@ import { AppBar, CssBaseline, Theme, Toolbar, Typography, IconButton, Grid } fro
 import { makeStyles, ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
-import * as React from "react";
+import React, { Dispatch } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
 import "./App.css";
@@ -32,12 +32,14 @@ function App(props: any) {
   const theme = darkMode.value ? darkTheme : lightTheme;
 
   const [, , setServiceRunnerUrl] = useServiceRunnerStore();
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
 
   const classes = useStyles(theme);
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
       setServiceRunnerUrl(url);
+    } else if (type === "ethereum-rpc") {
+      setMultiGethUrlOverride(url);
     }
   };
 
@@ -55,7 +57,7 @@ function App(props: any) {
   }, 100, true);
 
   return (
-    <Router>
+    <Router >
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppBar color="default" elevation={0}>

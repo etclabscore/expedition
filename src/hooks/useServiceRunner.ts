@@ -1,7 +1,7 @@
 import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
-import * as React from "react";
+import React, { Dispatch } from "react";
 
-function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, any] {
+function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>] {
   const [url, setUrl] = React.useState(defaultUrl);
   const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
   React.useEffect(() => {
