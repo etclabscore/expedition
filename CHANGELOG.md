@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/etclabscore/jade-explorer/compare/1.0.11...1.0.12) (2019-09-03)
+
+
+### Bug Fixes
+
+* bump to 1.9.2 geth ([70cb92d](https://github.com/etclabscore/jade-explorer/commit/70cb92d))
+
 ## [1.0.11](https://github.com/etclabscore/jade-explorer/compare/1.0.10...1.0.11) (2019-08-29)
 
 
