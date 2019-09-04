@@ -1,8 +1,8 @@
 # Jade Explorer
 
-A block explorer for EVM-based blockchains. 
+A block explorer for EVM-based blockchains.
 
-Jade Explorer is a minimal block explorer that uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration. 
+Jade Explorer is a minimal block explorer that uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
 
 Explorer Features:
 - Display chain id
@@ -32,13 +32,17 @@ git clone https://github.com/etclabscore/jade-explorer.git && cd jade-explorer &
 ## Usage
 
 
+
+### Service Runner
+If you dont have a [service-runner](https://github.com/etclabscore/jade-service-runner) running you can use the one in the package.json via: (or see the configuration section below to provide your own ethereum rpc URL):
+
 ```bash
 npm run service-runner
 ```
 
 Jade Service Runner will run at http://localhost:8002/.
 
-Start the explorer.
+## Start the explorer.
 
 ```bash
 npm start
@@ -63,6 +67,22 @@ By default, multi-geth service will run ETC mainnet. Jade Service runner conveni
                     │   ├── ethash
                     │   └── nodes
                     └── keystore
+```
+
+### Configure default urls via environment variables
+
+Override eth url
+
+```
+REACT_APP_ETH_RPC_URL=https://services.jade.builders/multi-geth/mainnet/1.9.2 npm start
+```
+
+**OR**
+
+Override service runner url
+
+```
+REACT_APP_SERVICE_RUNNER_URL=https://services.jade.builders/ npm start
 ```
 
 ## Resources
