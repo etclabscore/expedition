@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/etclabscore/jade-explorer/compare/1.0.12...1.0.13) (2019-09-04)
+
+
+### Bug Fixes
+
+* eth rpc configuration ([18fce91](https://github.com/etclabscore/jade-explorer/commit/18fce91)), closes [#51](https://github.com/etclabscore/jade-explorer/issues/51)
+
 ## [1.0.12](https://github.com/etclabscore/jade-explorer/compare/1.0.11...1.0.12) (2019-09-03)
 
 
