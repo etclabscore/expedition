@@ -9,6 +9,7 @@ function useMultiGeth(
   serviceRunnerUrl: string,
   version: string,
   env: string,
+  queryUrlOverride?: string,
 ): [ERPC, Dispatch<string>] {
   const [erpc, setErpc] = React.useState();
   const [urlOverride, setUrlOverride] = useState(process.env.REACT_APP_ETH_RPC_URL);
@@ -24,7 +25,7 @@ function useMultiGeth(
       await serviceRunner.startService(serviceName, version, env);
       let parsedUrl;
       try {
-        parsedUrl = new URL(urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
+        parsedUrl = new URL(queryUrlOverride || urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
       } catch (e) {
         return;
       }
@@ -49,7 +50,7 @@ function useMultiGeth(
       }
     };
     runAsync();
-  }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride]);
+  }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
   return [erpc, setUrlOverride];
 }
 
