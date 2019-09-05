@@ -69,6 +69,13 @@ By default, multi-geth service will run ETC mainnet. Jade Service runner conveni
                     └── keystore
 ```
 
+## Configuration
+
+### Configure rpc via url
+
+https://explorer.jade.builders/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
+
+
 ### Configure default urls via environment variables
 
 Override eth url
