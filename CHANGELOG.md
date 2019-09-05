@@ -1,3 +1,11 @@
+## [1.0.14](https://github.com/etclabscore/jade-explorer/compare/1.0.13...1.0.14) (2019-09-05)
+
+
+### Bug Fixes
+
+* remove unneeded redux dep ([81b6775](https://github.com/etclabscore/jade-explorer/commit/81b6775))
+* **configuration:** add query param configuration for rpc url ([530500a](https://github.com/etclabscore/jade-explorer/commit/530500a)), closes [#56](https://github.com/etclabscore/jade-explorer/issues/56)
+
 ## [1.0.13](https://github.com/etclabscore/jade-explorer/compare/1.0.12...1.0.13) (2019-09-04)
 
 
