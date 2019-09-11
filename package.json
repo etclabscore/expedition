@@ -52,7 +52,7 @@
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.2.3",
     "@types/bignumber.js": "^4.0.3",
-    "@types/jest": "^21.1.6",
+    "@types/jest": "^24.0.18",
     "@types/node": "^8.0.51",
     "@types/react": "^16.0.22",
     "@types/react-dom": "^16.0.3",
