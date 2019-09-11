@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/etclabscore/jade-explorer/compare/1.0.14...1.1.0) (2019-09-11)
+
+
+### Features
+
+* add search ([3021661](https://github.com/etclabscore/jade-explorer/commit/3021661)), closes [#28](https://github.com/etclabscore/jade-explorer/issues/28) [#60](https://github.com/etclabscore/jade-explorer/issues/60)
+
 ## [1.0.14](https://github.com/etclabscore/jade-explorer/compare/1.0.13...1.0.14) (2019-09-05)
 
 
