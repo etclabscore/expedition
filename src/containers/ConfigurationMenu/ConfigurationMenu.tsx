@@ -1,6 +1,7 @@
 import * as React from "react";
-import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon } from "@material-ui/core"; //tslint:disable-line
-import { Settings, NavigateNext, NavigateBefore } from "@material-ui/icons";
+import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon, Tooltip } from "@material-ui/core"; //tslint:disable-line
+import { NavigateNext, NavigateBefore } from "@material-ui/icons";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 interface IConfigurationMenuProps {
   onChange: (type: string, url: string) => any;
@@ -74,15 +75,17 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
 
   return (
     <>
-      <IconButton
-        aria-label="Account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenu}
-        color="inherit"
-      >
-        <Settings />
-      </IconButton>
+      <Tooltip title="Configuration">
+        <IconButton
+          aria-label="Configuration"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+          color="inherit"
+        >
+          <SettingsIcon color="action"/>
+        </IconButton>
+      </Tooltip>
       <Menu
         id="menu-appbar"
         getContentAnchorEl={null}
