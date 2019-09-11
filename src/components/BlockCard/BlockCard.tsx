@@ -5,7 +5,7 @@ import { Card, CardHeader, CardContent, Typography, Chip } from "@material-ui/co
 import hexToDate from "../../helpers/hexToDate";
 import hexToString from "../../helpers/hexToString";
 import hexToNumber from "../../helpers/hexToNumber";
-import { GetBlockByNumberResult as IBlock } from "../../__GENERATED_TYPES__";
+import { GetBlockByNumberResult as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 interface IProps {
   block: IBlock;

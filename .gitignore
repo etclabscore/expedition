@@ -7,4 +7,3 @@ dist
 /**/build
 .vscode
 services
-src/__GENERATED_TYPES__
