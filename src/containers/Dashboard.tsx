@@ -136,16 +136,17 @@ export default (props: any) => {
               <Typography variant="h3">{hexToNumber(chainId)}</Typography>
             </ChartCard>
           </div>
-          <div key="syncing">
-            <ChartCard title="Syncing">
-              {typeof syncing === "object" && syncing.currentBlock &&
-                <Typography variant="h3">
-                  {hexToNumber(syncing.currentBlock)} / {hexToNumber(syncing.highestBlock || "0x0")}
-                </Typography>
-              }
-              {!syncing && <Typography variant="h3">No</Typography>}
-            </ChartCard>
-          </div>
+          {syncing &&
+            <div key="syncing">
+              <ChartCard title="Syncing">
+                {typeof syncing === "object" && syncing.currentBlock &&
+                  <Typography variant="h3">
+                    {hexToNumber(syncing.currentBlock)} / {hexToNumber(syncing.highestBlock || "0x0")}
+                  </Typography>
+                }
+              </ChartCard>
+            </div>
+          }
           <div key="gasPrice">
             <ChartCard title="Gas Price">
               <Typography variant="h3">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
@@ -203,7 +204,7 @@ export default (props: any) => {
       </Grid>
 
       <BlockCardListContainer from={Math.max(blockNumber - 3, 0)} to={blockNumber} />
-      <BlockListContainer from={Math.max((blockNumber - 3) - 11, 0)} to={blockNumber - 3} style={{marginTop: "30px"}} />
+      <BlockListContainer from={Math.max((blockNumber - 3) - 11, 0)} to={blockNumber - 3} style={{ marginTop: "30px" }} />
 
     </div>
   );
