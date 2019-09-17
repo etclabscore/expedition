@@ -12,7 +12,7 @@
     "url": "https://github.com/etclabscore/jade-explorer.git"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "service-runner": "jade-service-runner",
