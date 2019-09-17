@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/etclabscore/jade-explorer/compare/1.1.0...1.1.1) (2019-09-17)
+
+
+### Bug Fixes
+
+* **dashboard:** remove "No" text when not syncing ([3c3acc9](https://github.com/etclabscore/jade-explorer/commit/3c3acc9)), closes [#65](https://github.com/etclabscore/jade-explorer/issues/65)
+* **gh-pages:** deep links for react github pages ([7bc466b](https://github.com/etclabscore/jade-explorer/commit/7bc466b)), closes [#73](https://github.com/etclabscore/jade-explorer/issues/73)
+* small screen cleanup ([9c7e47b](https://github.com/etclabscore/jade-explorer/commit/9c7e47b)), closes [#70](https://github.com/etclabscore/jade-explorer/issues/70)
+
 # [1.1.0](https://github.com/etclabscore/jade-explorer/compare/1.0.14...1.1.0) (2019-09-11)
 
 
