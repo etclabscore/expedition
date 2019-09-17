@@ -31,7 +31,7 @@ export default function BlockCardListContainer(props: IProps) {
           return hexToNumber(b.number) - hexToNumber(a.number);
         }).map((block: any) => {
           return (
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} key={block.hash}>
               <BlockCard block={block} />
             </Grid>
           );

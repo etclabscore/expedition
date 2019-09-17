@@ -1,5 +1,5 @@
-import { AppBar, CssBaseline, Theme, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip } from "@material-ui/core"; //tslint:disable-line
-import { makeStyles, ThemeProvider } from "@material-ui/styles";
+import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip, Hidden } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 import React, { Dispatch, ChangeEvent, KeyboardEvent, useState } from "react";
@@ -24,13 +24,8 @@ import useMultiGethStore from "./stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
 
-import createHistory from "history/createBrowserHistory";
-const history = createHistory();
-
-const useStyles = makeStyles((theme: Theme) => ({
-  title: {
-  },
-}));
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory();
 
 function App(props: any) {
   const darkMode = useDarkMode();
@@ -40,7 +35,6 @@ function App(props: any) {
   const [, , setServiceRunnerUrl] = useServiceRunnerStore();
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
 
-  const classes = useStyles(theme);
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
       setServiceRunnerUrl(url);
@@ -114,11 +108,10 @@ function App(props: any) {
   return (
     <Router history={history}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar position="static" color="default" elevation={0}>
+        <AppBar position="sticky" color="default" elevation={0}>
           <Toolbar>
             <Grid justify="space-between" alignItems="center" alignContent="center" container>
-              <Grid item style={{ marginTop: "8px" }} direction="row">
+              <Grid item style={{ marginTop: "8px" }}>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
                     <RouterLink className={className} to={"/"}>
@@ -144,35 +137,44 @@ function App(props: any) {
                       }
                     </Grid>
                     <Grid>
-                      <Typography className={classes.title} color="textSecondary" variant="h6">Jade Explorer</Typography>
+                      <Typography color="textSecondary" variant="h6">
+                        Explorer
+                      </Typography>
                     </Grid>
                   </Grid>
                 </Link>
               </Grid>
-              <Grid item xs={7}>
-                <InputBase
-                  placeholder="Enter an Address, Transaction Hash or Block Number"
-                  onKeyDown={
-                    (event: KeyboardEvent<HTMLInputElement>) => {
-                      if (event.keyCode === 13) {
-                        handleSearch(search.trim());
+              <Hidden only="xs">
+                <Grid item md={7} lg={8}>
+                  <InputBase
+                    placeholder="Enter an Address, Transaction Hash or Block Number"
+                    onKeyDown={
+                      (event: KeyboardEvent<HTMLInputElement>) => {
+                        if (event.keyCode === 13) {
+                          handleSearch(search.trim());
+                        }
                       }
                     }
-                  }
-                  onChange={
-                    (event: ChangeEvent<HTMLInputElement>) => {
-                      setSearch(event.target.value);
+                    onChange={
+                      (event: ChangeEvent<HTMLInputElement>) => {
+                        setSearch(event.target.value);
+                      }
                     }
-                  }
-                  fullWidth
-                  style={{ background: "rgba(0,0,0,0.1)", borderRadius: "4px", padding: "0px 10px", marginRight: "5px" }}
-                />
-              </Grid>
+                    fullWidth
+                    style={{
+                      background: "rgba(0,0,0,0.1)",
+                      borderRadius: "4px",
+                      padding: "0px 10px",
+                      marginRight: "5px",
+                    }}
+                  />
+                </Grid>
+              </Hidden>
               <Grid item>
-                <Tooltip title="JSOSN-RPC API Documentation">
+                <Tooltip title="JSON-RPC API Documentation">
                   <IconButton
                     onClick={() =>
-                      window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json")
+                      window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
                     }>
                     <NotesIcon />
                   </IconButton>
@@ -196,6 +198,7 @@ function App(props: any) {
           </Toolbar>
         </AppBar>
         <div style={{ margin: "0px 25px 0px 25px" }}>
+          <CssBaseline />
           <Switch>
             <Route path={"/"} component={Dashboard} exact={true} />
             <Route path={"/block/:hash"} component={Block} />

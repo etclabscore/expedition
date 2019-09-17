@@ -16,41 +16,44 @@ function BlockList({ blocks }: any) {
     return b.number - a.number;
   });
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell><Typography>Block Number</Typography></TableCell>
-          <TableCell><Typography>Hash</Typography></TableCell>
-          <TableCell><Typography>Timestamp</Typography></TableCell>
-          <TableCell><Typography>Transactions</Typography></TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {sortedBlocks.map((b: any) => {
-          return (
-            <TableRow key={b.number}>
-              <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
-              <TableCell style={rightPaddingFix}>
-                <Link
-                  component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/block/${b.hash}`} >
-                      {children}
-                    </RouterLink>
-                  )}>
-                  {b.hash}
-                </Link>
-              </TableCell>
-              <TableCell style={rightPaddingFix}>
-                <Typography>{hexToDate(b.timestamp)}</Typography>
-              </TableCell>
-              <TableCell style={rightPaddingFix}>
-                <Typography>{b.transactions.length}</Typography>
-              </TableCell>
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
+    <div style={{ width: "100%", overflowX: "auto" }}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell><Typography>Block Number</Typography></TableCell>
+            <TableCell><Typography>Hash</Typography></TableCell>
+            <TableCell><Typography>Timestamp</Typography></TableCell>
+            <TableCell><Typography>Transactions</Typography></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sortedBlocks.map((b: any) => {
+            return (
+              <TableRow key={b.number}>
+                <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
+                <TableCell style={rightPaddingFix}>
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/block/${b.hash}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {b.hash}
+                  </Link>
+                </TableCell>
+                <TableCell style={rightPaddingFix}>
+                  <Typography>{hexToDate(b.timestamp)}</Typography>
+                </TableCell>
+                <TableCell style={rightPaddingFix}>
+                  <Typography>{b.transactions.length}</Typography>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
+
   );
 }
 
