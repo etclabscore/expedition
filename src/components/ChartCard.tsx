@@ -8,7 +8,7 @@ interface IProps {
 
 const ChartCard: React.FC<IProps> = (props) => {
   return (
-    <Card style={{background: "transparent"}}>
+    <Card style={{background: "transparent"}} elevation={0}>
       <CardContent>
         <Typography variant="h6">{props.title}</Typography>
         {props.children}
