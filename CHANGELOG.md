@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/etclabscore/jade-explorer/compare/1.1.1...1.1.2) (2019-09-23)
+
+
+### Bug Fixes
+
+* **multi-geth hook:** rpcUrl should override service runner url ([96a3c2c](https://github.com/etclabscore/jade-explorer/commit/96a3c2c)), closes [#79](https://github.com/etclabscore/jade-explorer/issues/79)
+
 ## [1.1.1](https://github.com/etclabscore/jade-explorer/compare/1.1.0...1.1.1) (2019-09-17)
 
 
