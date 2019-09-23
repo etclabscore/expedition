@@ -18,11 +18,13 @@ function useMultiGeth(
       return;
     }
     const runAsync = async () => {
-      const installed = await serviceRunner.installService(serviceName, version);
-      if (!installed) {
-        return;
+      if (!queryUrlOverride) {
+        const installed = await serviceRunner.installService(serviceName, version);
+        if (!installed) {
+          return;
+        }
+        await serviceRunner.startService(serviceName, version, env);
       }
-      await serviceRunner.startService(serviceName, version, env);
       let parsedUrl;
       try {
         parsedUrl = new URL(queryUrlOverride || urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
