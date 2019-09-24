@@ -9,12 +9,5 @@ RUN \
     npm install && \
     npm run build    
 
-FROM alpine:latest  
-RUN \
-    apk --no-cache add ca-certificates npm && \
-    npm install -g node-static
-WORKDIR /root/
-COPY --from=builder /root/jade-explorer .
-WORKDIR /root/jade-explorer
-EXPOSE 8080
-CMD ["static", "-a", "0.0.0.0", "build"]
+FROM httpd:2.4-alpine
+COPY --from=builder /root/jade-explorer/build/ /usr/local/apache2/htdocs/
