@@ -47,7 +47,7 @@
     "semantic-release": "^15.13.24",
     "use-dark-mode": "^2.3.1",
     "use-interval": "^1.1.0",
-    "victory": "^31.3.0"
+    "victory": "^33.1.0"
   },
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.2.3",
