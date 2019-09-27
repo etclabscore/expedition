@@ -14,6 +14,7 @@ import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
 import hexToNumber from "../helpers/hexToNumber";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
+import { useTranslation } from "react-i18next";
 
 const useState = React.useState;
 
@@ -64,6 +65,7 @@ export default (props: any) => {
   const [syncing, setSyncing] = useState();
   const [peerCount, setPeerCount] = useState();
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -116,18 +118,18 @@ export default (props: any) => {
       <Grid container spacing={3} direction="column">
         <Grid item container justify="space-between">
           <Grid item key="blockHeight">
-            <ChartCard title="Block Height">
+            <ChartCard title={t("Block Height")}>
               <Typography variant="h4">{blockNumber}</Typography>
             </ChartCard>
           </Grid>
           <Grid key="chainId" item>
-            <ChartCard title="Chain ID">
+            <ChartCard title={t("Chain ID")}>
               <Typography variant="h4">{hexToNumber(chainId)}</Typography>
             </ChartCard>
           </Grid>
           {syncing &&
             <div key="syncing">
-              <ChartCard title="Syncing">
+              <ChartCard title={t("Syncing")}>
                 {typeof syncing === "object" && syncing.currentBlock &&
                   <Typography variant="h4">
                     {hexToNumber(syncing.currentBlock)} / {hexToNumber(syncing.highestBlock || "0x0")}
@@ -137,12 +139,12 @@ export default (props: any) => {
             </div>
           }
           <Grid key="gasPrice" item>
-            <ChartCard title="Gas Price">
+            <ChartCard title={t("Gas Price")}>
               <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
             </ChartCard>
           </Grid>
           <Grid key="hRate" item>
-            <ChartCard title="Network Hash Rate">
+            <ChartCard title={t("Network Hash Rate")}>
               {block &&
                 <HashRate block={block} blockTime={config.blockTime}>
                   {(hashRate: any) => <Typography variant="h4">{hashRate} GH/s</Typography>}
@@ -151,40 +153,40 @@ export default (props: any) => {
             </ChartCard>
           </Grid>
           <Grid key="pending-tx" item>
-            <ChartCard title="Pending Transactions">
+            <ChartCard title={t("Pending Transactions")}>
               {<Typography variant="h4">{pendingTransctionsLength}</Typography>}
             </ChartCard>
           </Grid>
           <Grid key="peers" item>
-            <ChartCard title="Peers">
+            <ChartCard title={t("Peers")}>
               <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
             </ChartCard>
           </Grid>
         </Grid>
         <Grid item container>
           <Grid key="hashChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={`Hash Rate last ${blocks.length} blocks`}>
+            <ChartCard title={t("Hash Rate last blocks", {count: config.blockHistoryLength})}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryLine data={blocks.map(blockMapHashRate)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="txChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={`Transaction count last ${blocks.length} blocks`}>
+            <ChartCard title={t("Transaction count last blocks", {count: config.blockHistoryLength})}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapTransactionCount)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="gasUsed" item xs={12} md={6} lg={3}>
-            <ChartCard title={`Gas Used Last ${blocks.length} blocks`}>
+            <ChartCard title={t("Gas Used last blocks", {count: config.blockHistoryLength})}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapGasUsed)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="uncles" item xs={12} md={6} lg={3}>
-            <ChartCard title={`Uncles Last ${blocks.length} blocks`}>
+            <ChartCard title={t("Uncles last blocks", {count: config.blockHistoryLength})}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapUncles)} />
               </VictoryChart>

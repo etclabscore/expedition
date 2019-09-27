@@ -3,6 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 import hexToNumber from "../../helpers/hexToNumber";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -11,19 +13,19 @@ export interface ITxViewProps {
   receipt: any | null;
 }
 
-function renderTxTable(tx: any, receipt: any | null) {
+function renderTxTable(tx: any, receipt: any | null, t: i18next.TFunction) {
   return (
     <div>
       <div>General</div>
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>Hash</TableCell>
+            <TableCell>{t("Hash")}</TableCell>
             <TableCell>{tx.hash}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Block</TableCell>
+            <TableCell>{t("Block")}</TableCell>
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
@@ -37,27 +39,27 @@ function renderTxTable(tx: any, receipt: any | null) {
           </TableRow>
 
           <TableRow>
-            <TableCell>Block number</TableCell>
+            <TableCell>{t("Block Number")}</TableCell>
             <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Gas</TableCell>
+            <TableCell>{t("Gas")}</TableCell>
             <TableCell>{hexToNumber(tx.gas)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Gas Price</TableCell>
+            <TableCell>{t("Gas Price")}</TableCell>
             <TableCell>{hexToNumber(tx.gasPrice)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Value</TableCell>
+            <TableCell>{t("Value")}</TableCell>
             <TableCell>{unit.fromWei(tx.value, "ether")}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>From</TableCell>
+            <TableCell>{t("From")}</TableCell>
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
@@ -71,7 +73,7 @@ function renderTxTable(tx: any, receipt: any | null) {
           </TableRow>
 
           <TableRow>
-            <TableCell>To</TableCell>
+            <TableCell>{t("To")}</TableCell>
             <TableCell>
               {tx.to !== null ?
                 <Link
@@ -88,17 +90,17 @@ function renderTxTable(tx: any, receipt: any | null) {
           </TableRow>
 
           <TableRow>
-            <TableCell>Nonce</TableCell>
+            <TableCell>{t("Nonce")}</TableCell>
             <TableCell>{hexToNumber(tx.nonce)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Transaction Index</TableCell>
+            <TableCell>{t("Transaction Index")}</TableCell>
             <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Input</TableCell>
+            <TableCell>{t("Input")}</TableCell>
             <TableCell>{tx.input}</TableCell>
           </TableRow>
 
@@ -124,12 +126,12 @@ function renderTxTable(tx: any, receipt: any | null) {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell>Hash</TableCell>
+              <TableCell>{t("Hash")}</TableCell>
               <TableCell>{receipt.transactionHash}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Block</TableCell>
+              <TableCell>{t("Block")}</TableCell>
               <TableCell>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
@@ -143,27 +145,27 @@ function renderTxTable(tx: any, receipt: any | null) {
             </TableRow>
 
             <TableRow>
-              <TableCell>Block number</TableCell>
+              <TableCell>{t("Block Number")}</TableCell>
               <TableCell>{hexToNumber(receipt.blockNumber)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Gas Used</TableCell>
+              <TableCell>{t("Gas Used")}</TableCell>
               <TableCell>{hexToNumber(receipt.gasUsed)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Cumulative Gas Used</TableCell>
+              <TableCell>{t("Cumulative Gas Used")}</TableCell>
               <TableCell>{hexToNumber(receipt.cumulativeGasUsed)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Value</TableCell>
+              <TableCell>{t("Value in Ether")}</TableCell>
               <TableCell>{unit.fromWei(tx.value, "ether")}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>From</TableCell>
+              <TableCell>{t("From")}</TableCell>
               <TableCell>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
@@ -177,7 +179,7 @@ function renderTxTable(tx: any, receipt: any | null) {
             </TableRow>
 
             <TableRow>
-              <TableCell>To</TableCell>
+              <TableCell>{t("To")}</TableCell>
               <TableCell>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
@@ -191,22 +193,22 @@ function renderTxTable(tx: any, receipt: any | null) {
             </TableRow>
 
             <TableRow>
-              <TableCell>Contract Address</TableCell>
+              <TableCell>{t("Contract Address")}</TableCell>
               <TableCell>{receipt.contractAddress}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Transaction Index</TableCell>
+              <TableCell>{t("Transaction Index")}</TableCell>
               <TableCell>{hexToNumber(receipt.transactionIndex)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Status</TableCell>
+              <TableCell>{t("Receipt Status")}</TableCell>
               <TableCell>{receipt.status}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>Logs</TableCell>
+              <TableCell>{t("Receipt Logs")}</TableCell>
               <TableCell>
                 {receipt.logs.length}
               </TableCell>
@@ -220,11 +222,12 @@ function renderTxTable(tx: any, receipt: any | null) {
 
 function TxView(props: ITxViewProps) {
   const { tx, receipt } = props;
+  const { t } = useTranslation();
   if (!tx) {
     return null;
   }
 
-  return renderTxTable(tx, receipt);
+  return renderTxTable(tx, receipt, t);
 }
 
 export default TxView;

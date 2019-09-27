@@ -23,11 +23,13 @@ import useServiceRunnerStore from "./stores/useServiceRunnerStore";
 import useMultiGethStore from "./stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
+import { useTranslation } from "react-i18next";
 
 import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 
 function App(props: any) {
+  const { t } = useTranslation();
   const darkMode = useDarkMode();
   const [search, setSearch] = useState();
   const theme = darkMode.value ? darkTheme : lightTheme;
@@ -138,7 +140,7 @@ function App(props: any) {
                     </Grid>
                     <Grid>
                       <Typography color="textSecondary" variant="h6">
-                        Explorer
+                        {t("Explorer")}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -147,7 +149,7 @@ function App(props: any) {
               <Hidden only="xs">
                 <Grid item md={7} lg={8}>
                   <InputBase
-                    placeholder="Enter an Address, Transaction Hash or Block Number"
+                    placeholder={t("Enter an Address, Transaction Hash or Block Number")}
                     onKeyDown={
                       (event: KeyboardEvent<HTMLInputElement>) => {
                         if (event.keyCode === 13) {
@@ -171,7 +173,7 @@ function App(props: any) {
                 </Grid>
               </Hidden>
               <Grid item>
-                <Tooltip title="JSON-RPC API Documentation">
+                <Tooltip title={t("JSON-RPC API Documentation")}>
                   <IconButton
                     onClick={() =>
                       window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
@@ -179,7 +181,7 @@ function App(props: any) {
                     <NotesIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Jade Explorer Github">
+                <Tooltip title={t("Jade Explorer Github")}>
                   <IconButton
                     onClick={() =>
                       window.open("https://github.com/etclabscore/jade-explorer")
@@ -188,7 +190,7 @@ function App(props: any) {
                   </IconButton>
                 </Tooltip>
                 <ConfigurationMenu onChange={handleConfigurationChange} />
-                <Tooltip title="Toggle Dark Mode">
+                <Tooltip title={t("Toggle Dark Mode")}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                   </IconButton>

@@ -2,6 +2,7 @@ import * as React from "react";
 import { IconButton, Menu, MenuItem, ListItemText, ListItemSecondaryAction, Input, ListItemIcon, Tooltip } from "@material-ui/core"; //tslint:disable-line
 import { NavigateNext, NavigateBefore } from "@material-ui/icons";
 import SettingsIcon from "@material-ui/icons/Settings";
+import { useTranslation } from "react-i18next";
 
 interface IConfigurationMenuProps {
   onChange: (type: string, url: string) => any;
@@ -13,9 +14,10 @@ interface IPagedMenuProps {
 
 const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
   const [selected, setSelected] = React.useState<"service-runner" | "ethereum-rpc" | null>(null);
+  const { t } = useTranslation();
   const nameMap = {
-    "service-runner": "Service Runner RPC",
-    "ethereum-rpc": "Ethereum RPC",
+    "service-runner": t("Service Runner RPC Url"),
+    "ethereum-rpc": t("Ethereum RPC Url"),
   };
 
   if (selected) {
@@ -26,12 +28,12 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
             <NavigateBefore />
           </ListItemIcon>
           <ListItemText>
-            Back
+            {t("Back")}
           </ListItemText>
         </MenuItem>
         <Input
           onChange={(e) => props.onChange(selected, e.currentTarget.value)}
-          placeholder={`${nameMap[selected]} Url`}
+          placeholder={nameMap[selected]}
           fullWidth={true}
         />
       </>
@@ -42,7 +44,7 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
     <>
       <MenuItem onClick={() => setSelected("service-runner")}>
         <ListItemText>
-          Service Runner RPC
+          {t("Service Runner RPC")}
           </ListItemText>
         <ListItemSecondaryAction>
           <NavigateNext />
@@ -50,7 +52,7 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
       </MenuItem>
       <MenuItem onClick={() => setSelected("ethereum-rpc")}>
         <ListItemText>
-          Ethereum RPC
+          {t("Ethereum RPC")}
           </ListItemText>
         <ListItemSecondaryAction>
           <NavigateNext />
@@ -63,6 +65,7 @@ const PagedMenu: React.FC<IPagedMenuProps> = (props) => {
 
 const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
   const [anchorEl, setAnchorEl] = React.useState<any>(null);
+  const { t } = useTranslation();
   const open = !!anchorEl;
 
   function handleMenu(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -75,7 +78,7 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
 
   return (
     <>
-      <Tooltip title="Configuration">
+      <Tooltip title={t("Configuration")}>
         <IconButton
           aria-label="Configuration"
           aria-controls="menu-appbar"

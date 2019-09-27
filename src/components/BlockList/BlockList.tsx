@@ -3,12 +3,14 @@ import * as React from "react";
 import Link from "@material-ui/core/Link";
 import hexToDate from "../../helpers/hexToDate";
 import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const rightPaddingFix = {
   paddingRight: "24px",
 };
 
 function BlockList({ blocks }: any) {
+  const { t } = useTranslation();
   if (!blocks) {
     return null;
   }
@@ -20,10 +22,10 @@ function BlockList({ blocks }: any) {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell><Typography>Block Number</Typography></TableCell>
-            <TableCell><Typography>Hash</Typography></TableCell>
-            <TableCell><Typography>Timestamp</Typography></TableCell>
-            <TableCell><Typography>Transactions</Typography></TableCell>
+            <TableCell><Typography>{t("Block Number")}</Typography></TableCell>
+            <TableCell><Typography>{t("Hash")}</Typography></TableCell>
+            <TableCell><Typography>{t("Timestamp")}</Typography></TableCell>
+            <TableCell><Typography>{t("Transactions")}</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
