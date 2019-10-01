@@ -2,6 +2,7 @@ export default {
   // Moment integration
   "Timestamp Date": "{{date, date}}",
   "Explorer": "Explorer",
+  "Change Language": "Change Language",
   "Enter an Address, Transaction Hash or Block Number": "Enter an Address, Transaction Hash or Block Number",
   "JSON-RPC API Documentation": "JSON-RPC API Documentation",
   "Jade Explorer Github": "Jade Explorer Github",
