@@ -44,7 +44,7 @@ function BlockList({ blocks }: any) {
                   </Link>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>{hexToDate(b.timestamp)}</Typography>
+                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp)})}</Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <Typography>{b.transactions.length}</Typography>

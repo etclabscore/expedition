@@ -33,7 +33,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>{t("Timestamp")}</TableCell>
-            <TableCell>{hexToDate(timestamp)}</TableCell>
+            <TableCell>{t("Timestamp Date", { date: hexToDate(timestamp)})}</TableCell>
           </TableRow>
 
           <TableRow>

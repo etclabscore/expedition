@@ -24,6 +24,7 @@ import useMultiGethStore from "./stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
 import { useTranslation } from "react-i18next";
+import LanguageMenu from "./containers/LanguageMenu"
 
 import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
@@ -173,6 +174,7 @@ function App(props: any) {
                 </Grid>
               </Hidden>
               <Grid item>
+                <LanguageMenu />
                 <Tooltip title={t("JSON-RPC API Documentation")}>
                   <IconButton
                     onClick={() =>

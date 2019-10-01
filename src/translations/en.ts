@@ -1,11 +1,11 @@
 export default {
-  // App Bar
+  // Moment integration
+  "Timestamp Date": "{{date, date}}",
   "Explorer": "Explorer",
   "Enter an Address, Transaction Hash or Block Number": "Enter an Address, Transaction Hash or Block Number",
   "JSON-RPC API Documentation": "JSON-RPC API Documentation",
   "Jade Explorer Github": "Jade Explorer Github",
   "Toggle Dark Mode": "Toggle Dark Mode",
-  // Dashboard
   "Block Height": "Block Height",
   "Chain ID": "Chain ID",
   "Syncing": "Syncing",
@@ -21,12 +21,10 @@ export default {
   "Gas Used last blocks_plural": "Gas Used last {{count}} blocks",
   "Uncles last blocks": "Uncles last block",
   "Uncles last blocks_plural": "Uncles last {{count}} blocks",
-  // block list
   "Block Number": "Block Number",
   "Hash": "Hash",
   "Timestamp": "Timestamp",
   "Transactions": "Transactions",
-  // block view
   "Number": "Number",
   "ParentHash": "ParentHash",
   "Miner": "Miner",
@@ -36,7 +34,6 @@ export default {
   "State Root": "State Root",
   "Transaction Root": "Transaction Root",
   "Receipts Root": "Receipts Root",
-  // transaction view
   "Block": "Block",
   "Gas Used": "Gas Used",
   "Cumulative Gas Used": "Cumulative Gas Used",
@@ -47,11 +44,9 @@ export default {
   "Transaction Index": "Transaction Index",
   "Receipt Status": "Receipt Status",
   "Receipt Logs": "Receipt Logs",
-  // address view
   "Address": "Address",
   "Balance": "Balance",
   "Code": "Code",
-  // configuration menu
   "Configuration": "Configuration",
   "Back": "Back",
   "Ethereum RPC": "Ethereum RPC",
