@@ -1,3 +1,26 @@
+# [1.2.0](https://github.com/etclabscore/jade-explorer/compare/1.1.2...1.2.0) (2019-10-02)
+
+
+### Bug Fixes
+
+* add change language text ([c9558b4](https://github.com/etclabscore/jade-explorer/commit/c9558b4))
+* add i18n language dropdown ([f5d29fd](https://github.com/etclabscore/jade-explorer/commit/f5d29fd))
+* added dockerfile for docker deployments ([2d419c4](https://github.com/etclabscore/jade-explorer/commit/2d419c4))
+* extract en language translation ([7ae9132](https://github.com/etclabscore/jade-explorer/commit/7ae9132))
+* rename dockerfile to Dockerfile ([af4609b](https://github.com/etclabscore/jade-explorer/commit/af4609b))
+* small docker image serving jade explorer ([7db6352](https://github.com/etclabscore/jade-explorer/commit/7db6352))
+* updated with recommended changes to achieve even smaller docker image ([aa7d96b](https://github.com/etclabscore/jade-explorer/commit/aa7d96b))
+* **i18n:** add change language translations ([0583655](https://github.com/etclabscore/jade-explorer/commit/0583655))
+* **i18n:** add eserialize and use hexToDate ([8122fff](https://github.com/etclabscore/jade-explorer/commit/8122fff))
+* **i18n:** add note to CONTRIBUTING.md about adding new translations ([8bca68f](https://github.com/etclabscore/jade-explorer/commit/8bca68f))
+* **i18n:** linting ([bbf2214](https://github.com/etclabscore/jade-explorer/commit/bbf2214))
+* **i18n:** update CONTRIBUTING.md ([d6a856b](https://github.com/etclabscore/jade-explorer/commit/d6a856b))
+
+
+### Features
+
+* add initial i18n support ([9c39810](https://github.com/etclabscore/jade-explorer/commit/9c39810))
+
 ## [1.1.2](https://github.com/etclabscore/jade-explorer/compare/1.1.1...1.1.2) (2019-09-23)
 
 
