@@ -2,9 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
-import hexToDate from "../../helpers/hexToDate";
-import hexToNumber from "../../helpers/hexToNumber";
-import hexToString from "../../helpers/hexToString";
+import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";

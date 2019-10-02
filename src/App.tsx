@@ -175,14 +175,16 @@ function App(props: any) {
               </Hidden>
               <Grid item>
                 <LanguageMenu />
-                <Tooltip title={t("JSON-RPC API Documentation")}>
-                  <IconButton
-                    onClick={() =>
-                      window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
-                    }>
-                    <NotesIcon />
-                  </IconButton>
-                </Tooltip>
+                <Hidden only="xs">
+                  <Tooltip title={t("JSON-RPC API Documentation")}>
+                    <IconButton
+                      onClick={() =>
+                        window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
+                      }>
+                      <NotesIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Hidden>
                 <Tooltip title={t("Jade Explorer Github")}>
                   <IconButton
                     onClick={() =>

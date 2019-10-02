@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
-import hexToNumber from "../../helpers/hexToNumber";
+import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 

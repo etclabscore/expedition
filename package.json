@@ -19,6 +19,7 @@
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
+    "@etclabscore/eserialize": "^1.0.1",
     "@etclabscore/ethereum-json-rpc": "^1.1.1",
     "@etclabscore/ethereum-json-rpc-specification": "https://github.com/etclabscore/ethereum-json-rpc-specification.git",
     "@etclabscore/jade-service-runner-client": "^1.2.3",

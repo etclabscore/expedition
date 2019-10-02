@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
 import * as React from "react";
 import Link from "@material-ui/core/Link";
-import hexToDate from "../../helpers/hexToDate";
+import { hexToDate } from "@etclabscore/eserialize";
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

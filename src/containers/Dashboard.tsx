@@ -12,7 +12,7 @@ import getTheme from "../themes/victoryTheme";
 import ChartCard from "../components/ChartCard";
 import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
-import hexToNumber from "../helpers/hexToNumber";
+import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 

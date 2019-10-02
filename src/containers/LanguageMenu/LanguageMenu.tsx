@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconButton, Menu, MenuItem, Tooltip, Button } from "@material-ui/core"; //tslint:disable-line
+import { Menu, MenuItem, Tooltip, Button } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { supportedLanguages, reverseSupportedLanguages } from "../../i18n";
 
