@@ -4,7 +4,7 @@ import AddressView from "../components/AddressView";
 import { useBlockNumber } from "../helpers";
 import useMultiGethStore from "../stores/useMultiGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import hexToNumber from "../helpers/hexToNumber";
+import { hexToNumber } from "@etclabscore/eserialize";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 

@@ -2,14 +2,14 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
-import hexToDate from "../../helpers/hexToDate";
-import hexToNumber from "../../helpers/hexToNumber";
-import hexToString from "../../helpers/hexToString";
+import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
+import { useTranslation } from "react-i18next";
 
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
 
 function BlockView(props: any) {
   const { block } = props;
+  const { t } = useTranslation();
 
   if (!block) {
     return (<div>Loading...</div>);
@@ -25,22 +25,22 @@ function BlockView(props: any) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>Number</TableCell>
+            <TableCell>{t("Number")}</TableCell>
             <TableCell>{hexToNumber(block.number)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Timestamp</TableCell>
-            <TableCell>{hexToDate(timestamp)}</TableCell>
+            <TableCell>{t("Timestamp")}</TableCell>
+            <TableCell>{t("Timestamp Date", { date: hexToDate(timestamp)})}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Hash</TableCell>
+            <TableCell>{t("Hash")}</TableCell>
             <TableCell>{hash}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>ParentHash</TableCell>
+            <TableCell>{t("ParentHash")}</TableCell>
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
@@ -54,7 +54,7 @@ function BlockView(props: any) {
           </TableRow>
 
           <TableRow>
-            <TableCell>Miner</TableCell>
+            <TableCell>{t("Miner")}</TableCell>
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
@@ -68,32 +68,32 @@ function BlockView(props: any) {
           </TableRow>
 
           <TableRow>
-            <TableCell>Nonce</TableCell>
+            <TableCell>{t("Nonce")}</TableCell>
             <TableCell>{hexToNumber(nonce)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Difficulty</TableCell>
+            <TableCell>{t("Difficulty")}</TableCell>
             <TableCell>{hexToNumber(difficulty)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Extra Data</TableCell>
+            <TableCell>{t("Extra Data")}</TableCell>
             <TableCell>{hexToString(extraData)}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>State Root</TableCell>
+            <TableCell>{t("State Root")}</TableCell>
             <TableCell>{stateRoot}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Transaction Root</TableCell>
+            <TableCell>{t("Transaction Root")}</TableCell>
             <TableCell>{transactionsRoot}</TableCell>
           </TableRow>
 
           <TableRow>
-            <TableCell>Receipts Root</TableCell>
+            <TableCell>{t("Receipts Root")}</TableCell>
             <TableCell>{receiptsRoot}</TableCell>
           </TableRow>
         </TableBody>

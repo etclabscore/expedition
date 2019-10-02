@@ -19,6 +19,7 @@
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
+    "@etclabscore/eserialize": "^1.0.1",
     "@etclabscore/ethereum-json-rpc": "^1.1.1",
     "@etclabscore/ethereum-json-rpc-specification": "https://github.com/etclabscore/ethereum-json-rpc-specification.git",
     "@etclabscore/jade-service-runner-client": "^1.2.3",
@@ -36,11 +37,14 @@
     "ethereumjs-util": "^6.1.0",
     "ethjs-unit": "^0.1.6",
     "history": "^4.9.0",
+    "i18next": "^17.0.16",
+    "i18next-browser-languagedetector": "^3.0.3",
     "moment": "^2.24.0",
     "qs": "^6.5.2",
     "raf": "^3.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-i18next": "^10.13.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "reusable": "^1.0.0-alpha.12",

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Typography, Card, CardContent } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 
 export interface IAddressViewProps {
   address: string;
@@ -8,31 +9,24 @@ export interface IAddressViewProps {
   code: string;
 }
 
-function renderGeneral(props: IAddressViewProps) {
+function AddressView(props: IAddressViewProps) {
   const { address, balance, txCount, code } = props;
+  const { t } = useTranslation();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6">Address: {address}</Typography>
-        <Typography variant="h6">Balance: {balance}</Typography>
-        <Typography variant="h6">Transactions: {txCount}</Typography>
+        <Typography variant="h6">{t("Address")}: {address}</Typography>
+        <Typography variant="h6">{t("Balance")}: {balance}</Typography>
+        <Typography variant="h6">{t("Transactions")}: {txCount}</Typography>
         <br />
         <div>
-          <div>Code</div>
+          <div>{t("Code")}</div>
           <pre>
             <code>{code}</code>
           </pre>
         </div>
       </CardContent>
     </Card>
-  );
-}
-
-function AddressView(props: IAddressViewProps) {
-  return (
-    <React.Fragment>
-      {renderGeneral(props)}
-    </React.Fragment>
   );
 }
 

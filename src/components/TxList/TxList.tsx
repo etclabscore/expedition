@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
-import hexToNumber from "../../helpers/hexToNumber";
+import { hexToNumber } from "@etclabscore/eserialize";
 
 export interface ITxListProps {
   transactions: any[];
