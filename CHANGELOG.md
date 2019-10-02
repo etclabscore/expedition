@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/etclabscore/jade-explorer/compare/1.2.0...1.2.1) (2019-10-02)
+
+
+### Bug Fixes
+
+* **charts:** set blockHistoryLength back to 100 ([87ed3b1](https://github.com/etclabscore/jade-explorer/commit/87ed3b1))
+
 # [1.2.0](https://github.com/etclabscore/jade-explorer/compare/1.1.2...1.2.0) (2019-10-02)
 
 
