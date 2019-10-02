@@ -49,6 +49,18 @@ For small documentation changes and fixes, these can be done quickly following t
     * Push local changes to your forked repository and make a pull request. Follow the [Convention Commits](CONVENTIONAL_COMMITS.md) guidelines for naming Github pull requests and what to put in the body.
 
 
+## Translations
+
+Translations in this repository use `i18next`, you can add new translations by adding a new key to the languages translation file located in `translations/` or you can make a new translated languages by adding a new file in the `translations/` folder.
+
+#### Note on i18n vs moment shorthands
+
+Moment and i18n seem to use different shorthands, keep this in mind when adding new languages, as they need to support dates in that language too via moment
+
+#### Getting translations done
+
+Create a new issue on this repository outlining the translations and a link to the Pull Request.
+
 ## Building
 
 Follow the build process is outlined in [BUILDING.md](BUILDING.md) to create a build.
