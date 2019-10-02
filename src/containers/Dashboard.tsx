@@ -20,7 +20,7 @@ const useState = React.useState;
 
 const config = {
   blockTime: 15, // seconds
-  blockHistoryLength: 1,
+  blockHistoryLength: 100,
   chartHeight: 200,
   chartWidth: 400,
 };
