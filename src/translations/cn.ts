@@ -3,7 +3,7 @@ export default {
   "Timestamp Date": "{{date, date}}",
   // App Bar
   "Explorer": "浏览器",
-  "Change Language": "Change Language",
+  "Change Language": "更改语言",
   "Enter an Address, Transaction Hash or Block Number": "输入地址 交易哈希或区块号",
   "JSON-RPC API Documentation": "JSON-RPC API 文档",
   "Jade Explorer Github": "Jade Explorer Github",

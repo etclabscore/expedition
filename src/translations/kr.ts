@@ -3,7 +3,7 @@ export default {
   "Timestamp Date": "{{date, date}}",
   // App Bar
   "Explorer": "브라우저",
-  "Change Language": "Change Language",
+  "Change Language": "언어 변경",
   "Enter an Address, Transaction Hash or Block Number": "거래주소 해시값 혹은 블록번호 입력",
   "JSON-RPC API Documentation": "JSON-RPC API 문서",
   "Jade Explorer Github": "Jade Explorer Github",
