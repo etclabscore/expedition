@@ -38,7 +38,7 @@ const LanguageMenu: React.FC = (props) => {
         ))}
       </Menu>
     </>
-  )
+  );
 };
 
 export default LanguageMenu;

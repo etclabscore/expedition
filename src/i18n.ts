@@ -14,7 +14,6 @@ interface IMap {
   [key: string]: string;
 }
 
-
 const momentMap: IMap = {
   "kr": "ko",
   "cn": "zh-cn",
