@@ -51,7 +51,7 @@ For small documentation changes and fixes, these can be done quickly following t
 
 ## Translations
 
-Translations in this repository use `i18next`, you can add new translations by adding a new key to the languages translation file located in `translations/` or you can make a new translated languages by adding a new file in the `translations/` folder.
+Translations in this repository use `i18next`, you can add new translations by adding a new key to the languages translation file located in `translations/` or you can make a new translated languages by adding a new file in the `translations/` folder. Then add that key to `src/i18n.ts`.
 
 #### Note on i18n vs moment shorthands
 
