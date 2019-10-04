@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/etclabscore/jade-explorer/compare/1.2.1...1.2.2) (2019-10-04)
+
+
+### Bug Fixes
+
+* **package:** bump eth json rpc spec ([f7e8465](https://github.com/etclabscore/jade-explorer/commit/f7e8465))
+
 ## [1.2.1](https://github.com/etclabscore/jade-explorer/compare/1.2.0...1.2.1) (2019-10-02)
 
 
