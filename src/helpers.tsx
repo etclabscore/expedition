@@ -13,11 +13,6 @@ export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> =>
 
 export const useBlockNumber = (erpc: ERPC | undefined) => {
   const [blockNumber, setBlockNumber] = React.useState();
-  if (erpc) {
-    erpc.eth_blockNumber().then((bn: string) => {
-      setBlockNumber(hexToNumber(bn));
-    });
-  }
   useInterval(() => {
     if (!erpc) {
       return;
@@ -25,7 +20,14 @@ export const useBlockNumber = (erpc: ERPC | undefined) => {
     erpc.eth_blockNumber().then((bn: string) => {
       setBlockNumber(hexToNumber(bn));
     });
-  }, 7000);
+  }, 7000, true);
+  React.useEffect(() => {
+    if (erpc) {
+      erpc.eth_blockNumber().then((bn: string) => {
+        setBlockNumber(hexToNumber(bn));
+      });
+    }
+  }, [erpc]);
   return [blockNumber];
 };
 

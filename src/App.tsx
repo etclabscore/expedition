@@ -1,8 +1,8 @@
-import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip, Hidden } from "@material-ui/core";
+import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
-import React, { Dispatch, ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { Dispatch, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
 import "./App.css";
@@ -17,6 +17,8 @@ import Brightness3Icon from "@material-ui/icons/Brightness3";
 import NotesIcon from "@material-ui/icons/Notes";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import CodeIcon from "@material-ui/icons/Code";
+import ServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
+import availableServiceToNetwork from "./helpers/availableServiceToNetwork";
 
 import useInterval from "use-interval";
 import useServiceRunnerStore from "./stores/useServiceRunnerStore";
@@ -27,6 +29,9 @@ import { useTranslation } from "react-i18next";
 import LanguageMenu from "./containers/LanguageMenu";
 
 import { createBrowserHistory } from "history";
+import NetworkDropdown from "./components/NetworkDropdown/NetworkDropdown";
+import { useQueryParam, StringParam } from "use-query-params";
+
 const history = createBrowserHistory();
 
 function App(props: any) {
@@ -35,8 +40,40 @@ function App(props: any) {
   const [search, setSearch] = useState();
   const theme = darkMode.value ? darkTheme : lightTheme;
 
-  const [, , setServiceRunnerUrl] = useServiceRunnerStore();
+  const [selectedNetwork, setSelectedNetworkState] = useState();
+  const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl, availableServices]: [ServiceRunner, string, any, IAvailableServices[]] = useServiceRunnerStore(); //tslint:disable-line
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
+  const [networks, setNetworks] = useState<any[]>([]);
+  const [networkQuery, setNetworkQuery] = useQueryParam("network", StringParam);
+
+  const setSelectedNetwork = async (network: any) => {
+    setSelectedNetworkState(network);
+    if (network.service) {
+      await serviceRunner.installService(network.service.name, network.service.version);
+      await serviceRunner.startService(network.service.name, network.service.version, network.name);
+    }
+    setMultiGethUrlOverride(network.url);
+    setNetworkQuery(network.name);
+  };
+
+  useEffect(() => {
+    if (availableServices && serviceRunnerUrl) {
+      const n = availableServiceToNetwork(availableServices, serviceRunnerUrl);
+      setNetworks(n);
+    }
+  }, [availableServices, serviceRunnerUrl]);
+
+  useEffect(() => {
+    if (!networks || networks.length === 0) {
+      return;
+    }
+    if (networks && networkQuery) {
+      const foundNetwork = networks.find((net) => net.name === networkQuery);
+      setSelectedNetworkState(foundNetwork);
+    } else {
+      setSelectedNetworkState(networks[0]);
+    }
+  }, [networks, networkQuery]);
 
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
@@ -147,44 +184,45 @@ function App(props: any) {
                   </Grid>
                 </Link>
               </Grid>
-              <Hidden only="xs">
-                <Grid item md={7} lg={8}>
-                  <InputBase
-                    placeholder={t("Enter an Address, Transaction Hash or Block Number")}
-                    onKeyDown={
-                      (event: KeyboardEvent<HTMLInputElement>) => {
-                        if (event.keyCode === 13) {
-                          handleSearch(search.trim());
-                        }
+              <Grid item md={6} xs={12}>
+                <InputBase
+                  placeholder={t("Enter an Address, Transaction Hash or Block Number")}
+                  onKeyDown={
+                    (event: KeyboardEvent<HTMLInputElement>) => {
+                      if (event.keyCode === 13) {
+                        handleSearch(search.trim());
                       }
                     }
-                    onChange={
-                      (event: ChangeEvent<HTMLInputElement>) => {
-                        setSearch(event.target.value);
-                      }
+                  }
+                  onChange={
+                    (event: ChangeEvent<HTMLInputElement>) => {
+                      setSearch(event.target.value);
                     }
-                    fullWidth
-                    style={{
-                      background: "rgba(0,0,0,0.1)",
-                      borderRadius: "4px",
-                      padding: "0px 10px",
-                      marginRight: "5px",
-                    }}
-                  />
-                </Grid>
-              </Hidden>
+                  }
+                  fullWidth
+                  style={{
+                    background: "rgba(0,0,0,0.1)",
+                    borderRadius: "4px",
+                    padding: "5px 10px 0px 10px",
+                    marginRight: "5px",
+                  }}
+                />
+              </Grid>
               <Grid item>
+                <NetworkDropdown
+                  networks={networks}
+                  setSelectedNetwork={setSelectedNetwork}
+                  selectedNetwork={selectedNetwork}
+                />
                 <LanguageMenu />
-                <Hidden only="xs">
-                  <Tooltip title={t("JSON-RPC API Documentation")}>
-                    <IconButton
-                      onClick={() =>
-                        window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
-                      }>
-                      <NotesIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Hidden>
+                <Tooltip title={t("JSON-RPC API Documentation")}>
+                  <IconButton
+                    onClick={() =>
+                      window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
+                    }>
+                    <NotesIcon />
+                  </IconButton>
+                </Tooltip>
                 <Tooltip title={t("Jade Explorer Github")}>
                   <IconButton
                     onClick={() =>
@@ -213,8 +251,8 @@ function App(props: any) {
             <Route path={"/address/:address"} component={Address} />
           </Switch>
         </div>
-      </ThemeProvider>
-    </Router>
+      </ThemeProvider >
+    </Router >
   );
 }
 

@@ -15,11 +15,21 @@ interface IProps {
 export default function BlockCardListContainer(props: IProps) {
   const { from, to, style } = props;
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
-  const [blocks, setBlocks] = React.useState([]);
+  const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
+    let isSubscribed = true;
     if (!erpc) { return; }
-    getBlocks(from, to, erpc).then(setBlocks);
-  }, [from, to, erpc]);
+    if (isSubscribed) {
+      getBlocks(from, to, erpc).then((bs) => {
+        setBlocks(bs);
+      });
+    }
+    return () => {
+      isSubscribed = false;
+      return;
+    };
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [from, to]);
 
   if (!blocks) {
     return <CircularProgress />;
