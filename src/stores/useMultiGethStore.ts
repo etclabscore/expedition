@@ -1,10 +1,11 @@
 import { createStore } from "reusable";
 import useMultiGeth from "../hooks/useMultiGeth";
 import useServiceRunnerStore from "./useServiceRunnerStore";
-import useQueryParams from "../hooks/useQueryParams";
+import { useQueryParam, StringParam } from 'use-query-params';
 
 export default createStore(() => {
   const [serviceRunner, serviceRunnerUrl] = useServiceRunnerStore();
-  const [queryParams] = useQueryParams();
-  return useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.2", "mainnet", queryParams.rpcUrl);
+  const [networkQuery] = useQueryParam("network", StringParam);
+  const [rpcUrlQuery] = useQueryParam("rpcUrl", StringParam);
+  return useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.2", networkQuery || "mainnet", rpcUrlQuery);
 });

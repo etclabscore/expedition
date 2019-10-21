@@ -1,9 +1,10 @@
-import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
-import React, { Dispatch } from "react";
+import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
+import React, { Dispatch, useEffect } from "react";
 
-function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>] {
+function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>, IAvailableServices[]] { //tslint:disable-line
   const [url, setUrl] = React.useState(defaultUrl);
   const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
+  const [availableServices, setAvailableServices] = React.useState<IAvailableServices[]>([]);
   React.useEffect(() => {
     if (!url) {
       return;
@@ -32,8 +33,19 @@ function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, s
     if (rpc) {
       setServiceRunner(rpc);
     }
+    return () => {
+      if (serviceRunner) {
+        serviceRunner.rpc.requestManager.close();
+      }
+    };
+ // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
-  return [serviceRunner, url, setUrl];
+  useEffect(() => {
+    if (serviceRunner) {
+      serviceRunner.listServices("available").then(setAvailableServices);
+    }
+  }, [serviceRunner]);
+  return [serviceRunner, url, setUrl, availableServices];
 }
 
 export default useServiceRunner;

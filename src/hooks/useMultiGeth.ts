@@ -10,8 +10,8 @@ function useMultiGeth(
   version: string,
   env: string,
   queryUrlOverride?: string,
-): [ERPC, Dispatch<string>] {
-  const [erpc, setErpc] = React.useState();
+): [ERPC | undefined, Dispatch<string>] {
+  const [erpc, setErpc] = React.useState<undefined | ERPC>();
   const [urlOverride, setUrlOverride] = useState(process.env.REACT_APP_ETH_RPC_URL);
   React.useEffect(() => {
     if (!serviceRunner) {
@@ -52,7 +52,13 @@ function useMultiGeth(
       }
     };
     runAsync();
-  }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
+    return () => {
+      if (erpc) {
+        erpc.rpc.requestManager.close();
+      }
+    };
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
   return [erpc, setUrlOverride];
 }
 

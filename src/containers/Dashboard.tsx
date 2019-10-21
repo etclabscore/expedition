@@ -75,12 +75,13 @@ export default (props: any) => {
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_chainId().then(setChainId);
-  }, [chainId, erpc]);
+  }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
     erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
-  }, [blockNumber, erpc]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blockNumber]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === null) { return; }
@@ -91,7 +92,8 @@ export default (props: any) => {
     ).then((bl) => {
       setBlocks(bl);
     });
-  }, [blockNumber, erpc]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [blockNumber]);
 
   useInterval(() => {
     if (!erpc) { return; }
