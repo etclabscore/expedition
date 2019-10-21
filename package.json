@@ -52,7 +52,7 @@
     "use-dark-mode": "^2.3.1",
     "use-interval": "^1.1.0",
     "use-query-params": "^0.4.2",
-    "victory": "^31.3.0"
+    "victory": "^33.1.1"
   },
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.7.4",
