@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/etclabscore/jade-explorer/compare/1.2.2...1.3.0) (2019-10-21)
+
+
+### Features
+
+* add multi network support ([7f9addf](https://github.com/etclabscore/jade-explorer/commit/7f9addf6a0bf23478d5f11d80b41b93714ad3447)), closes [#119](https://github.com/etclabscore/jade-explorer/issues/119) [#50](https://github.com/etclabscore/jade-explorer/issues/50)
+
 ## [1.2.2](https://github.com/etclabscore/jade-explorer/compare/1.2.1...1.2.2) (2019-10-04)
 
 
