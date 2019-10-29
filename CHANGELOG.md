@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/etclabscore/jade-explorer/compare/1.3.0...1.4.0) (2019-10-29)
+
+
+### Features
+
+* add pagination ([f1a5ef3](https://github.com/etclabscore/jade-explorer/commit/f1a5ef3ad074a69c3f4600c50e8ccf2eaa0a7687)), closes [#129](https://github.com/etclabscore/jade-explorer/issues/129)
+
 # [1.3.0](https://github.com/etclabscore/jade-explorer/compare/1.2.2...1.3.0) (2019-10-21)
 
 
