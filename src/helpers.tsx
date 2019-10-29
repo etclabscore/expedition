@@ -5,7 +5,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 
 export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> => {
   const promises: any[] = [];
-  for (let i = from; i < to; i++) {
+  for (let i = from; i <= to; i++) {
     promises.push(erpc.eth_getBlockByNumber(`0x${i.toString(16)}`, true));
   }
   return Promise.all(promises);

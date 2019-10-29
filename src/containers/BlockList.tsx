@@ -1,14 +1,18 @@
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Grid, IconButton } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
 import * as React from "react";
 import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
+import { ArrowForwardIos, ArrowBackIos } from "@material-ui/icons";
 
 interface IProps {
   from: number;
   to: number;
+  disablePrev: boolean;
   style?: any;
+  onNext?: any;
+  onPrev?: any;
 }
 
 export default function BlockListContainer(props: IProps) {
@@ -26,6 +30,14 @@ export default function BlockListContainer(props: IProps) {
   }
   return (
     <div style={style}>
+      <Grid container justify="flex-end">
+        <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
+          <ArrowBackIos />
+        </IconButton>
+        <IconButton onClick={props.onNext}>
+          <ArrowForwardIos />
+        </IconButton>
+      </Grid>
       <BlockList blocks={blocks} />
     </div>
   );

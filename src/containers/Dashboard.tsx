@@ -198,10 +198,14 @@ export default (props: any) => {
 
       </Grid>
 
-      <BlockCardListContainer from={Math.max(blockNumber - 3, 0)} to={blockNumber} />
+      <BlockCardListContainer from={Math.max(blockNumber - 2, 0)} to={blockNumber} />
       <BlockListContainer
         from={Math.max((blockNumber - 3) - 11, 0)}
         to={blockNumber - 3}
+        disablePrev={true}
+        onNext={() => {
+          props.history.push(`/blocks?number=${blockNumber - 15}`);
+        }}
         style={{ marginTop: "30px" }} />
     </div>
   );
