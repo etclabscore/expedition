@@ -67,7 +67,7 @@
     "@types/victory": "^31.0.19",
     "react-scripts": "^3.2.0",
     "ts-jest": "^24.1.0",
-    "ts-node": "^3.3.0",
+    "ts-node": "^8.4.1",
     "tslint": "^5.8.0",
     "tslint-react": "^4.1.0",
     "typescript": "^3.6.4"
