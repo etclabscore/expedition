@@ -1,8 +1,40 @@
 # Jade Explorer
 
-A block explorer for EVM-based blockchains.
+<!-- project logo w/ quick links -->
+<p align="center">
+  <img src="https://github.com/etclabscore/jade-media-assets/blob/master/j-explorer/j-explorer(PNG)/128x128.png?raw=true" />
+</p>
+<center>
+  <h3 align="center">Jade Explorer</h3>
 
-Jade Explorer is a minimal block explorer that uses Jade Service Runner for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
+  <p align="center">
+    A block explorer for EVM-based blockchains.
+    <br />
+    <a href="https://explorer.jade.builders/">View Demo</a>
+    ·
+    <a href="https://github.com/etclabscore/jade-explorer/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+    ·
+    <a href="https://github.com/etclabscore/jade-explorer/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+  </p>
+</center>
+
+<!-- table of contents -->
+## Table of Contents
+  - [About The Project](#about-the-project)
+  - [Getting Started](#getting-started)
+      - [Prerequisites](#prerequisites)
+      - [Installation](#installation)
+- [Usage](#usage)
+  - [Run Service](#run-service)
+  - [Start explorer](#start-the-explorer)
+  - [Configurations](#configurations)
+- [Contributing](#contributing)
+- [Resources](#resources)
+
+<!-- about the project -->
+## About The Project
+
+[Jade Explorer](https://explorer.jade.builders/) is a minimal block explorer for EVM-based blockchains and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
 
 Explorer Features:
 - Display chain id
@@ -10,47 +42,35 @@ Explorer Features:
 - Runtime configuration for endpoints
 - Search by Block, Transaction, Address
 - Charts for hash, transaction count, gas used, uncles
-- Preview latest blocks
+- Preview latest blocks with pagination
+- Multi-language support
 
+<p align="center">
+  <img src="https://github.com/etclabscore/jade-media-assets/blob/master/screenshots/j-explorer-readme.gif?raw=true" />
+</p>
 
-![jade-block-explorer-light](https://user-images.githubusercontent.com/364566/62577862-aa927780-b854-11e9-9aba-a58eb7b44a47.png)
-![jade-block-explorer](https://user-images.githubusercontent.com/364566/62577861-aa927780-b854-11e9-8b5d-d8e04aaf2357.png)
+<!-- getting started with the project -->
+## Getting Started
+### Prerequisites
+- node `v10.15.3` or later
+- npm `v6.4.1` or later
 
-## Install
-
-### Dependencies
-
-- at least node `v10.15.3`
-- at least npm `v6.4.1`
-
-Clone the repository and install project dependencies.
-
+### Installation
+Clone/ download the project, and install dependencies.
 ```bash
 git clone https://github.com/etclabscore/jade-explorer.git && cd jade-explorer && npm install
 ```
 
+<!-- example usage, screen shots, demos -->
 ## Usage
-
-
-
-### Service Runner
-If you dont have a [service-runner](https://github.com/etclabscore/jade-service-runner) running you can use the one in the package.json via: (or see the configuration section below to provide your own ethereum rpc URL):
-
+### Run service
+If you don't have a [service-runner](https://github.com/etclabscore/jade-service-runner) running, then you can use the one in the package.json via: (or see the configuration section below to provide your own ethereum rpc URL):
 ```bash
 npm run service-runner
 ```
+*Jade Service Runner will run at http://localhost:8002/.*
 
-Jade Service Runner will run at http://localhost:8002/.
-
-## Start the explorer.
-
-```bash
-npm start
-```
-
-The explorer will run at http://localhost:3000/ which should display multi-geth's status, and make sure multi-geth is running.
-
-### Notes on Multi-Geth & Service Runner
+#### Multi-Geth & Service Runner
 
 By default, multi-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/.services/` directory of project.
 
@@ -69,14 +89,21 @@ By default, multi-geth service will run ETC mainnet. Jade Service runner conveni
                     └── keystore
 ```
 
-## Configuration
+### Start the explorer
+```bash
+npm start
+```
+*The explorer will run at http://localhost:3000/.*
 
-### Configure rpc via url
+### Configurations
 
-https://explorer.jade.builders/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
+#### Set rpc via url
 
+`?rpcUrl=` Set custom rpc url. 
 
-### Configure default urls via environment variables
+Example: https://explorer.jade.builders/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
+
+#### Configure default urls via environment variables
 
 Override eth url
 
@@ -90,19 +117,25 @@ Override service runner url
 
 ```
 REACT_APP_SERVICE_RUNNER_URL=https://services.jade.builders/ npm start
-```
+``` 
 
-## Resources
+<!-- template just leave alone  -->
+## Roadmap
+See the [open issues](https://github.com/etclabscore/jade-explorer/issues) for a list of proposed features (and known issues).
 
+<!-- template just leave alone  -->
+## Contributing
+How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUTING.md), [BUILDING.md](BUILDING.md) and [RELEASING.md](RELEASING.md) respectively. Commits in this repository follow the [CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md) specification.
+
+## License
+Apache License 2.0
+
+<!-- references and additional resources  -->
+## Resources 
 - [Ethereum JSON RPC Specification](https://github.com/etclabscore/ethereum-json-rpc-specification)
 - [Jade Service Runner](https://github.com/etclabscore/jade-service-runner)
 - [OpenRPC](https://open-rpc.org)
 - [Pristine](https://github.com/etclabscore/pristine)
 
-## Contributing
-
-How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUTING.md), [BUILDING.md](BUILDING.md) and [RELEASING.md](RELEASING.md) respectively. Commits in this repository follow the [CONVENTIONAL_COMMITS.md](CONVENTIONAL_COMMITS.md) specification.
-
 ---
-
-This repo originally forked from [ETCDEVTeam/emerald-explorer](https://github.com/ETCDEVTeam/emerald-explorer).
+*This repo originally forked from [ETCDEVTeam/emerald-explorer](https://github.com/ETCDEVTeam/emerald-explorer).*
