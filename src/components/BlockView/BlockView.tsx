@@ -4,11 +4,13 @@ import Link from "@material-ui/core/Link";
 import TxList from "../TxList";
 import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableRow, Button } from "@material-ui/core";
 
 function BlockView(props: any) {
   const { block } = props;
+  const history = useHistory();
   const { t } = useTranslation();
 
   if (!block) {
@@ -22,6 +24,12 @@ function BlockView(props: any) {
 
   return (
     <div>
+      <Button
+        onClick={() => {
+          history.push(`/block/${block.hash}/raw`);
+        }}
+        style={{ position: "absolute", right: "10px", top: "75px" }}
+      >View Raw</Button>
       <Table>
         <TableBody>
           <TableRow>
@@ -31,7 +39,7 @@ function BlockView(props: any) {
 
           <TableRow>
             <TableCell>{t("Timestamp")}</TableCell>
-            <TableCell>{t("Timestamp Date", { date: hexToDate(timestamp)})}</TableCell>
+            <TableCell>{t("Timestamp Date", { date: hexToDate(timestamp) })}</TableCell>
           </TableRow>
 
           <TableRow>
@@ -100,7 +108,7 @@ function BlockView(props: any) {
       </Table>
 
       <TxList transactions={transactions} />
-    </div>
+    </ div >
   );
 }
 
