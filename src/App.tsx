@@ -31,6 +31,8 @@ import { createBrowserHistory } from "history";
 import NetworkDropdown from "./components/NetworkDropdown/NetworkDropdown";
 import { StringParam, QueryParamProvider, useQueryParams } from "use-query-params";
 import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
+import BlockRawContainer from "./containers/BlockRawContainer";
+import TransactionRawContainer from "./containers/TransactionRawContainer";
 
 const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
 
@@ -260,8 +262,10 @@ function App(props: any) {
             <CssBaseline />
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />
+              <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
               <Route path={"/block/:hash"} component={Block} />
               <Route path={"/blocks/:number"} component={NodeView} />
+              <Route path={"/tx/:hash/raw"} component={TransactionRawContainer} />
               <Route path={"/tx/:hash"} component={Transaction} />
               <Route path={"/address/:address"} component={Address} />
             </Switch>

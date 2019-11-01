@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
-import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableRow, Typography, Button } from "@material-ui/core";
 import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
+import { useHistory } from "react-router-dom";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -13,10 +13,23 @@ export interface ITxViewProps {
   receipt: any | null;
 }
 
-function renderTxTable(tx: any, receipt: any | null, t: i18next.TFunction) {
+function TxView(props: ITxViewProps) {
+  const { tx, receipt } = props;
+  const { t } = useTranslation();
+  const history = useHistory();
+  if (!tx) {
+    return null;
+  }
+
   return (
     <div>
-      <div>General</div>
+      <Button
+        onClick={() => {
+          history.push(`/tx/${tx.hash}/raw`);
+        }}
+        style={{ position: "absolute", right: "10px", top: "75px" }}
+      >View Raw</Button>
+      <Typography variant="h6">Transaction</Typography>
       <Table>
         <TableBody>
           <TableRow>
@@ -121,7 +134,8 @@ function renderTxTable(tx: any, receipt: any | null, t: i18next.TFunction) {
         </TableBody>
       </Table>
 
-      <div>Receipt</div>
+      <br />
+      <Typography variant="h6">Receipt</Typography>
       {receipt &&
         <Table>
           <TableBody>
@@ -218,16 +232,6 @@ function renderTxTable(tx: any, receipt: any | null, t: i18next.TFunction) {
       }
     </div>
   );
-}
-
-function TxView(props: ITxViewProps) {
-  const { tx, receipt } = props;
-  const { t } = useTranslation();
-  if (!tx) {
-    return null;
-  }
-
-  return renderTxTable(tx, receipt, t);
 }
 
 export default TxView;
