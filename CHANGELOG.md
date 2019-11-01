@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/etclabscore/jade-explorer/compare/1.4.1...1.5.0) (2019-11-01)
+
+
+### Bug Fixes
+
+* updated readme structure and content improvements, this closes [#112](https://github.com/etclabscore/jade-explorer/issues/112) ([0d51bb9](https://github.com/etclabscore/jade-explorer/commit/0d51bb915f61943c7c241edd9a78969e54275d5e))
+
+
+### Features
+
+* add view raw for blocks and transactions ([04d09c9](https://github.com/etclabscore/jade-explorer/commit/04d09c92fbcc6e281f0e9fd09a32a91d5ed28fc3)), closes [#132](https://github.com/etclabscore/jade-explorer/issues/132)
+
 ## [1.4.1](https://github.com/etclabscore/jade-explorer/compare/1.4.0...1.4.1) (2019-11-01)
 
 
