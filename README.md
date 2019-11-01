@@ -34,7 +34,7 @@
 <!-- about the project -->
 ## About The Project
 
-[Jade Explorer](https://explorer.jade.builders/) is a minimal block explorer for EVM-based blockchains and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
+[Jade Explorer](https://explorer.jade.builders/) is a minimal block explorer for EVM-based blockchains and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and can be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
 
 Explorer Features:
 - Display chain id
