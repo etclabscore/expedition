@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/etclabscore/jade-explorer/compare/1.4.0...1.4.1) (2019-11-01)
+
+
+### Bug Fixes
+
+* query string + pagination ([01fab12](https://github.com/etclabscore/jade-explorer/commit/01fab12c5a9285c8bc440b6c1c09a663fc9e5911)), closes [#136](https://github.com/etclabscore/jade-explorer/issues/136)
+
 # [1.4.0](https://github.com/etclabscore/jade-explorer/compare/1.3.0...1.4.0) (2019-10-29)
 
 
