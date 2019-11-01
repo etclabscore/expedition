@@ -64,6 +64,7 @@ export default (props: any) => {
   const [gasPrice, setGasPrice] = useState();
   const [syncing, setSyncing] = useState();
   const [peerCount, setPeerCount] = useState();
+
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
 
@@ -203,8 +204,9 @@ export default (props: any) => {
         from={Math.max((blockNumber - 3) - 11, 0)}
         to={blockNumber - 3}
         disablePrev={true}
+        disableNext={blockNumber === 0}
         onNext={() => {
-          props.history.push(`/blocks?number=${blockNumber - 15}`);
+          props.history.push(`/blocks/${blockNumber - 15}`);
         }}
         style={{ marginTop: "30px" }} />
     </div>

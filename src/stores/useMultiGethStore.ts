@@ -1,7 +1,7 @@
 import { createStore } from "reusable";
 import useMultiGeth from "../hooks/useMultiGeth";
 import useServiceRunnerStore from "./useServiceRunnerStore";
-import { useQueryParam, StringParam } from 'use-query-params';
+import { useQueryParam, StringParam } from "use-query-params";
 
 export default createStore(() => {
   const [serviceRunner, serviceRunnerUrl] = useServiceRunnerStore();
