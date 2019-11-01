@@ -1,9 +1,9 @@
 import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
-import { Link as RouterLink } from "react-router-dom";
+import { } from "react-router-dom";
 import React, { Dispatch, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
 import "./App.css";
 import Address from "./containers/Address";
@@ -27,12 +27,12 @@ import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
 import { useTranslation } from "react-i18next";
 import LanguageMenu from "./containers/LanguageMenu";
-
 import { createBrowserHistory } from "history";
 import NetworkDropdown from "./components/NetworkDropdown/NetworkDropdown";
-import { useQueryParam, StringParam } from "use-query-params";
+import { StringParam, QueryParamProvider, useQueryParams } from "use-query-params";
+import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 
-const history = createBrowserHistory();
+const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
 
 function App(props: any) {
   const { t } = useTranslation();
@@ -44,7 +44,11 @@ function App(props: any) {
   const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl, availableServices]: [ServiceRunner, string, any, IAvailableServices[]] = useServiceRunnerStore(); //tslint:disable-line
   const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
   const [networks, setNetworks] = useState<any[]>([]);
-  const [networkQuery, setNetworkQuery] = useQueryParam("network", StringParam);
+
+  const [query, setQuery] = useQueryParams({
+    network: StringParam,
+    rpcUrl: StringParam,
+  });
 
   const setSelectedNetwork = async (network: any) => {
     setSelectedNetworkState(network);
@@ -53,7 +57,7 @@ function App(props: any) {
       await serviceRunner.startService(network.service.name, network.service.version, network.name);
     }
     setMultiGethUrlOverride(network.url);
-    setNetworkQuery(network.name);
+    setQuery({ network: network.name });
   };
 
   useEffect(() => {
@@ -67,13 +71,23 @@ function App(props: any) {
     if (!networks || networks.length === 0) {
       return;
     }
-    if (networks && networkQuery) {
-      const foundNetwork = networks.find((net) => net.name === networkQuery);
+    if (query.rpcUrl) {
+      return;
+    }
+    if (networks && query.network) {
+      const foundNetwork = networks.find((net) => net.name === query.network);
       setSelectedNetworkState(foundNetwork);
     } else {
       setSelectedNetworkState(networks[0]);
+      setQuery({ network: networks[0].name });
     }
-  }, [networks, networkQuery]);
+  }, [query.network, query.rpcUrl, networks, setQuery]);
+
+  useEffect(() => {
+    if (selectedNetwork) {
+      setQuery({ network: selectedNetwork.name }, "replaceIn");
+    }
+  }, [selectedNetwork, setQuery]);
 
   const handleConfigurationChange = (type: string, url: string) => {
     if (type === "service-runner") {
@@ -96,49 +110,49 @@ function App(props: any) {
     }
   }, 100, true);
 
-  const isAddress = (query: string): boolean => {
+  const isAddress = (q: string): boolean => {
     const re = new RegExp(ETHJSONSpec.components.schemas.Address.pattern);
-    return re.test(query);
+    return re.test(q);
   };
 
-  const isKeccakHash = (query: string): boolean => {
+  const isKeccakHash = (q: string): boolean => {
     const re = new RegExp(ETHJSONSpec.components.schemas.Keccak.pattern);
-    return re.test(query);
+    return re.test(q);
   };
 
-  const isBlockNumber = (query: string): boolean => {
+  const isBlockNumber = (q: string): boolean => {
     const re = new RegExp(/^-{0,1}\d+$/);
-    return re.test(query);
+    return re.test(q);
   };
 
-  const handleSearch = async (query: string) => {
-    if (isAddress(query)) {
-      history.push(`/address/${query}`);
+  const handleSearch = async (q: string) => {
+    if (isAddress(q)) {
+      history.push(`/address/${q}`);
     }
-    if (isKeccakHash(query)) {
+    if (isKeccakHash(q)) {
       let transaction;
 
       try {
-        transaction = await erpc.eth_getTransactionByHash(query);
+        transaction = await erpc.eth_getTransactionByHash(q);
       } catch (e) {
         // do nothing
       }
 
       if (transaction) {
-        history.push(`/tx/${query}`);
+        history.push(`/tx/${q}`);
       }
       let block;
       try {
-        block = await erpc.eth_getBlockByHash(query, false);
+        block = await erpc.eth_getBlockByHash(q, false);
       } catch (e) {
         // do nothing
       }
       if (block) {
-        history.push(`/block/${query}`);
+        history.push(`/block/${q}`);
       }
     }
-    if (isBlockNumber(query)) {
-      const block = await erpc.eth_getBlockByNumber(`0x${parseInt(query, 10).toString(16)}`, false);
+    if (isBlockNumber(q)) {
+      const block = await erpc.eth_getBlockByNumber(`0x${parseInt(q, 10).toString(16)}`, false);
       if (block) {
         history.push(`/block/${block.hash}`);
       }
@@ -242,14 +256,16 @@ function App(props: any) {
           </Toolbar>
         </AppBar>
         <div style={{ margin: "0px 25px 0px 25px" }}>
-          <CssBaseline />
-          <Switch>
-            <Route path={"/"} component={Dashboard} exact={true} />
-            <Route path={"/block/:hash"} component={Block} />
-            <Route path={"/blocks"} component={NodeView} />
-            <Route path={"/tx/:hash"} component={Transaction} />
-            <Route path={"/address/:address"} component={Address} />
-          </Switch>
+          <QueryParamProvider ReactRouterRoute={Route}>
+            <CssBaseline />
+            <Switch>
+              <Route path={"/"} component={Dashboard} exact={true} />
+              <Route path={"/block/:hash"} component={Block} />
+              <Route path={"/blocks/:number"} component={NodeView} />
+              <Route path={"/tx/:hash"} component={Transaction} />
+              <Route path={"/address/:address"} component={Address} />
+            </Switch>
+          </QueryParamProvider>
         </div>
       </ThemeProvider >
     </Router >

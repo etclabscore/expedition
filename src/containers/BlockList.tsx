@@ -10,6 +10,7 @@ interface IProps {
   from: number;
   to: number;
   disablePrev: boolean;
+  disableNext: boolean;
   style?: any;
   onNext?: any;
   onPrev?: any;
@@ -34,7 +35,7 @@ export default function BlockListContainer(props: IProps) {
         <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
           <ArrowBackIos />
         </IconButton>
-        <IconButton onClick={props.onNext}>
+        <IconButton onClick={props.onNext} disabled={props.disableNext}>
           <ArrowForwardIos />
         </IconButton>
       </Grid>
