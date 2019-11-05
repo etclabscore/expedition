@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/etclabscore/jade-explorer/compare/1.5.0...1.5.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* scrollbar style ([861e8ba](https://github.com/etclabscore/jade-explorer/commit/861e8ba3065103f8dcbf4af82f02e48b0fa4ad48))
+
 # [1.5.0](https://github.com/etclabscore/jade-explorer/compare/1.4.1...1.5.0) (2019-11-01)
 
 
