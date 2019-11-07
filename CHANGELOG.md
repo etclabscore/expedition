@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/etclabscore/jade-explorer/compare/1.5.1...1.5.2) (2019-11-07)
+
+
+### Bug Fixes
+
+* custom eth rpc url ([3bbc36f](https://github.com/etclabscore/jade-explorer/commit/3bbc36fd5767aee1a2ff2d0974e103e15a10fd30)), closes [#156](https://github.com/etclabscore/jade-explorer/issues/156)
+
 ## [1.5.1](https://github.com/etclabscore/jade-explorer/compare/1.5.0...1.5.1) (2019-11-05)
 
 
