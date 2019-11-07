@@ -12,13 +12,13 @@ function useMultiGeth(
   queryUrlOverride?: string,
 ): [ERPC | undefined, Dispatch<string>] {
   const [erpc, setErpc] = React.useState<undefined | ERPC>();
-  const [urlOverride, setUrlOverride] = useState(process.env.REACT_APP_ETH_RPC_URL);
+  const [urlOverride, setUrlOverride] = useState(queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL);
   React.useEffect(() => {
-    if (!serviceRunner) {
-      return;
-    }
     const runAsync = async () => {
-      if (!queryUrlOverride) {
+      if (!urlOverride) {
+        if (!serviceRunner) {
+          return;
+        }
         const installed = await serviceRunner.installService(serviceName, version);
         if (!installed) {
           return;
@@ -27,7 +27,7 @@ function useMultiGeth(
       }
       let parsedUrl;
       try {
-        parsedUrl = new URL(queryUrlOverride || urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
+        parsedUrl = new URL(urlOverride || `${serviceRunnerUrl}/${serviceName}/${env}/${version}`);
       } catch (e) {
         return;
       }
@@ -57,8 +57,8 @@ function useMultiGeth(
         erpc.rpc.requestManager.close();
       }
     };
- // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
   return [erpc, setUrlOverride];
 }
 
