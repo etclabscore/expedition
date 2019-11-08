@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/etclabscore/jade-explorer/compare/1.5.2...1.5.3) (2019-11-08)
+
+
+### Bug Fixes
+
+* add semantic release docker ([b8f15ef](https://github.com/etclabscore/jade-explorer/commit/b8f15ef5d8478811d509f73d254ca29c26eb62c3)), closes [#55](https://github.com/etclabscore/jade-explorer/issues/55)
+
 ## [1.5.2](https://github.com/etclabscore/jade-explorer/compare/1.5.1...1.5.2) (2019-11-07)
 
 
