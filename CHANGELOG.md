@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/etclabscore/jade-explorer/compare/1.5.3...1.5.4) (2019-11-08)
+
+
+### Bug Fixes
+
+* docker hub release ([5917f0f](https://github.com/etclabscore/jade-explorer/commit/5917f0f28e314b9cb253c1ceb9dd84cfa2327d41)), closes [#160](https://github.com/etclabscore/jade-explorer/issues/160)
+
 ## [1.5.3](https://github.com/etclabscore/jade-explorer/compare/1.5.2...1.5.3) (2019-11-08)
 
 
