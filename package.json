@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "service-runner": "jade-service-runner",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "version": "cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'"
   },
   "dependencies": {
     "@etclabscore/eserialize": "^1.0.2",
@@ -60,6 +61,7 @@
   },
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.7.4",
+    "@semantic-release/exec": "^3.3.8",
     "@types/bignumber.js": "^4.0.3",
     "@types/jest": "^21.1.6",
     "@types/node": "^8.10.58",

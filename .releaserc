@@ -6,7 +6,17 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     "@semantic-release/github",
-    "@semantic-release/git"
+    "@semantic-release/git",
+    "@semantic-release/exec"
+  ],
+  "prepare": [
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "./prepare.sh"
+      }
+    ]
   ],
   "verifyConditions": [
     "@semantic-release/changelog",
