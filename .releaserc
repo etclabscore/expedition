@@ -12,7 +12,11 @@
     "@semantic-release/changelog",
     "@semantic-release/git",
     "@semantic-release/github",
-    "@qiwi/semantic-release-gh-pages-plugin"
+    "@qiwi/semantic-release-gh-pages-plugin",
+    {
+      "path": "semantic-release-docker",
+      "registryUrl": "docker.io"
+    }
   ],
   "publish": [
     "@semantic-release/github",
@@ -21,6 +25,10 @@
       "msg": "github pages release",
       "src": "build/",
       "branch": "gh-pages"
+    },
+    {
+      "path": "semantic-release-docker",
+      "name": "etclabscore/jade-explorer"
     }
   ],
   "success": [
