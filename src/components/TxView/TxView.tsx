@@ -208,7 +208,16 @@ function TxView(props: ITxViewProps) {
 
             <TableRow>
               <TableCell>{t("Contract Address")}</TableCell>
-              <TableCell>{receipt.contractAddress}</TableCell>
+              <TableCell>
+                <Link
+                  component={({ className, children }: { children: any, className: string }) => (
+                    <RouterLink className={className} to={`/address/${receipt.contractAddress}`} >
+                      {children}
+                    </RouterLink>
+                  )}>
+                  {receipt.contractAddress}
+                </Link>
+              </TableCell>
             </TableRow>
 
             <TableRow>
