@@ -11,6 +11,12 @@
   ],
   "prepare": [
     "@semantic-release/changelog",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "./prepare.sh ${nextRelease.version}"
+      }
+    ]
   ],
   "verifyConditions": [
     "@semantic-release/changelog",
@@ -23,12 +29,6 @@
     }
   ],
   "publish": [
-    [
-      "@semantic-release/exec",
-      {
-        "prepareCmd": "./publish.sh"
-      }
-    ],
     "@semantic-release/github",
     {
       "path": "@qiwi/semantic-release-gh-pages-plugin",
