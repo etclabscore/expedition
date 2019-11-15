@@ -2,7 +2,7 @@ FROM node:10 AS builder
 RUN \
     apt-get update && apt-get upgrade -q -y && \
     apt-get install -y ca-certificates git node-gyp make
-WORKDIR /root/jade-explorer
+WORKDIR /root/expedition
 
 # Cache npm install
 COPY package*.json ./
@@ -19,6 +19,6 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy static assets to nginx image
-COPY --from=builder /root/jade-explorer/build/ /usr/share/nginx/html
+COPY --from=builder /root/expedition/build/ /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

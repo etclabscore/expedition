@@ -2,11 +2,10 @@ export default {
   // Moment integration
   "Timestamp Date": "{{date, date}}",
   // App Bar
-  "Explorer": "浏览器",
   "Change Language": "更改语言",
   "Enter an Address, Transaction Hash or Block Number": "输入地址 交易哈希或区块号",
   "JSON-RPC API Documentation": "JSON-RPC API 文档",
-  "Jade Explorer Github": "Jade Explorer Github",
+  "Expedition Github": "Expedition Github",
   "Toggle Dark Mode": "切换黑暗模式",
   // Dashboard
   "Block Height": "区块高度",
