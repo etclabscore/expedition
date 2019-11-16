@@ -33,6 +33,7 @@ import { StringParam, QueryParamProvider, useQueryParams } from "use-query-param
 import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 import BlockRawContainer from "./containers/BlockRawContainer";
 import TransactionRawContainer from "./containers/TransactionRawContainer";
+import expeditionLogo from "./expedition.png";
 
 const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
 
@@ -176,25 +177,16 @@ function App(props: any) {
                   )}>
                   <Grid container>
                     <Grid>
-                      {darkMode.value ?
-                        <img
-                          alt="jade-explorer"
-                          height="30"
-                          style={{ marginRight: "5px" }}
-                          src="https://github.com/etclabscore/jade-media-assets/blob/master/jade-logo-dark/jade-logo-dark%20(PNG)/32x32.png?raw=true" //tslint:disable-line
-                        />
-                        :
-                        <img
-                          alt="jade-explorer"
-                          height="30"
-                          style={{ marginRight: "5px" }}
-                          src="https://github.com/etclabscore/jade-media-assets/blob/master/jade-logo-light/jade-logo-light%20(PNG)/32x32.png?raw=true" //tslint:disable-line
-                        />
-                      }
+                      <img
+                        alt="expedition-logo"
+                        height="30"
+                        style={{ marginRight: "10px" }}
+                        src={expeditionLogo}
+                      />
                     </Grid>
                     <Grid>
                       <Typography color="textSecondary" variant="h6">
-                        {t("Explorer")}
+                        {t("Expedition")}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -239,10 +231,10 @@ function App(props: any) {
                     <NotesIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t("Jade Explorer Github")}>
+                <Tooltip title={t("Expedition Github")}>
                   <IconButton
                     onClick={() =>
-                      window.open("https://github.com/etclabscore/jade-explorer")
+                      window.open("https://github.com/etclabscore/expedition")
                     }>
                     <CodeIcon />
                   </IconButton>

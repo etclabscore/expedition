@@ -1,20 +1,20 @@
-# Jade Explorer
+# Expedition
 
 <!-- project logo w/ quick links -->
 <p align="center">
   <img src="https://github.com/etclabscore/jade-media-assets/blob/master/j-explorer/j-explorer(PNG)/128x128.png?raw=true" />
 </p>
 <center>
-  <h3 align="center">Jade Explorer</h3>
+  <h3 align="center">Expedition</h3>
 
   <p align="center">
-    A block explorer for EVM-based blockchains.
+    A block explorer for the Ethereum Stack.
     <br />
     <a href="https://explorer.jade.builders/">View Demo</a>
     ·
-    <a href="https://github.com/etclabscore/jade-explorer/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
+    <a href="https://github.com/etclabscore/expedition/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
     ·
-    <a href="https://github.com/etclabscore/jade-explorer/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
+    <a href="https://github.com/etclabscore/expedition/issues/new?assignees=&labels=&template=feature_request.md&title=">Request Feature</a>
   </p>
 </center>
 
@@ -34,7 +34,7 @@
 <!-- about the project -->
 ## About The Project
 
-[Jade Explorer](https://explorer.jade.builders/) is a minimal block explorer for EVM-based blockchains and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and can be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
+[Expedition](https://explorer.jade.builders/) is a minimal block explorer for Ethereum Stack and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and can be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
 
 Explorer Features:
 - Display chain id
@@ -58,7 +58,7 @@ Explorer Features:
 ### Installation
 Clone/ download the project, and install dependencies.
 ```bash
-git clone https://github.com/etclabscore/jade-explorer.git && cd jade-explorer && npm install
+git clone https://github.com/etclabscore/expedition.git && cd expedition && npm install
 ```
 
 <!-- example usage, screen shots, demos -->
@@ -99,7 +99,7 @@ npm start
 
 #### Set rpc via url
 
-`?rpcUrl=` Set custom rpc url. 
+`?rpcUrl=` Set custom rpc url.
 
 Example: https://explorer.jade.builders/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
 
@@ -117,11 +117,11 @@ Override service runner url
 
 ```
 REACT_APP_SERVICE_RUNNER_URL=https://services.jade.builders/ npm start
-``` 
+```
 
 <!-- template just leave alone  -->
 ## Roadmap
-See the [open issues](https://github.com/etclabscore/jade-explorer/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/etclabscore/expedition/issues) for a list of proposed features (and known issues).
 
 <!-- template just leave alone  -->
 ## Contributing
@@ -131,7 +131,7 @@ How to contribute, build and release are outlined in [CONTRIBUTING.md](CONTRIBUT
 Apache License 2.0
 
 <!-- references and additional resources  -->
-## Resources 
+## Resources
 - [Ethereum JSON RPC Specification](https://github.com/etclabscore/ethereum-json-rpc-specification)
 - [Jade Service Runner](https://github.com/etclabscore/jade-service-runner)
 - [OpenRPC](https://open-rpc.org)

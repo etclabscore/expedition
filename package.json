@@ -1,7 +1,7 @@
 {
-  "name": "@etclabscore/jade-explorer",
+  "name": "@etclabscore/expedition",
   "version": "1.0.2",
-  "description": "Jade Explorer",
+  "description": "Expedition is a block explorer for the Ethereum Stack",
   "keywords": [
     "typescript",
     "react",
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/etclabscore/jade-explorer.git"
+    "url": "https://github.com/etclabscore/expedition.git"
   },
   "scripts": {
     "build": "react-scripts build && cp build/index.html build/404.html",

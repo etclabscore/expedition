@@ -38,7 +38,7 @@
     },
     {
       "path": "semantic-release-docker",
-      "name": "etclabscore/jade-explorer"
+      "name": "etclabscore/expedition"
     }
   ],
   "success": [
