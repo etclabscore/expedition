@@ -64,7 +64,7 @@
     "@semantic-release/exec": "^3.3.8",
     "@types/bignumber.js": "^4.0.3",
     "@types/jest": "^21.1.6",
-    "@types/node": "^8.10.58",
+    "@types/node": "^12.12.11",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
     "@types/react-router-dom": "^5.1.1",
