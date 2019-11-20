@@ -10,7 +10,7 @@
   <p align="center">
     A block explorer for the Ethereum Stack.
     <br />
-    <a href="https://explorer.jade.builders/">View Demo</a>
+    <a href="https://expedition.dev">View Demo</a>
     ·
     <a href="https://github.com/etclabscore/expedition/issues/new?assignees=&labels=&template=bug_report.md&title=">Report Bug</a>
     ·
@@ -34,7 +34,7 @@
 <!-- about the project -->
 ## About The Project
 
-[Expedition](https://explorer.jade.builders/) is a minimal block explorer for Ethereum Stack and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and can be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
+[Expedition](https://expedition.dev) is a minimal block explorer for Ethereum Stack and utilizes [Jade Service Runner](https://github.com/etclabscore/jade-service-runner) for managing background services (Multi-Geth), OpenRPC for underlying functionality, and Pristine. It does not use a database, and can be configured to point at any remote RPC node for any EVM-based network. The goal of Jade Explorer is to provide a resource for network information and block exploration.
 
 Explorer Features:
 - Display chain id
@@ -101,7 +101,7 @@ npm start
 
 `?rpcUrl=` Set custom rpc url.
 
-Example: https://explorer.jade.builders/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
+Example: https://expedition.dev/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
 
 #### Configure default urls via environment variables
 
