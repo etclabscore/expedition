@@ -68,7 +68,7 @@
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
     "@types/react-router-dom": "^5.1.1",
-    "@types/victory": "^31.0.19",
+    "@types/victory": "^33.1.0",
     "react-scripts": "^3.2.0",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.5.0",
