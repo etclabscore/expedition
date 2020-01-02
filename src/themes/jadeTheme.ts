@@ -16,6 +16,11 @@ export const lightTheme = responsiveFontSizes(createMuiTheme({
         background: "#fff !important",
       },
     },
+    MuiPaper: {
+      root: {
+        overflow: "visible !important",
+      },
+    },
   },
   palette: {
     background: {
@@ -41,6 +46,11 @@ export const darkTheme = responsiveFontSizes(createMuiTheme({
     },
   },
   overrides: {
+    MuiPaper: {
+      root: {
+        overflow: "visible !important",
+      },
+    },
     MuiTable: {
       root: {
         background: "transparent !important",

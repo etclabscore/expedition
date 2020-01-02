@@ -20,6 +20,7 @@ function BlockView(props: any) {
   const {
     timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
+    gasUsed, gasLimit, size
   } = block;
 
   return (
@@ -73,6 +74,21 @@ function BlockView(props: any) {
                 {miner}
               </Link>
             </TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell>{t("Gas Used")}</TableCell>
+            <TableCell>{hexToNumber(gasUsed)}</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell>{t("Gas Limit")}</TableCell>
+            <TableCell>{hexToNumber(gasLimit)}</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell>{t("Size")}</TableCell>
+            <TableCell>{hexToNumber(size)}</TableCell>
           </TableRow>
 
           <TableRow>

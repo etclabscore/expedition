@@ -23,6 +23,10 @@ export default {
   "Gas Used last blocks_plural": "前{{count}}个区块Gas消耗",
   "Uncles last blocks": "上个区块叔块",
   "Uncles last blocks_plural": "前{{count}}个区块叔块",
+  "Top Miners last blocks by extraData": "Top Miners last block",
+  "Top Miners last blocks by extraData_plural": "Top Miners last {{count}} blocks",
+  "Top Miners last blocks by address": "Top Miners last block by address",
+  "Top Miners last blocks by address_plural": "Top Miners last {{count}} blocks by address",
   // block list
   "Block Number": "区块编号",
   "Hash": "哈希",

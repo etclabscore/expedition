@@ -23,6 +23,10 @@ export default {
   "Gas Used last blocks_plural": "{{count}}개 이전 블록 Gas소모",
   "Uncles last blocks": "이번 블록의 엉클블록",
   "Uncles last blocks_plural": "{{count}}개 이전 블록의 엉클블록",
+  "Top Miners last blocks": "Top Miners last block",
+  "Top Miners last blocks_plural": "Top Miners last {{count}} blocks",
+  "Top Miners last blocks by address": "Top Miners last block by address",
+  "Top Miners last blocks by address_plural": "Top Miners last {{count}} blocks by address",
   // block list
   "Block Number": "블록번호",
   "Hash": "해시",
