@@ -1,5 +1,5 @@
 import React from "react";
-import { VictoryLabel, VictoryTooltip } from "victory";
+import { VictoryTooltip } from "victory";
 
 class CustomPieChartLabel extends React.Component {
   public static defaultEvents = (VictoryTooltip as any).defaultEvents;

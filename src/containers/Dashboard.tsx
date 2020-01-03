@@ -1,9 +1,8 @@
 import { Grid, Typography, CircularProgress, Theme, Button } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
-import _ from "lodash";
 import BigNumber from "bignumber.js";
 import * as React from "react";
-import { VictoryBar, VictoryChart, VictoryLine, VictoryPie } from "victory";
+import { VictoryBar, VictoryChart, VictoryLine } from "victory";
 import { hashesToGH, weiToGwei } from "../components/formatters";
 import HashRate from "../components/HashRate";
 import getBlocks, { useBlockNumber } from "../helpers";
@@ -13,7 +12,7 @@ import getTheme from "../themes/victoryTheme";
 import ChartCard from "../components/ChartCard";
 import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
-import { hexToNumber, hexToString } from "@etclabscore/eserialize";
+import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
@@ -68,7 +67,6 @@ export default (props: any) => {
   const [gasPrice, setGasPrice] = useState();
   const [syncing, setSyncing] = useState();
   const [peerCount, setPeerCount] = useState();
-  const [showDefaultPieHover, setShowDefaultPieHover] = useState(true);
 
   const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();

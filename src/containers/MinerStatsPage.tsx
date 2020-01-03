@@ -1,11 +1,9 @@
 
 import { CircularProgress } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
-import _ from "lodash";
 import * as React from "react";
 import getBlocks, { useBlockNumber } from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
-import { useTranslation } from "react-i18next";
 import MinerStats from "../components/MinerStats";
 import MinerStatsTable from "../components/MinerStatsTable";
 
@@ -22,7 +20,6 @@ export default (props: any) => {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [blocks, setBlocks] = useState();
-  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (!erpc || blockNumber === null) { return; }
@@ -43,7 +40,7 @@ export default (props: any) => {
   return (
     <>
       <MinerStats blocks={blocks} config={config} />
-      <MinerStatsTable blocks={blocks} config={config} />
+      <MinerStatsTable blocks={blocks} />
     </>
   );
 };

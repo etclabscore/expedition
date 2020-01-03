@@ -20,7 +20,7 @@ function BlockView(props: any) {
   const {
     timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
-    gasUsed, gasLimit, size
+    gasUsed, gasLimit, size,
   } = block;
 
   return (

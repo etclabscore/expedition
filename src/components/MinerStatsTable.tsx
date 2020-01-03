@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Grid, Table, TableRow, TableCell, TableHead, TableBody, Typography, Button, LinearProgress } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
+import { Table, TableRow, TableCell, TableHead, TableBody, Typography, Button } from "@material-ui/core";
 import { hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -36,24 +35,12 @@ const groupByMiner = (blocks: any[]) => {
 
 interface IProps {
   blocks: any[];
-  config: any;
 }
 
-const config = {
-  blockTime: 15, // seconds
-  blockHistoryLength: 100,
-  chartHeight: 200,
-  chartWidth: 400,
-};
-
 const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
-  const [showHover, setHover] = useState(true);
   const history = useHistory();
-  const { t } = useTranslation();
   const topMiners = blockTopMiners(blocks);
   const groupedMiners = Object.assign({}, ...groupByMiner(blocks));
-  console.log("topMiners", topMiners);
-  console.log("groupedMiners", groupedMiners);
   return (
     <Table aria-label="simple table">
       <TableHead >
@@ -92,7 +79,7 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
                                 {hexToNumber(block.number)}
                               </Typography>
                             </Button>
-                          )
+                          );
                         })}
                       </TableCell>
                     </TableRow>
@@ -100,8 +87,6 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
                 </TableBody>
               </Table>
             </TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
           </TableRow>
         ))}
       </TableBody>
