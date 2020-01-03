@@ -2,7 +2,6 @@ import React from "react";
 import { Table, TableRow, TableCell, TableHead, TableBody, Typography, Button } from "@material-ui/core";
 import { hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import greenColor from "@material-ui/core/colors/green";
 
@@ -71,7 +70,8 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
                             <Button
                               variant="outlined"
                               style={{
-                                background: `linear-gradient(to right, ${greenColor[100]} 0% ${percentFull}%, transparent ${percentFull}% 100%)`,
+                                margin: "3px",
+                                background: `linear-gradient(to right, ${greenColor[600]} 0% ${percentFull}%, transparent ${percentFull}% 100%)`,
                               }}
                               onClick={() => history.push(`/block/${block.hash}`)}
                             >
