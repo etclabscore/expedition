@@ -1,4 +1,4 @@
-import { Grid, Typography, CircularProgress, Theme } from "@material-ui/core";
+import { Grid, Typography, CircularProgress, Theme, Button } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
 import BigNumber from "bignumber.js";
 import * as React from "react";
@@ -15,6 +15,8 @@ import BlockListContainer from "./BlockList";
 import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
+import { ArrowForwardIos } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 const useState = React.useState;
 
@@ -56,6 +58,7 @@ const blockMapTransactionCount = (block: any) => {
 export default (props: any) => {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const theme = useTheme<Theme>();
+  const history = useHistory();
   const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
@@ -81,7 +84,7 @@ export default (props: any) => {
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
     erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
   React.useEffect(() => {
@@ -93,7 +96,7 @@ export default (props: any) => {
     ).then((bl) => {
       setBlocks(bl);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
   useInterval(() => {
@@ -168,36 +171,44 @@ export default (props: any) => {
         </Grid>
         <Grid item container>
           <Grid key="hashChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Hash Rate last blocks", {count: config.blockHistoryLength})}>
+            <ChartCard title={t("Hash Rate last blocks", { count: config.blockHistoryLength })}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryLine data={blocks.map(blockMapHashRate)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="txChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Transaction count last blocks", {count: config.blockHistoryLength})}>
+            <ChartCard title={t("Transaction count last blocks", { count: config.blockHistoryLength })}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapTransactionCount)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="gasUsed" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Gas Used last blocks", {count: config.blockHistoryLength})}>
+            <ChartCard title={t("Gas Used last blocks", { count: config.blockHistoryLength })}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapGasUsed)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
           <Grid key="uncles" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Uncles last blocks", {count: config.blockHistoryLength})}>
+            <ChartCard title={t("Uncles last blocks", { count: config.blockHistoryLength })}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
                 <VictoryBar data={blocks.map(blockMapUncles)} />
               </VictoryChart>
             </ChartCard>
           </Grid>
         </Grid>
-
       </Grid>
+      <Grid container justify="flex-end">
+        <Button
+          color="primary"
+          variant="outlined"
+          endIcon={<ArrowForwardIos />}
+          onClick={() => history.push("/stats/miners")}
+        >More Stats</Button>
+      </Grid>
+      <br />
 
       <BlockCardListContainer from={Math.max(blockNumber - 2, 0)} to={blockNumber} />
       <BlockListContainer
@@ -209,6 +220,6 @@ export default (props: any) => {
           props.history.push(`/blocks/${blockNumber - 15}`);
         }}
         style={{ marginTop: "30px" }} />
-    </div>
+    </div >
   );
 };

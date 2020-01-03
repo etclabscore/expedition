@@ -34,6 +34,7 @@ import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 import BlockRawContainer from "./containers/BlockRawContainer";
 import TransactionRawContainer from "./containers/TransactionRawContainer";
 import expeditionLogo from "./expedition.png";
+import MinerStatsPage from "./containers/MinerStatsPage";
 
 const history = createPreserveQueryHistory(createBrowserHistory, ["network", "rpcUrl"])();
 
@@ -254,6 +255,7 @@ function App(props: any) {
             <CssBaseline />
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />
+              <Route path={"/stats/miners"} component={MinerStatsPage} />
               <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
               <Route path={"/block/:hash"} component={Block} />
               <Route path={"/blocks/:number"} component={NodeView} />
