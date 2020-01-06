@@ -16,7 +16,6 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
 
 const useState = React.useState;
 
@@ -58,7 +57,6 @@ const blockMapTransactionCount = (block: any) => {
 export default (props: any) => {
   const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
   const theme = useTheme<Theme>();
-  const history = useHistory();
   const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState();
@@ -205,7 +203,7 @@ export default (props: any) => {
           color="primary"
           variant="outlined"
           endIcon={<ArrowForwardIos />}
-          onClick={() => history.push("/stats/miners")}
+          onClick={() => props.history.push("/stats/miners")}
         >More Stats</Button>
       </Grid>
       <br />
