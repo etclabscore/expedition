@@ -1,7 +1,6 @@
 import { AppBar, CssBaseline, Toolbar, Typography, IconButton, Grid, InputBase, Tooltip } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
-import { } from "react-router-dom";
 import React, { Dispatch, ChangeEvent, KeyboardEvent, useState, useEffect } from "react";
 import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
@@ -61,7 +60,6 @@ function App(props: any) {
       await serviceRunner.startService(network.service.name, network.service.version, network.name);
     }
     setMultiGethUrlOverride(network.url);
-    setQuery({ network: network.name });
   };
 
   useEffect(() => {
@@ -83,14 +81,15 @@ function App(props: any) {
       setSelectedNetworkState(foundNetwork);
     } else {
       setSelectedNetworkState(networks[0]);
-      setQuery({ network: networks[0].name });
     }
-  }, [query.network, query.rpcUrl, networks, setQuery]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [networks, query.network]);
 
   useEffect(() => {
-    if (selectedNetwork) {
-      setQuery({ network: selectedNetwork.name }, "replaceIn");
+    if (selectedNetwork && selectedNetwork.name !== query.network) {
+      setQuery({ network: selectedNetwork.name });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNetwork, setQuery]);
 
   const handleConfigurationChange = (type: string, url: string) => {
@@ -255,7 +254,7 @@ function App(props: any) {
             <CssBaseline />
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />
-              <Route path={"/stats/miners"} component={MinerStatsPage} />
+              <Route path={"/stats/miners"} component={MinerStatsPage} exact={true} />
               <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
               <Route path={"/block/:hash"} component={Block} />
               <Route path={"/blocks/:number"} component={NodeView} />
