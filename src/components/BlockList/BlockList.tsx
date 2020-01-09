@@ -26,7 +26,7 @@ function BlockList({ blocks }: any) {
             <TableCell><Typography>{t("Hash")}</Typography></TableCell>
             <TableCell><Typography>{t("Timestamp")}</Typography></TableCell>
             <TableCell><Typography>{t("Transactions")}</Typography></TableCell>
-            <TableCell><Typography>{t("Gas Used")}</Typography></TableCell>
+            <TableCell><Typography>{t("Gas Usage")}</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
