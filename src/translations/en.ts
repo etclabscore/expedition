@@ -48,6 +48,7 @@ export default {
   "Transaction Index": "Transaction Index",
   "Receipt Status": "Receipt Status",
   "Receipt Logs": "Receipt Logs",
+  "No Transactions for this block range.": "No Transactions for this block range.",
   "Address": "Address",
   "Balance": "Balance",
   "Code": "Code",

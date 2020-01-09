@@ -6,7 +6,7 @@ import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import { Table, TableBody, TableCell, TableRow, Button } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableRow, Button, LinearProgress, Typography } from "@material-ui/core";
 
 function BlockView(props: any) {
   const { block } = props;
@@ -23,6 +23,8 @@ function BlockView(props: any) {
     gasUsed, gasLimit, size,
   } = block;
 
+  const filledPercent = (hexToNumber(gasUsed) / hexToNumber(gasLimit)) * 100;
+
   return (
     <div>
       <Button
@@ -36,6 +38,14 @@ function BlockView(props: any) {
           <TableRow>
             <TableCell>{t("Number")}</TableCell>
             <TableCell>{hexToNumber(block.number)}</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell>{t("Gas Usage")}</TableCell>
+            <TableCell>
+              <Typography variant="caption">{hexToNumber(gasUsed)}/{hexToNumber(gasLimit)}</Typography>
+              <LinearProgress style={{width: "150px"}} value={filledPercent} variant="determinate" />
+            </TableCell>
           </TableRow>
 
           <TableRow>

@@ -260,6 +260,7 @@ function App(props: any) {
               <Route path={"/blocks/:number"} component={NodeView} />
               <Route path={"/tx/:hash/raw"} component={TransactionRawContainer} />
               <Route path={"/tx/:hash"} component={Transaction} />
+              <Route path={"/address/:address/:block"} component={Address} />
               <Route path={"/address/:address"} component={Address} />
             </Switch>
           </QueryParamProvider>

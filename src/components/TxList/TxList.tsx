@@ -5,13 +5,11 @@ import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 import { hexToNumber } from "@etclabscore/eserialize";
 
-export interface ITxListProps {
-  transactions: any[];
-}
-
-function TxListItem({ tx }: { tx: any }) {
+function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolean }) {
   return (
     <TableRow>
+      {showblockNumber && <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>}
+
       <TableCell>
         <Link
           component={({ className, children }: { children: any, className: string }) => (
@@ -52,11 +50,17 @@ function TxListItem({ tx }: { tx: any }) {
   );
 }
 
+export interface ITxListProps {
+  transactions: any[];
+  showBlockNumber?: boolean;
+}
+
 function TxList(props: ITxListProps) {
   return (
     <Table>
       <TableHead>
         <TableRow>
+          {props.showBlockNumber && <TableCell>Block #</TableCell>}
           <TableCell>Hash</TableCell>
           <TableCell>From</TableCell>
           <TableCell>To</TableCell>
@@ -65,7 +69,10 @@ function TxList(props: ITxListProps) {
       </TableHead>
 
       <TableBody>
-        {props.transactions.map((tx: any) => <TxListItem key={tx.hash} tx={tx} />)}
+        {props.transactions.map(
+          (tx: any) =>
+            <TxListItem key={tx.hash} tx={tx} showblockNumber={props.showBlockNumber} />,
+        )}
       </TableBody>
     </Table>
   );

@@ -1,7 +1,7 @@
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography, LinearProgress } from "@material-ui/core";
 import * as React from "react";
 import Link from "@material-ui/core/Link";
-import { hexToDate } from "@etclabscore/eserialize";
+import { hexToDate, hexToNumber } from "@etclabscore/eserialize";
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -26,10 +26,12 @@ function BlockList({ blocks }: any) {
             <TableCell><Typography>{t("Hash")}</Typography></TableCell>
             <TableCell><Typography>{t("Timestamp")}</Typography></TableCell>
             <TableCell><Typography>{t("Transactions")}</Typography></TableCell>
+            <TableCell><Typography>{t("Gas Used")}</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {sortedBlocks.map((b: any) => {
+            const filledPercent = (hexToNumber(b.gasUsed) / hexToNumber(b.gasLimit)) * 100;
             return (
               <TableRow key={b.number}>
                 <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
@@ -44,10 +46,13 @@ function BlockList({ blocks }: any) {
                   </Link>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp)})}</Typography>
+                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}</Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <Typography>{b.transactions.length}</Typography>
+                </TableCell>
+                <TableCell style={rightPaddingFix}>
+                  <LinearProgress value={filledPercent} variant="determinate" />
                 </TableCell>
               </TableRow>
             );

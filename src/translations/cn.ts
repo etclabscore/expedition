@@ -57,6 +57,7 @@ export default {
   "Address": "地址",
   "Balance": "余额",
   "Code": "代码",
+  "No Transactions for this block range.": "No Transactions for this block range.",
   // configuration menu
   "Configuration": "配置",
   "Back": "返回",
