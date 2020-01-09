@@ -54,6 +54,7 @@ export default {
   "Receipt Status": "수신상태",
   "Receipt Logs": "수신일지",
   // address view
+  "No Transactions for this block range.": "No Transactions for this block range.",
   "Address": "주소",
   "Balance": "잔액",
   "Code": "코드",
