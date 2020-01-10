@@ -91,9 +91,6 @@ function BlockList({ blocks }: any) {
                   <Typography>{hexToNumber(b.gasLimit)}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography>{hexToNumber(b.gasLimit)}</Typography>
-                </TableCell>
-                <TableCell>
                   <Typography>{b.uncles.length === 0 ? '' : b.uncles.length}</Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
