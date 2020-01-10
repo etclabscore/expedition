@@ -65,7 +65,17 @@ function BlockList({ blocks }: any) {
             return (
               <TableRow key={b.number} style={authorHashStyle}>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>{authorHashShort}&nbsp;<sup>{hexToString(b.extraData).substring(0,20)}</sup></Typography>
+                <Typography>
+                <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/address/${b.miner}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {authorHashShort}
+                  </Link>
+                  &nbsp;<sup>{hexToString(b.extraData).substring(0,20)}</sup>
+                  </Typography>
                 </TableCell>
                 <TableCell component="th" scope="row"><Typography>{parseInt(b.number, 16)}</Typography></TableCell>
                 <TableCell style={rightPaddingFix}>
@@ -76,6 +86,9 @@ function BlockList({ blocks }: any) {
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <LinearProgress value={filledPercent} variant="determinate" />
+                </TableCell>
+                <TableCell>
+                  <Typography>{hexToNumber(b.gasLimit)}</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography>{hexToNumber(b.gasLimit)}</Typography>
