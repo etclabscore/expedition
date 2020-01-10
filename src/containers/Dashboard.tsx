@@ -10,7 +10,6 @@ import useInterval from "use-interval";
 import { useTheme } from "@material-ui/styles";
 import getTheme from "../themes/victoryTheme";
 import ChartCard from "../components/ChartCard";
-import BlockCardListContainer from "./BlockCardList";
 import BlockListContainer from "./BlockList";
 import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
@@ -208,9 +207,8 @@ export default (props: any) => {
       </Grid>
       <br />
 
-      <BlockCardListContainer from={Math.max(blockNumber - 2, 0)} to={blockNumber} />
       <BlockListContainer
-        from={Math.max((blockNumber - 3) - 11, 0)}
+        from={Math.max(blockNumber - 14, 0)}
         to={blockNumber - 3}
         disablePrev={true}
         disableNext={blockNumber === 0}
