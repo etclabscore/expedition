@@ -76,7 +76,6 @@ function BlockList({ blocks }: any) {
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <LinearProgress value={filledPercent} variant="determinate" />
-                  <Typography variant="caption">{filledPercent.toPrecision(3)}%</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography>{hexToNumber(b.gasLimit)}</Typography>
