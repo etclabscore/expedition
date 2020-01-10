@@ -208,7 +208,7 @@ export default (props: any) => {
       <br />
 
       <BlockListContainer
-        from={Math.max((blockNumber - 3) - 11, 0)}
+        from={Math.max(blockNumber - 14, 0)}
         to={blockNumber - 3}
         disablePrev={true}
         disableNext={blockNumber === 0}
