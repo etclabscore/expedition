@@ -1,9 +1,7 @@
 import { Grid, Typography, CircularProgress, Theme, Button } from "@material-ui/core";
 import useMultiGethStore from "../stores/useMultiGethStore";
-import BigNumber from "bignumber.js";
 import * as React from "react";
-import { VictoryBar, VictoryChart, VictoryLine } from "victory";
-import { hashesToGH, weiToGwei } from "../components/formatters";
+import { weiToGwei } from "../components/formatters";
 import HashRate from "../components/HashRate";
 import getBlocks, { useBlockNumber } from "../helpers";
 import useInterval from "use-interval";
@@ -15,6 +13,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
+import StatCharts from "../components/StatCharts";
 
 const useState = React.useState;
 
@@ -23,34 +22,6 @@ const config = {
   blockHistoryLength: 100,
   chartHeight: 200,
   chartWidth: 400,
-};
-
-const blockMapGasUsed = (block: any) => {
-  return {
-    x: hexToNumber(block.number),
-    y: new BigNumber(block.gasUsed).dividedBy(1000000),
-  };
-};
-
-const blockMapUncles = (block: any) => {
-  return {
-    x: hexToNumber(block.number),
-    y: block.uncles.length,
-  };
-};
-
-const blockMapHashRate = (block: any) => {
-  return {
-    x: hexToNumber(block.number),
-    y: hashesToGH(new BigNumber(block.difficulty, 16).dividedBy(config.blockTime)),
-  };
-};
-
-const blockMapTransactionCount = (block: any) => {
-  return {
-    x: hexToNumber(block.number),
-    y: block.transactions.length,
-  };
 };
 
 export default (props: any) => {
@@ -166,37 +137,8 @@ export default (props: any) => {
             </ChartCard>
           </Grid>
         </Grid>
-        <Grid item container>
-          <Grid key="hashChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Hash Rate last blocks", { count: config.blockHistoryLength })}>
-              <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-                <VictoryLine data={blocks.map(blockMapHashRate)} />
-              </VictoryChart>
-            </ChartCard>
-          </Grid>
-          <Grid key="txChart" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Transaction count last blocks", { count: config.blockHistoryLength })}>
-              <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-                <VictoryBar data={blocks.map(blockMapTransactionCount)} />
-              </VictoryChart>
-            </ChartCard>
-          </Grid>
-          <Grid key="gasUsed" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Gas Used last blocks", { count: config.blockHistoryLength })}>
-              <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-                <VictoryBar data={blocks.map(blockMapGasUsed)} />
-              </VictoryChart>
-            </ChartCard>
-          </Grid>
-          <Grid key="uncles" item xs={12} md={6} lg={3}>
-            <ChartCard title={t("Uncles last blocks", { count: config.blockHistoryLength })}>
-              <VictoryChart height={config.chartHeight} width={config.chartWidth} theme={victoryTheme as any}>
-                <VictoryBar data={blocks.map(blockMapUncles)} />
-              </VictoryChart>
-            </ChartCard>
-          </Grid>
-        </Grid>
       </Grid>
+      <StatCharts victoryTheme={victoryTheme} blocks={blocks} />
       <Grid container justify="flex-end">
         <Button
           color="primary"
