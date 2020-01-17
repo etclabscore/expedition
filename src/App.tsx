@@ -88,6 +88,10 @@ function App(props: any) {
   useEffect(() => {
     if (selectedNetwork && selectedNetwork.name !== query.network) {
       setQuery({ network: selectedNetwork.name });
+      history.push({
+        pathname: history.location.pathname,
+        search: `?network=${selectedNetwork.name}`,
+      });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNetwork, setQuery]);
@@ -255,6 +259,7 @@ function App(props: any) {
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />
               <Route path={"/stats/miners"} component={MinerStatsPage} exact={true} />
+              <Route path={"/stats/miners/:block"} component={MinerStatsPage} />
               <Route path={"/block/:hash/raw"} component={BlockRawContainer} />
               <Route path={"/block/:hash"} component={Block} />
               <Route path={"/blocks/:number"} component={NodeView} />
