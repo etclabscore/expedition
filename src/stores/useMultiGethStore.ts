@@ -7,5 +7,5 @@ export default createStore(() => {
   const [serviceRunner, serviceRunnerUrl] = useServiceRunnerStore();
   const [networkQuery] = useQueryParam("network", StringParam);
   const [rpcUrlQuery] = useQueryParam("rpcUrl", StringParam);
-  return useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.7", networkQuery || "mainnet", rpcUrlQuery);
+  return useMultiGeth(serviceRunner, serviceRunnerUrl, "1.9.9", networkQuery || "mainnet", rpcUrlQuery);
 });
