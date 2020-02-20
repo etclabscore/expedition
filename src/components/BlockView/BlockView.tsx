@@ -5,8 +5,11 @@ import TxList from "../TxList";
 import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import _ from "lodash";
 
 import { Table, TableBody, TableCell, TableRow, Button, LinearProgress, Typography } from "@material-ui/core";
+
+import BlockGasPrice from "./BlockGasPrice";
 
 function BlockView(props: any) {
   const { block } = props;
@@ -86,10 +89,7 @@ function BlockView(props: any) {
             </TableCell>
           </TableRow>
 
-          <TableRow>
-            <TableCell>{t("Gas Used")}</TableCell>
-            <TableCell>{hexToNumber(gasUsed)}</TableCell>
-          </TableRow>
+          <BlockGasPrice block={block} />
 
           <TableRow>
             <TableCell>{t("Gas Limit")}</TableCell>
@@ -134,7 +134,7 @@ function BlockView(props: any) {
       </Table>
 
       <TxList transactions={transactions} />
-    </ div >
+      </ div >
   );
 }
 
