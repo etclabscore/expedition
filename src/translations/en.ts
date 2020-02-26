@@ -11,7 +11,6 @@ export default {
   "Syncing": "Syncing",
   "Gas Price": "Gas Price",
   "Network Hash Rate": "Network Hash Rate",
-  "Pending Transactions": "PendingTransactions",
   "Peers": "Peers",
   "Hash Rate": "Hash Rate",
   "Transaction Count": "Transaction Count",

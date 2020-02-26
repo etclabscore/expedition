@@ -13,7 +13,6 @@ export default {
   "Syncing": "同步中",
   "Gas Price": "Gas 费用",
   "Network Hash Rate": "算力",
-  "Pending Transactions": "等待中的交易",
   "Peers": "端点",
   "Hash Rate": "Hash Rate",
   "Transaction Count": "Transaction Count",

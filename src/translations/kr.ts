@@ -13,7 +13,6 @@ export default {
   "Syncing": "동기화",
   "Gas Price": "Gas 비용",
   "Network Hash Rate": "해시파워",
-  "Pending Transactions": "대기인 거래",
   "Peers": "거점",
   "Hash Rate": "Hash Rate",
   "Transaction Count": "Transaction Count",
