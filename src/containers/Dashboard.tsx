@@ -36,13 +36,7 @@ export default (props: any) => {
   const [syncing, setSyncing] = useState();
   const [peerCount, setPeerCount] = useState();
 
-  const [pendingTransctionsLength, setPendingTransactionsLength] = useState(0);
   const { t } = useTranslation();
-
-  React.useEffect(() => {
-    if (!erpc) { return; }
-    erpc.eth_pendingTransactions().then((p) => setPendingTransactionsLength(p.length));
-  }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -124,11 +118,6 @@ export default (props: any) => {
                   {(hashRate: any) => <Typography variant="h4">{hashRate} GH/s</Typography>}
                 </HashRate>
               }
-            </ChartCard>
-          </Grid>
-          <Grid key="pending-tx" item>
-            <ChartCard title={t("Pending Transactions")}>
-              {<Typography variant="h4">{pendingTransctionsLength}</Typography>}
             </ChartCard>
           </Grid>
           <Grid key="peers" item>
