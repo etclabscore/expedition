@@ -140,9 +140,9 @@ export default (props: any) => {
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}
-        to={blockNumber - 3}
+        to={blockNumber}
         disablePrev={true}
-        disableNext={blockNumber === 0}
+        disableNext={blockNumber < 14}
         onNext={() => {
           props.history.push(`/blocks/${blockNumber - 15}`);
         }}
