@@ -21,7 +21,7 @@ import availableServiceToNetwork from "./helpers/availableServiceToNetwork";
 
 import useInterval from "use-interval";
 import useServiceRunnerStore from "./stores/useServiceRunnerStore";
-import useMultiGethStore from "./stores/useMultiGethStore";
+import useCoreGethStore from "./stores/useCoreGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
 import { useTranslation } from "react-i18next";
@@ -45,7 +45,7 @@ function App(props: any) {
 
   const [selectedNetwork, setSelectedNetworkState] = useState();
   const [serviceRunner, serviceRunnerUrl, setServiceRunnerUrl, availableServices]: [ServiceRunner, string, any, IAvailableServices[]] = useServiceRunnerStore(); //tslint:disable-line
-  const [erpc, setMultiGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useMultiGethStore();
+  const [erpc, setCoreGethUrlOverride]: [EthereumJSONRPC, Dispatch<string>] = useCoreGethStore();
   const [networks, setNetworks] = useState<any[]>([]);
 
   const [query, setQuery] = useQueryParams({
@@ -59,7 +59,7 @@ function App(props: any) {
       await serviceRunner.installService(network.service.name, network.service.version);
       await serviceRunner.startService(network.service.name, network.service.version, network.name);
     }
-    setMultiGethUrlOverride(network.url);
+    setCoreGethUrlOverride(network.url);
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ function App(props: any) {
     if (type === "service-runner") {
       setServiceRunnerUrl(url);
     } else if (type === "ethereum-rpc") {
-      setMultiGethUrlOverride(url);
+      setCoreGethUrlOverride(url);
     }
   };
 

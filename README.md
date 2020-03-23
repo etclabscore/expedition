@@ -70,17 +70,17 @@ npm run service-runner
 ```
 *Jade Service Runner will run at http://localhost:8002/.*
 
-#### Multi-Geth & Service Runner
+#### Core-Geth & Service Runner
 
-By default, multi-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/.services/` directory of project.
+By default, core-geth service will run ETC mainnet. Jade Service runner conveniently contains the service in the `/.services/` directory of project.
 
 ```bash
 # ./services/
 .
-└── multi-geth
-    └── 1.9.0
-        └── multi-geth
-            └── 1.9.0
+└── core-geth
+    └── 1.11.2
+        └── core-geth
+            └── 1.11.2
                 └── classic
                     ├── geth
                     │   ├── chaindata
@@ -101,14 +101,14 @@ npm start
 
 `?rpcUrl=` Set custom rpc url.
 
-Example: https://expedition.dev/?rpcUrl=https://services.jade.builders/multi-geth/kotti/1.9.2
+Example: https://expedition.dev/?rpcUrl=https://services.jade.builders/core-geth/kotti/1.11.2
 
 #### Configure default urls via environment variables
 
 Override eth url
 
 ```
-REACT_APP_ETH_RPC_URL=https://services.jade.builders/multi-geth/mainnet/1.9.2 npm start
+REACT_APP_ETH_RPC_URL=https://services.jade.builders/core-geth/mainnet/1.11.2 npm start
 ```
 
 **OR**

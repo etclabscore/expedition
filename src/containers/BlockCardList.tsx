@@ -1,5 +1,5 @@
 import { CircularProgress, Grid } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
+import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import getBlocks from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
@@ -14,7 +14,7 @@ interface IProps {
 
 export default function BlockCardListContainer(props: IProps) {
   const { from, to, style } = props;
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
     let isSubscribed = true;

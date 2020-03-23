@@ -1,6 +1,6 @@
 
 import { CircularProgress, useTheme, Theme } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
+import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import getBlocks, { useBlockNumber } from "../helpers";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
@@ -31,7 +31,7 @@ interface IProps {
 }
 
 export default (props: IProps) => {
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [blocks, setBlocks] = useState();
   const theme = useTheme<Theme>();
