@@ -2,7 +2,7 @@ import { CircularProgress } from "@material-ui/core";
 import * as React from "react";
 import { useBlockNumber } from "../helpers";
 import BlockList from "./BlockList";
-import useMultiGethStore from "../stores/useMultiGethStore";
+import useCoreGethStore from "../stores/useCoreGethStore";
 import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface IUrlParams {
 }
 
 export default function NodeView(props: any) {
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const urlParams = useParams<IUrlParams>();
   const blockNum = (urlParams && urlParams.number !== undefined) ? urlParams.number : blockNumber;

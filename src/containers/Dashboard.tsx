@@ -1,5 +1,5 @@
 import { Grid, Typography, CircularProgress, Theme, Button } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
+import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import { weiToGwei } from "../components/formatters";
 import HashRate from "../components/HashRate";
@@ -25,7 +25,7 @@ const config = {
 };
 
 export default (props: any) => {
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);

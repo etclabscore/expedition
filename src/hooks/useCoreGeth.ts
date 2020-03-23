@@ -2,9 +2,9 @@ import ERPC from "@etclabscore/ethereum-json-rpc";
 import JadeServiceRunner from "@etclabscore/jade-service-runner-client";
 import React, { useState, Dispatch } from "react";
 
-const serviceName = "multi-geth";
+const serviceName = "core-geth";
 
-function useMultiGeth(
+function useCoreGeth(
   serviceRunner: JadeServiceRunner | undefined,
   serviceRunnerUrl: string,
   version: string,
@@ -62,4 +62,4 @@ function useMultiGeth(
   return [erpc, setUrlOverride];
 }
 
-export default useMultiGeth;
+export default useCoreGeth;

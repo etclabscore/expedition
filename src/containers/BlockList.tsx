@@ -1,5 +1,5 @@
 import { CircularProgress, Grid, IconButton } from "@material-ui/core";
-import useMultiGethStore from "../stores/useMultiGethStore";
+import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
@@ -18,7 +18,7 @@ interface IProps {
 
 export default function BlockListContainer(props: IProps) {
   const { from, to, style } = props;
-  const [erpc]: [EthereumJSONRPC] = useMultiGethStore();
+  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
   const [blocks, setBlocks] = React.useState();
   React.useEffect(() => {
     if (!erpc) { return; }
