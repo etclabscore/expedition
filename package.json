@@ -58,7 +58,7 @@
     "use-interval": "^1.1.0",
     "use-query-params": "^0.4.6",
     "use-react-router": "^1.0.7",
-    "victory": "^33.1.3"
+    "victory": "^34.3.11"
   },
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.9.0",
