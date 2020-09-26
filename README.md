@@ -18,9 +18,7 @@
   </p>
 </center>
 
-<p align="center">
-  <img src="https://github.com/etclabscore/jade-media-assets/blob/master/screenshots/j-explorer-readme.gif?raw=true" />
-</p>
+![expedition_gif](https://user-images.githubusercontent.com/364566/94349388-d17fb000-fff8-11ea-92ae-71c002474a65.gif)
 
 <!-- table of contents -->
 ## Table of Contents
