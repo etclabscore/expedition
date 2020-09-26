@@ -18,6 +18,10 @@
   </p>
 </center>
 
+<p align="center">
+  <img src="https://github.com/etclabscore/jade-media-assets/blob/master/screenshots/j-explorer-readme.gif?raw=true" />
+</p>
+
 <!-- table of contents -->
 ## Table of Contents
   - [About The Project](#about-the-project)
@@ -44,10 +48,6 @@ Explorer Features:
 - Charts for hash, transaction count, gas used, uncles
 - Preview latest blocks with pagination
 - Multi-language support
-
-<p align="center">
-  <img src="https://github.com/etclabscore/jade-media-assets/blob/master/screenshots/j-explorer-readme.gif?raw=true" />
-</p>
 
 <!-- getting started with the project -->
 ## Getting Started
