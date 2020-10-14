@@ -11,27 +11,26 @@ function BlockGasPrice(props: any) {
 
   if (transactions.length === 0) {return <></>;}
 
-
   return (
     <>
       <TableRow>
         <TableCell>{t("Average Gas Price")}</TableCell>
         <TableCell>
-          {_.meanBy(transactions, (t: any) => parseInt(t.gasPrice, 16))}
+          {/* {_.meanBy(transactions, (t: any) => BigInt(t.gasPrice))} */}
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell>{t("Min Gas Price")}</TableCell>
         <TableCell>
-          {hexToNumber(_.minBy(transactions, (t: any) => parseInt(t.gasPrice, 16)).gasPrice)}
+          {/* {hexToNumber(_.minBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice)} */}
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell>{t("Max Gas Price")}</TableCell>
         <TableCell>
-          {hexToNumber(_.maxBy(transactions, (t: any) => parseInt(t.gasPrice, 16)).gasPrice)}
+          {/* {hexToNumber(_.maxBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice)} */}
         </TableCell>
       </TableRow>
     </>
