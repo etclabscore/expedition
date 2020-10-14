@@ -91,7 +91,7 @@ function BlockList({ blocks }: any) {
                   <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}&nbsp;<sub>({timeDifferenceFromParent > 0 ? `+${timeDifferenceFromParent}` : `-${timeDifferenceFromParent}`}s)</sub></Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
-                  <Tooltip title={t("Create Transactions", {count: txTypes.create})} placement="top">
+                  <Tooltip title={t("Create Transactions", {count: txTypes.create}) as string} placement="top">
                     <Typography variant="caption" color="textSecondary">{txTypes.create === 0 ? "" : txTypes.create}</Typography>
                   </Tooltip>
                   <Typography>{txTypes.transact}</Typography>

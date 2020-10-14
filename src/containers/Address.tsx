@@ -26,12 +26,12 @@ interface IProps {
 
 const Address: React.FC<IProps> = ({ match, history }) => {
   const { address, block } = match.params;
-  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
+  const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [transactionCount, setTransactionCount] = React.useState();
   const [balance, setBalance] = React.useState();
   const [code, setCode] = React.useState();
-  const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
+  const blockNum = block === undefined ? 0 : parseInt(block, 10);
   const [transactions, setTransactions] = React.useState();
 
   const from = Math.max(blockNum - 99, 0);
