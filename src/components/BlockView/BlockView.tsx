@@ -134,7 +134,7 @@ function BlockView(props: any) {
       </Table>
 
       <TxList transactions={transactions} />
-      </ div >
+    </ div >
   );
 }
 
