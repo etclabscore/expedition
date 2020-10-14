@@ -10,7 +10,7 @@ function useCoreGeth(
   version: string,
   env: string,
   queryUrlOverride?: string,
-): [ERPC | undefined, Dispatch<string>] {
+): [ERPC, Dispatch<string>] {
   const [erpc, setErpc] = React.useState<undefined | ERPC>();
   const [urlOverride, setUrlOverride] = useState(queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL);
   React.useEffect(() => {
@@ -59,7 +59,7 @@ function useCoreGeth(
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [serviceRunner, serviceRunnerUrl, version, env, urlOverride, queryUrlOverride]);
-  return [erpc, setUrlOverride];
+  return [erpc as ERPC, setUrlOverride];
 }
 
 export default useCoreGeth;
