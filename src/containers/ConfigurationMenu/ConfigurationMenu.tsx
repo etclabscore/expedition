@@ -78,7 +78,7 @@ const ConfigurationMenu: React.FC<IConfigurationMenuProps> = (props) => {
 
   return (
     <>
-      <Tooltip title={t("Configuration")}>
+      <Tooltip title={t("Configuration") as string}>
         <IconButton
           aria-label="Configuration"
           aria-controls="menu-appbar"

@@ -12,7 +12,7 @@ function preserveQueryParameters(
 ): LocationDescriptorObject {
   const currentQuery = queryString.parse(window.location.search);
   if (currentQuery) {
-    const preservedQuery: { [key: string]: unknown } = {};
+    const preservedQuery: { [key: string]: any } = {};
     for (const p of preserve) {
       const v = currentQuery[p];
       if (v) {

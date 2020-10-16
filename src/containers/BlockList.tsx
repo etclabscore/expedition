@@ -3,8 +3,8 @@ import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { ArrowForwardIos, ArrowBackIos } from "@material-ui/icons";
+import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 interface IProps {
   from: number;
@@ -18,8 +18,8 @@ interface IProps {
 
 export default function BlockListContainer(props: IProps) {
   const { from, to, style } = props;
-  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
-  const [blocks, setBlocks] = React.useState();
+  const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
+  const [blocks, setBlocks] = React.useState<IBlock[]>();
   React.useEffect(() => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then(setBlocks);

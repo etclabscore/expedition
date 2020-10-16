@@ -1,9 +1,7 @@
-
 import { CircularProgress, useTheme, Theme } from "@material-ui/core";
 import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import getBlocks, { useBlockNumber } from "../helpers";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import MinerStats from "../components/MinerStats";
 import MinerStatsTable from "../components/MinerStatsTable";
 import StatCharts from "../components/StatCharts";
@@ -11,6 +9,7 @@ import getTheme from "../themes/victoryTheme";
 import BlockPagination from "../components/BlockPagination";
 import { History } from "history";
 import _ from "lodash";
+import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 
@@ -31,9 +30,9 @@ interface IProps {
 }
 
 export default (props: IProps) => {
-  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
+  const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
-  const [blocks, setBlocks] = useState();
+  const [blocks, setBlocks] = useState<IBlock[]>();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
   const { block } = props.match.params;

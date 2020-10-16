@@ -12,8 +12,8 @@ export const getBlocks = (from: number, to: number, erpc: ERPC): Promise<any> =>
   return Promise.all(promises);
 };
 
-export const useBlockNumber = (erpc: ERPC | undefined) => {
-  const [blockNumber, setBlockNumber] = React.useState();
+export const useBlockNumber = (erpc: ERPC | undefined): [number] => {
+  const [blockNumber, setBlockNumber] = React.useState<number>(NaN);
   useInterval(() => {
     if (!erpc) {
       return;

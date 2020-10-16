@@ -11,10 +11,18 @@ interface IUrlParams {
 }
 
 export default function NodeView(props: any) {
-  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
+  const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
   const urlParams = useParams<IUrlParams>();
-  const blockNum = (urlParams && urlParams.number !== undefined) ? urlParams.number : blockNumber;
+
+  let blockNum = blockNumber;
+  if (urlParams && urlParams.number !== undefined) {
+    try {
+      blockNum = parseInt(urlParams.number)
+    } catch (e) {
+      console.error("Unable to parse block number from URL");
+    }
+  }
 
   React.useEffect(() => {
     if (blockNum === undefined || blockNumber === undefined) {
@@ -33,7 +41,7 @@ export default function NodeView(props: any) {
   return (
     <BlockList
       from={Math.max(blockNum - 14, 0)}
-      to={(urlParams.number !== undefined ? urlParams.number : blockNumber)}
+      to={blockNum}
       disablePrev={blockNum >= blockNumber}
       disableNext={blockNum === 0}
       onPrev={() => {

@@ -8,11 +8,9 @@ import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { hexToNumber } from "@etclabscore/eserialize";
 import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
-const unit = require("ethjs-unit"); //tslint:disable-line
+import {ObjectUAh7GW7V as Transaction} from "@etclabscore/ethereum-json-rpc";
 
-interface IUrlParams {
-  number: string | undefined;
-}
+const unit = require("ethjs-unit"); //tslint:disable-line
 
 interface IProps {
   match: {
@@ -28,17 +26,17 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const { address, block } = match.params;
   const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
   const [blockNumber] = useBlockNumber(erpc);
-  const [transactionCount, setTransactionCount] = React.useState();
-  const [balance, setBalance] = React.useState();
-  const [code, setCode] = React.useState();
-  const blockNum = block === undefined ? 0 : parseInt(block, 10);
-  const [transactions, setTransactions] = React.useState();
+  const [transactionCount, setTransactionCount] = React.useState<string>();
+  const [balance, setBalance] = React.useState<string>();
+  const [code, setCode] = React.useState<string>();
+  const blockNum = block === undefined ? blockNumber : parseInt(block, 10);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
-  const from = Math.max(blockNum - 99, 0);
+  const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
   const to = blockNum;
 
   React.useEffect(() => {
-    if (blockNum === undefined || blockNumber === undefined) {
+    if (blockNum === NaN || blockNumber === NaN) {
       return;
     }
     if (blockNum > blockNumber) {
@@ -54,9 +52,22 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       return;
     }
     const hexBlockNumber = `0x${blockNumber.toString(16)}`;
-    erpc.eth_getTransactionCount(address, hexBlockNumber).then(setTransactionCount);
-    erpc.eth_getBalance(address, hexBlockNumber).then(setBalance);
-    erpc.eth_getCode(address, hexBlockNumber).then(setCode);
+    erpc.eth_getTransactionCount(address, hexBlockNumber).then((txCount) => {
+      if (txCount === null) { return; }
+      setTransactionCount(txCount);
+      return txCount;
+    }).then((txCountRes: string | undefined) => {
+      if (txCountRes) {
+        erpc.eth_getBalance(address, hexBlockNumber).then((balance) => {
+          if (balance === null) { return; }
+          setBalance(balance);
+        });
+        erpc.eth_getCode(address, hexBlockNumber).then((code) => {
+          if (code === null) { return; }
+          setCode(code);
+        });
+      }
+    });
   }, [blockNumber, address, erpc]);
 
   React.useEffect(() => {
