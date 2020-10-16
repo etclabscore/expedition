@@ -1,7 +1,7 @@
 import * as React from "react";
 import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
+import {meanBy, minBy, maxBy} from "lodash";
 
 import { TableCell, TableRow } from "@material-ui/core";
 
@@ -16,21 +16,21 @@ function BlockGasPrice(props: any) {
       <TableRow>
         <TableCell>{t("Average Gas Price")}</TableCell>
         <TableCell>
-          { _.meanBy(transactions, (t: any) => BigInt(t.gasPrice)) }
+          { meanBy(transactions, (t: any) => BigInt(t.gasPrice)) }
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell>{t("Min Gas Price")}</TableCell>
         <TableCell>
-          { hexToNumber(_.minBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice) }
+          { hexToNumber(minBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice) }
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell>{t("Max Gas Price")}</TableCell>
         <TableCell>
-          { hexToNumber(_.maxBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice) }
+          { hexToNumber(maxBy(transactions, (t: any) => BigInt(t.gasPrice)).gasPrice) }
         </TableCell>
       </TableRow>
     </>

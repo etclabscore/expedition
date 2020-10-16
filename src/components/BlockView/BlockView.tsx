@@ -5,7 +5,6 @@ import TxList from "../TxList";
 import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import _ from "lodash";
 
 import { Table, TableBody, TableCell, TableRow, Button, LinearProgress, Typography } from "@material-ui/core";
 
