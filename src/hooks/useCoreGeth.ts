@@ -11,7 +11,7 @@ function useCoreGeth(
   env: string,
   queryUrlOverride?: string,
 ): [ERPC, Dispatch<string>] {
-  const [erpc, setErpc] = React.useState<undefined | ERPC>();
+  const [erpc, setErpc] = React.useState<ERPC>();
   const [urlOverride, setUrlOverride] = useState(queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL);
   React.useEffect(() => {
     const runAsync = async () => {
