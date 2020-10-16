@@ -237,7 +237,7 @@ function App(props: any) {
                   selectedNetwork={selectedNetwork}
                 />
                 <LanguageMenu />
-                <Tooltip title={t("JSON-RPC API Documentation") as any}>
+                <Tooltip title={t("JSON-RPC API Documentation") as string}>
                   <IconButton
                     onClick={() =>
                       window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
