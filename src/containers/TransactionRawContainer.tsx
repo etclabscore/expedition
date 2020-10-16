@@ -10,8 +10,8 @@ import EthereumJSONRPC, {
 export default function TransactionRawContainer(props: any) {
   const hash = props.match.params.hash;
   const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
-  const [transaction, setTransaction] = React.useState();
-  const [receipt, setReceipt] = React.useState();
+  const [transaction, setTransaction] = React.useState<ITransaction>();
+  const [receipt, setReceipt] = React.useState<ITransactionReceipt>();
 
   React.useEffect(() => {
     if (!erpc) { return; }
