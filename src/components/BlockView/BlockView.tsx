@@ -30,11 +30,11 @@ function BlockView(props: any) {
   return (
     <div>
       <Button
-        onClick={() => {
-          history.push(`/block/${block.hash}/raw`);
-        }}
+        onClick={() => { history.push(`/block/${block.hash}/raw`); }}
         style={{ position: "absolute", right: "10px", top: "75px" }}
-      >View Raw</Button>
+      >
+        View Raw
+      </Button>
       <Table>
         <TableBody>
           <TableRow>
@@ -45,14 +45,22 @@ function BlockView(props: any) {
           <TableRow>
             <TableCell>{t("Gas Usage")}</TableCell>
             <TableCell>
-              <Typography variant="caption">{hexToNumber(gasUsed)}/{hexToNumber(gasLimit)}</Typography>
-              <LinearProgress style={{width: "150px"}} value={filledPercent} variant="determinate" />
+              <Typography variant="caption">
+                {hexToNumber(gasUsed)}/{hexToNumber(gasLimit)}
+              </Typography>
+              <LinearProgress
+                style={{width: "150px"}}
+                value={filledPercent}
+                variant="determinate"
+              />
             </TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>{t("Timestamp")}</TableCell>
-            <TableCell>{t("Timestamp Date", { date: hexToDate(timestamp) })}</TableCell>
+            <TableCell>
+              {t("Timestamp Date", { date: hexToDate(timestamp) })}
+            </TableCell>
           </TableRow>
 
           <TableRow>
@@ -65,7 +73,7 @@ function BlockView(props: any) {
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
-                  <RouterLink className={className} to={`/block/${parentHash}`} >
+                  <RouterLink className={className} to={`/block/${parentHash}`}>
                     {children}
                   </RouterLink>
                 )}>
@@ -79,7 +87,7 @@ function BlockView(props: any) {
             <TableCell>
               <Link
                 component={({ className, children }: { children: any, className: string }) => (
-                  <RouterLink className={className} to={`/address/${miner}`} >
+                  <RouterLink className={className} to={`/address/${miner}`}>
                     {children}
                   </RouterLink>
                 )}>
@@ -133,7 +141,7 @@ function BlockView(props: any) {
       </Table>
 
       <TxList transactions={transactions} />
-    </ div >
+    </div>
   );
 }
 
