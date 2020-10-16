@@ -245,7 +245,7 @@ function App(props: any) {
                     <NotesIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t("Expedition Github") as any}>
+                <Tooltip title={t("Expedition Github") as string}>
                   <IconButton
                     onClick={() =>
                       window.open("https://github.com/etclabscore/expedition")
@@ -254,7 +254,7 @@ function App(props: any) {
                   </IconButton>
                 </Tooltip>
                 <ConfigurationMenu onChange={handleConfigurationChange} />
-                <Tooltip title={t("Toggle Dark Mode") as any}>
+                <Tooltip title={t("Toggle Dark Mode") as string}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                   </IconButton>
