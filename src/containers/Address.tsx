@@ -36,7 +36,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const to = blockNum;
 
   React.useEffect(() => {
-    if (blockNum === NaN || blockNumber === NaN) {
+    if (isNaN(blockNum) || isNaN(blockNumber)) {
       return;
     }
     if (blockNum > blockNumber) {
