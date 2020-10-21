@@ -34,7 +34,8 @@
       "path": "@qiwi/semantic-release-gh-pages-plugin",
       "msg": "github pages release",
       "src": "build/",
-      "branch": "gh-pages"
+      "branch": "gh-pages",
+      "pullTagsBranch": ""
     },
     {
       "path": "semantic-release-docker",
