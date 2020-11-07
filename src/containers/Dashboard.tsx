@@ -13,7 +13,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
-import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock, OneOf5ZIsDKft as ISyncing } from "@etclabscore/ethereum-json-rpc";
+import EthereumJSONRPC, { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 

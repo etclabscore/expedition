@@ -3,7 +3,7 @@ import { Typography, IconButton, Grid } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import TxList from "../TxList";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
-import {ObjectUAh7GW7V as Transaction} from "@etclabscore/ethereum-json-rpc";
+import { Transaction } from "@etclabscore/ethereum-json-rpc";
 
 export interface IProps {
   transactions: Transaction[];
@@ -33,7 +33,7 @@ const AddressTransactions: React.FC<IProps> = (props) => {
       </Grid>
       <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
       {(!props.transactions || props.transactions.length === 0) &&
-        <Grid container style={{padding: "15px"}}>
+        <Grid container style={{ padding: "15px" }}>
           <Typography>{t("No Transactions for this block range.")}</Typography>
         </Grid>
       }

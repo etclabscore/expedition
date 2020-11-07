@@ -3,8 +3,8 @@ import * as React from "react";
 import TxView from "../components/TxView";
 import useCoreGethStore from "../stores/useCoreGethStore";
 import EthereumJSONRPC, {
-  ObjectUAh7GW7V as ITransaction,
-  ObjectInnf1Jcf as ITransactionReceipt
+  Transaction as ITransaction,
+  TransactionReceiptOrNull as ITransactionReceipt,
 } from "@etclabscore/ethereum-json-rpc";
 
 export default function TransactionContainer(props: any) {

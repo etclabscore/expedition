@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import Editor from "@monaco-editor/react";
 import useDarkMode from "use-dark-mode";
-import { ObjectUAh7GW7V as ITransaction} from "@etclabscore/ethereum-json-rpc";
+import { Transaction } from "@etclabscore/ethereum-json-rpc";
 
 interface IProps {
-  tx: ITransaction;
+  tx: Transaction;
   receipt: any;
 }
 
@@ -24,7 +24,7 @@ const TxRaw: React.FC<IProps> = (props) => {
         style={{ position: "absolute", right: "10px", top: "75px", zIndex: 1 }}
       >View Transaction</Button>
       <br />
-      <Typography variant="h5" gutterBottom style={{marginLeft: "10px"}}>Transaction</Typography>
+      <Typography variant="h5" gutterBottom style={{ marginLeft: "10px" }}>Transaction</Typography>
       <br />
       <Editor
         options={{
@@ -44,7 +44,7 @@ const TxRaw: React.FC<IProps> = (props) => {
         value={JSON.stringify(tx, null, 4)}
       />
       <br />
-      <Typography variant="h6" gutterBottom style={{marginLeft: "10px"}}>Receipt</Typography>
+      <Typography variant="h6" gutterBottom style={{ marginLeft: "10px" }}>Receipt</Typography>
       <br />
       <Editor
         options={{

@@ -8,7 +8,7 @@ import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { hexToNumber } from "@etclabscore/eserialize";
 import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
-import {ObjectUAh7GW7V as Transaction} from "@etclabscore/ethereum-json-rpc";
+import { Transaction } from "@etclabscore/ethereum-json-rpc";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -58,13 +58,13 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       return txCount;
     }).then((txCountRes: string | undefined) => {
       if (txCountRes) {
-        erpc.eth_getBalance(address, hexBlockNumber).then((balance) => {
-          if (balance === null) { return; }
-          setBalance(balance);
+        erpc.eth_getBalance(address, hexBlockNumber).then((b) => {
+          if (b === null) { return; }
+          setBalance(b);
         });
-        erpc.eth_getCode(address, hexBlockNumber).then((code) => {
-          if (code === null) { return; }
-          setCode(code);
+        erpc.eth_getCode(address, hexBlockNumber).then((c) => {
+          if (c === null) { return; }
+          setCode(c);
         });
       }
     });

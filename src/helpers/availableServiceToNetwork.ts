@@ -1,4 +1,4 @@
-import { ObjectT84Ta8SE as IAvailableServices, ObjectDBzoJtf4 as IEnvironment } from "@etclabscore/jade-service-runner-client";
+import { ObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3 as IAvailableServices, ObjectOfStringDoaGddGAStringDoaGddGAKieCSt44 as IEnvironment } from "@etclabscore/jade-service-runner-client"; //tslint:disable-line
 
 interface INetwork {
   name: string;

@@ -9,7 +9,7 @@ import getTheme from "../themes/victoryTheme";
 import BlockPagination from "../components/BlockPagination";
 import { History } from "history";
 import _ from "lodash";
-import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock } from "@etclabscore/ethereum-json-rpc";
+import EthereumJSONRPC, { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 

@@ -4,7 +4,7 @@ import * as React from "react";
 import getBlocks from "../helpers";
 import BlockCard from "../components/BlockCard";
 import { hexToNumber } from "@etclabscore/eserialize";
-import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock } from "@etclabscore/ethereum-json-rpc";
+import EthereumJSONRPC, { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 interface IProps {
   from: number;
