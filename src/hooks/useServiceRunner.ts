@@ -1,4 +1,4 @@
-import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices, ServiceRunner } from "@etclabscore/jade-service-runner-client";
+import JadeServiceRunner, { ObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3 as IAvailableServices, ServiceRunner } from "@etclabscore/jade-service-runner-client"; //tslint:disable-line
 import React, { Dispatch, useEffect } from "react";
 import { useQueryParam, StringParam } from "use-query-params";
 

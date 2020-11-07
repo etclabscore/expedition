@@ -7,5 +7,5 @@ export default createStore(() => {
   const [serviceRunner, serviceRunnerUrl] = useServiceRunnerStore();
   const [networkQuery] = useQueryParam("network", StringParam);
   const [rpcUrlQuery] = useQueryParam("rpcUrl", StringParam);
-  return useCoreGeth(serviceRunner, serviceRunnerUrl, "1.11.16", networkQuery || "mainnet", rpcUrlQuery);
+  return useCoreGeth(serviceRunner, serviceRunnerUrl, "1.11.17", networkQuery || "mainnet", rpcUrlQuery);
 });

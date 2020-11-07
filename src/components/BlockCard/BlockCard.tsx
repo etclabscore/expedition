@@ -3,7 +3,7 @@ import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 import { Card, CardHeader, CardContent, Typography, Chip } from "@material-ui/core";
 import { hexToDate, hexToString, hexToNumber } from "@etclabscore/eserialize";
-import { GetBlockByNumberResult as IBlock } from "@etclabscore/ethereum-json-rpc";
+import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 
 interface IProps {

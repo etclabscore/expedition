@@ -2,7 +2,7 @@ import { CircularProgress } from "@material-ui/core";
 import useCoreGethStore from "../stores/useCoreGethStore";
 import * as React from "react";
 import BlockView from "../components/BlockView";
-import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock } from "@etclabscore/ethereum-json-rpc";
+import EthereumJSONRPC, { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 
 export default function Block(props: any) {
   const { match: { params: { hash } } } = props;

@@ -16,7 +16,7 @@ import Brightness3Icon from "@material-ui/icons/Brightness3";
 import NotesIcon from "@material-ui/icons/Notes";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import CodeIcon from "@material-ui/icons/Code";
-import ServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
+import ServiceRunner, { ObjectOfStringDoaGddGAStringVp8AIgHFStringDoaGddGAUnorderedSetOfObjectOfStringDoaGddGAStringDoaGddGAKieCSt44UIuKSje3YY1BLmC3 as IAvailableServices } from "@etclabscore/jade-service-runner-client"; //tslint:disable-line
 import availableServiceToNetwork from "./helpers/availableServiceToNetwork";
 
 import useInterval from "use-interval";
@@ -137,9 +137,9 @@ function App(props: any) {
     return re.test(q);
   };
 
-  const handleSearch = async (query: string | undefined) => {
-    if (query === undefined) { return; }
-    const q = query.trim();
+  const handleSearch = async (qry: string | undefined) => {
+    if (qry === undefined) { return; }
+    const q = qry.trim();
     if (isAddress(q)) {
       history.push(`/address/${q}`);
     }
