@@ -10,10 +10,10 @@ import getTheme from "../themes/victoryTheme";
 import ChartCard from "../components/ChartCard";
 import BlockListContainer from "./BlockList";
 import { hexToNumber } from "@etclabscore/eserialize";
-import EthereumJSONRPC from "@etclabscore/ethereum-json-rpc";
 import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
+import EthereumJSONRPC, { ObjectW9HVodO0 as IBlock, OneOf5ZIsDKft as ISyncing } from "@etclabscore/ethereum-json-rpc";
 
 const useState = React.useState;
 
@@ -25,27 +25,33 @@ const config = {
 };
 
 export default (props: any) => {
-  const [erpc]: [EthereumJSONRPC] = useCoreGethStore();
+  const [erpc]: [EthereumJSONRPC, any] = useCoreGethStore();
   const theme = useTheme<Theme>();
   const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
-  const [chainId, setChainId] = useState();
-  const [block, setBlock] = useState();
-  const [blocks, setBlocks] = useState();
-  const [gasPrice, setGasPrice] = useState();
-  const [syncing, setSyncing] = useState();
-  const [peerCount, setPeerCount] = useState();
+  const [chainId, setChainId] = useState<string>();
+  const [block, setBlock] = useState<IBlock>();
+  const [blocks, setBlocks] = useState<IBlock[]>();
+  const [gasPrice, setGasPrice] = useState<string>();
+  const [syncing, setSyncing] = useState<ISyncing>();
+  const [peerCount, setPeerCount] = useState<string>();
 
   const { t } = useTranslation();
 
   React.useEffect(() => {
     if (!erpc) { return; }
-    erpc.eth_chainId().then(setChainId);
+    erpc.eth_chainId().then((cid) => {
+      if (cid === null) { return; }
+      setChainId(cid);
+    });
   }, [erpc]);
 
   React.useEffect(() => {
     if (!erpc || blockNumber === undefined) { return; }
-    erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then(setBlock);
+    erpc.eth_getBlockByNumber(`0x${blockNumber.toString(16)}`, true).then((b) => {
+      if (b === null) { return; }
+      setBlock(b);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
@@ -63,7 +69,6 @@ export default (props: any) => {
 
   useInterval(() => {
     if (!erpc) { return; }
-
     erpc.eth_syncing().then(setSyncing);
   }, 10000, true);
 
@@ -77,7 +82,7 @@ export default (props: any) => {
     erpc.eth_gasPrice().then(setGasPrice);
   }, [erpc]);
 
-  if (!blocks) {
+  if (!blocks || !chainId || !gasPrice || !peerCount) {
     return <CircularProgress />;
   }
 

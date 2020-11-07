@@ -86,11 +86,16 @@ function App(props: any) {
   }, [networks, query.network]);
 
   useEffect(() => {
-    if (selectedNetwork && selectedNetwork.name !== query.network) {
-      setQuery({ network: selectedNetwork.name });
+    if (selectedNetwork === undefined) {
+      return;
+    }
+    const { name } = selectedNetwork as any;
+
+    if (name !== query.network) {
+      setQuery({ network: name });
       history.push({
         pathname: history.location.pathname,
-        search: `?network=${selectedNetwork.name}`,
+        search: `?network=${name}`,
       });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,7 +137,9 @@ function App(props: any) {
     return re.test(q);
   };
 
-  const handleSearch = async (q: string) => {
+  const handleSearch = async (query: string | undefined) => {
+    if (query === undefined) { return; }
+    const q = query.trim();
     if (isAddress(q)) {
       history.push(`/address/${q}`);
     }
@@ -202,13 +209,16 @@ function App(props: any) {
                   onKeyDown={
                     (event: KeyboardEvent<HTMLInputElement>) => {
                       if (event.keyCode === 13) {
-                        handleSearch(search.trim());
+                        handleSearch(search);
                       }
                     }
                   }
                   onChange={
                     (event: ChangeEvent<HTMLInputElement>) => {
-                      setSearch(event.target.value);
+                      if (event.target.value) {
+                        const {value} = event.target;
+                        setSearch(value as any);
+                      }
                     }
                   }
                   fullWidth
@@ -227,7 +237,7 @@ function App(props: any) {
                   selectedNetwork={selectedNetwork}
                 />
                 <LanguageMenu />
-                <Tooltip title={t("JSON-RPC API Documentation")}>
+                <Tooltip title={t("JSON-RPC API Documentation") as string}>
                   <IconButton
                     onClick={() =>
                       window.open("https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/etclabscore/ethereum-json-rpc-specification/master/openrpc.json") //tslint:disable-line
@@ -235,7 +245,7 @@ function App(props: any) {
                     <NotesIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={t("Expedition Github")}>
+                <Tooltip title={t("Expedition Github") as string}>
                   <IconButton
                     onClick={() =>
                       window.open("https://github.com/etclabscore/expedition")
@@ -244,7 +254,7 @@ function App(props: any) {
                   </IconButton>
                 </Tooltip>
                 <ConfigurationMenu onChange={handleConfigurationChange} />
-                <Tooltip title={t("Toggle Dark Mode")}>
+                <Tooltip title={t("Toggle Dark Mode") as string}>
                   <IconButton onClick={darkMode.toggle}>
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                   </IconButton>

@@ -1,8 +1,8 @@
-import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices } from "@etclabscore/jade-service-runner-client";
+import JadeServiceRunner, { ObjectT84Ta8SE as IAvailableServices, ServiceRunner } from "@etclabscore/jade-service-runner-client";
 import React, { Dispatch, useEffect } from "react";
 import { useQueryParam, StringParam } from "use-query-params";
 
-function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, string, Dispatch<string>, IAvailableServices[]] { //tslint:disable-line
+function useServiceRunner(defaultUrl: string): [JadeServiceRunner, string, Dispatch<string>, IAvailableServices[]] { //tslint:disable-line
   const [url, setUrl] = React.useState(defaultUrl);
   const [serviceRunner, setServiceRunner] = React.useState<JadeServiceRunner | undefined>();
   const [availableServices, setAvailableServices] = React.useState<IAvailableServices[]>([]);
@@ -50,7 +50,7 @@ function useServiceRunner(defaultUrl: string): [JadeServiceRunner | undefined, s
       serviceRunner.listServices("available").then(setAvailableServices);
     }
   }, [serviceRunner]);
-  return [serviceRunner, url, setUrl, availableServices];
+  return [serviceRunner as ServiceRunner, url, setUrl, availableServices];
 }
 
 export default useServiceRunner;

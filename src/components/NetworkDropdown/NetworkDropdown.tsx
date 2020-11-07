@@ -32,7 +32,7 @@ const NetworkDropdown: React.FC<IProps> = (props) => {
   return (
     <>
 
-      <Tooltip title={t("Change Network")}>
+      <Tooltip title={t("Change Network") as string}>
         <Button onClick={handleClick}>
           {selectedNetwork && selectedNetwork.name}
         </Button>
