@@ -63,7 +63,7 @@
   "devDependencies": {
     "@etclabscore/jade-service-runner": "^1.9.0",
     "@semantic-release/exec": "^3.3.8",
-    "@types/bignumber.js": "^4.0.3",
+    "@types/bignumber.js": "^5.0.0",
     "@types/jest": "^21.1.6",
     "@types/lodash": "^4.14.149",
     "@types/node": "^14.11.8",
