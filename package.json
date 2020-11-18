@@ -52,7 +52,7 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "reusable": "^1.0.0-alpha.12",
-    "semantic-release": "^15.13.30",
+    "semantic-release": "^17.2.3",
     "semantic-release-docker": "^2.2.0",
     "use-dark-mode": "^2.3.1",
     "use-interval": "^1.1.0",
