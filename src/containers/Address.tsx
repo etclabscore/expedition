@@ -32,7 +32,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const blockNum = block === undefined ? blockNumber : parseInt(block, 10);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
-  const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
+  const from = Math.max((blockNum ? blockNum : 0) - 99, 0);
   const to = blockNum;
 
   React.useEffect(() => {
